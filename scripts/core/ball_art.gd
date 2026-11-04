@@ -1,5 +1,5 @@
 class_name BallArt
-## Arte HD das bolinhas (120x120), sem rosto: corpo, cabelo, roupa, chapeu e acessorios.
+## Arte pixelada das bolinhas (60x60 ampliada 2x = 120x120), sem rosto: corpo, cabelo, roupa, chapeu e acessorios.
 ## Coordenadas de "design" numa grade 40x40 (centro 20,22 / raio 14) multiplicadas por K=3.
 ## Texturas ficam em cache e podem ser pre-geradas em assets/balls (tools/bake_balls.gd).
 
@@ -10,6 +10,10 @@ const CY := 22.0
 const R := 14.0
 const CENTER := Vector2(60, 66)
 const RADIUS_PX := 42.0
+## pixel-art: desenha numa grade LS x LS e amplia PX vezes (nearest) para 120x120
+const PX := 2
+const LS := 60
+const KL := 1.5
 const OUTLINE := Color("#1b1420")
 const LIGHT := Vector3(-0.42, -0.62, 0.66)
 const BAKED := "res://assets/balls/%s.png"
@@ -36,9 +40,10 @@ static func make(look: Dictionary, gray: bool = false) -> Texture2D:
 
 
 static func render(look: Dictionary) -> Image:
-	var img := Image.create(SIZE, SIZE, false, Image.FORMAT_RGBA8)
+	var img := Image.create(LS, LS, false, Image.FORMAT_RGBA8)
 	img.fill(Color(0, 0, 0, 0))
 	Art.new(img, normalize(look)).draw_all()
+	img.resize(SIZE, SIZE, Image.INTERPOLATE_NEAREST)
 	return img
 
 
@@ -119,7 +124,7 @@ class Art:
 		return Color(fallback)
 
 	func setp(x: int, y: int, c: Color) -> void:
-		if x < 0 or y < 0 or x >= SIZE or y >= SIZE:
+		if x < 0 or y < 0 or x >= LS or y >= LS:
 			return
 		if c.a >= 0.99:
 			img.set_pixel(x, y, c)
@@ -131,9 +136,9 @@ class Art:
 				img.set_pixel(x, y, Color(o.lerp(c, c.a), maxf(o.a, c.a)))
 
 	func fill(x0: float, y0: float, x1: float, y1: float, fn: Callable) -> void:
-		for y in range(maxi(0, int(y0 * K) - 1), mini(SIZE, int(y1 * K) + 2)):
-			for x in range(maxi(0, int(x0 * K) - 1), mini(SIZE, int(x1 * K) + 2)):
-				var c: Variant = fn.call(Vector2((x + 0.5) / K, (y + 0.5) / K))
+		for y in range(maxi(0, int(y0 * KL) - 1), mini(LS, int(y1 * KL) + 2)):
+			for x in range(maxi(0, int(x0 * KL) - 1), mini(LS, int(x1 * KL) + 2)):
+				var c: Variant = fn.call(Vector2((x + 0.5) / KL, (y + 0.5) / KL))
 				if c != null:
 					setp(x, y, c)
 
@@ -180,7 +185,7 @@ class Art:
 		var n := Vector2(p.x - CX, p.y - CY) / R
 		var z := sqrt(maxf(0.0, 1.0 - minf(n.length_squared(), 1.0)))
 		var diff := clampf(Vector3(n.x, n.y, z).dot(LIGHT.normalized()), 0.0, 1.0)
-		var f := lerpf(1.0, 0.6 + 0.58 * diff, strength)
+		var f := lerpf(1.0, 0.6 + 0.58 * (round(diff * 6.0) / 6.0), strength)
 		if f > 1.0:
 			return c.lerp(Color.WHITE, (f - 1.0) * 0.75)
 		return Color(c.r * f, c.g * f, c.b * f, c.a)
@@ -195,7 +200,7 @@ class Art:
 		_hat()
 		_front_acc()
 		_spec()
-		_outline(OUTLINE, 2)
+		_outline(OUTLINE, 1)
 
 	func _body() -> void:
 		var rim := skin.lightened(0.4)
@@ -217,14 +222,14 @@ class Art:
 	func _outline(c: Color, w: int) -> void:
 		for _i in w:
 			var src := img.duplicate() as Image
-			for y in SIZE:
-				for x in SIZE:
+			for y in LS:
+				for x in LS:
 					if src.get_pixel(x, y).a > 0.3:
 						continue
 					for dd: Vector2i in [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1)]:
 						var nx := x + dd.x
 						var ny := y + dd.y
-						if nx >= 0 and ny >= 0 and nx < SIZE and ny < SIZE and src.get_pixel(nx, ny).a > 0.3:
+						if nx >= 0 and ny >= 0 and nx < LS and ny < LS and src.get_pixel(nx, ny).a > 0.3:
 							img.set_pixel(x, y, c)
 							break
 

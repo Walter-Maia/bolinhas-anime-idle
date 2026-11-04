@@ -163,7 +163,7 @@ static func style_button(b: Button, color: Color) -> void:
 static func press_anim(c: Control) -> void:
 	c.resized.connect(func() -> void: c.pivot_offset = c.size * 0.5)
 	c.gui_input.connect(func(e: InputEvent) -> void:
-		var down = (e is InputEventMouseButton and e.button_index == MOUSE_BUTTON_LEFT) or e is InputEventScreenTouch
+		var down = (e is InputEventMouseButton and e.button_index == MOUSE_BUTTON_LEFT)
 		if not down:
 			return
 		var tw := c.create_tween()

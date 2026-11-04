@@ -49,7 +49,7 @@ func setup_look(look: Dictionary, r: int) -> BallIcon:
 
 
 func _gui_input(e: InputEvent) -> void:
-	if (e is InputEventMouseButton and e.pressed and e.button_index == MOUSE_BUTTON_LEFT) or (e is InputEventScreenTouch and e.pressed):
+	if (e is InputEventMouseButton and e.pressed and e.button_index == MOUSE_BUTTON_LEFT):
 		pressed.emit()
 		accept_event()
 

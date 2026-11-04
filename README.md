@@ -7,17 +7,17 @@ arena com uma **arma girando em volta**, causando dano ao encostar e soltando sk
 **Baixar (APK Android / Windows):** aba [Releases](https://github.com/Walter-Maia/bolinhas-anime-idle/releases)
 
 ## Conteúdo
-- **Mais de 860 bolinhas de ~90 animes** (e crescendo), 9 raridades: Comum → Incomum → Raro → Épico → Lendário →
+- **1.419 bolinhas de 149 animes**, 9 raridades: Comum → Incomum → Raro → Épico → Lendário →
   Mítico → Divino → Celestial → Transcendente, com formas evoluídas nomeadas.
 - **Combate**: bolinhas quicam pelas paredes (sem perseguir), armas orbitando (37 tipos), 28 tipos de skill
   (projétil, feixe, sopro, domínio, órbita, gancho, teleporte, cópia, aposta...), 15 tipos de passiva,
   13 status, transformações com aura e versões "alt" das skills. Efeitos no estilo fofo desenhados em código.
-- **Modo História**: 32 capítulos (um por anime) com mapa de 20 fases, diálogos, tela VS e chefe por capítulo;
+- **Modo História**: 64 capítulos com mapa de 20 fases, diálogos, tela VS e chefe por capítulo;
   depois do último capítulo recomeça em Difícil / Pesadelo / Inferno.
-- **Modos**: Chefes (32), Torre Infinita, Masmorras diárias, PvP, Expedições (bolinhas fora de campo trazem
+- **Modos**: Chefes (64), Torre Infinita, Masmorras diárias, PvP, Expedições (bolinhas fora de campo trazem
   prêmios), Horda Sem Fim e Desafio Diário com regras especiais.
 - **Evolução**: nível (moedas), estrelas (cópias), subir raridade exige cópias + cristais + derrotar um chefe.
-- **Equipamentos do jogador** (9 espaços, valem para qualquer bolinha em campo), **30 conjuntos lendários** com
+- **Equipamentos do jogador** (9 espaços, valem para qualquer bolinha em campo), **50 conjuntos lendários** com
   bônus de 2/4/6 peças, forja.
 - **Gacha** com banners liberados pela história, banner de evento semanal, pity e animação de abertura.
 - **Metas**: missões diárias, conquistas, login de 7 dias, recompensa por completar a coleção de um anime.

@@ -347,7 +347,7 @@ func dialogue(lines: Array, cb: Callable) -> void:
 		else:
 			text_l.add_theme_font_size_override("font_size", 22)
 	layer.gui_input.connect(func(e: InputEvent) -> void:
-		if (e is InputEventMouseButton and e.pressed and e.button_index == MOUSE_BUTTON_LEFT) or (e is InputEventScreenTouch and e.pressed):
+		if (e is InputEventMouseButton and e.pressed and e.button_index == MOUSE_BUTTON_LEFT):
 			var tw4: Variant = state.tw
 			if tw4 != null and (tw4 as Tween).is_valid() and (tw4 as Tween).is_running():
 				(tw4 as Tween).kill()

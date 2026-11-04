@@ -223,7 +223,7 @@ class GachaAnim:
 		queue_redraw()
 
 	func _gui_input(e: InputEvent) -> void:
-		if not ((e is InputEventMouseButton and e.pressed and e.button_index == MOUSE_BUTTON_LEFT) or (e is InputEventScreenTouch and e.pressed)):
+		if not ((e is InputEventMouseButton and e.pressed and e.button_index == MOUSE_BUTTON_LEFT)):
 			return
 		if phase == 0:
 			_open()

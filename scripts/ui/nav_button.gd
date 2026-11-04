@@ -19,6 +19,7 @@ var dot := false:
 var linear := false
 var _lift := 1.0
 var _t := 0.0
+var _last_press := -1000
 
 
 func _ready() -> void:
@@ -37,9 +38,15 @@ func _process(delta: float) -> void:
 
 
 func _gui_input(e: InputEvent) -> void:
-	if (e is InputEventMouseButton and e.pressed and e.button_index == MOUSE_BUTTON_LEFT) or (e is InputEventScreenTouch and e.pressed):
-		pressed.emit()
+	# so o evento de mouse (no celular o toque ja e emulado como mouse; tratar os dois disparava 2x
+	# e a aba abria e fechava no mesmo toque)
+	if (e is InputEventMouseButton and e.pressed and e.button_index == MOUSE_BUTTON_LEFT):
 		accept_event()
+		var now := Time.get_ticks_msec()
+		if now - _last_press < 250:
+			return
+		_last_press = now
+		pressed.emit()
 
 
 func _draw() -> void:
