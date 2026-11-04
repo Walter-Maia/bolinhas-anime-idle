@@ -158,7 +158,7 @@ const LIST := [
 		"lore": "Passou duzentos anos sentado numa cachoeira e ainda é o mais rápido da turma.",
 		"look": {"skin": "#d8c0a0", "hair": "#c8c8c8", "hair_style": "bald",
 			"hat": "none", "outfit": "robe", "outfit_color": "#4a6a3a", "outfit_color2": "#ffd23c",
-			"acc": ["necklace"], "acc_color": "#8a5a2a"},
+			"acc": ["necklace", "goatee", "mustache"], "acc_color": "#8a5a2a", "acc_colors": {"goatee": "#ececf0", "mustache": "#ececf0"}},
 		"look_tf": {"skin": "#f0d0a8", "hair": "#4a2a1a", "hair_style": "spiky",
 			"hat": "gold_helmet", "hat_color": "#ffd23c", "hat_color2": "#5ad86a",
 			"outfit": "armor_gold", "outfit_color": "#ffd23c", "outfit_color2": "#2a8a4a",
@@ -630,7 +630,7 @@ const LIST := [
 		"id": "cdz2_griffon", "name": "Juiz das Marionetes", "world": "Santuário dos Cavaleiros",
 		"rarity": 5, "role": "Suporte", "color": "#e0e0ff",
 		"lore": "Puxa fios invisíveis e faz o inimigo quebrar os próprios ossos. Com elegância.",
-		"look": {"skin": "#f6e0d0", "hair": "#ececf4", "hair_style": "long",
+		"look": {"skin": "#f6e0d0", "hair": "#ececf4", "hair_style": "long_bangs",
 			"outfit": "armor", "outfit_color": "#2a1a3a", "outfit_color2": "#c8c8e8",
 			"acc": ["wings"], "acc_color": "#2a1a3a"},
 		"weapon": {"kind": "chain", "color": "#ececf8", "count": 2, "orbit": 1.6, "spin": 3.0, "power": 0.4},
@@ -1009,7 +1009,7 @@ const LIST := [
 		"lore": "Fã número um da deusa e número um em perder para o cavalo alado.",
 		"look": {"skin": "#f0d0b0", "hair": "#8a5a2a", "hair_style": "messy",
 			"outfit": "armor", "outfit_color": "#e8e4f8", "outfit_color2": "#8a7ad8",
-			"acc": ["horns"], "acc_color": "#e8e4f8"},
+			"acc": ["horns", "shoulder_pads"], "acc_color": "#e8e4f8", "acc_colors": {"shoulder_pads": "#d8d0f4"}},
 		"weapon": {"kind": "spear", "color": "#e8e4f8", "count": 1, "orbit": 1.5, "spin": 5.0, "power": 0.4},
 		"actives": [
 			{"name": "Galope do Unicórnio", "type": "dash", "cd": 6.0, "power": 1.5, "count": [1, 1, 2, 2, 2, 3, 3, 3, 4],
@@ -1031,7 +1031,7 @@ const LIST := [
 		"lore": "Uiva bonito, morde rápido, apanha em um episódio.",
 		"look": {"skin": "#e8c098", "hair": "#2a2a2a", "hair_style": "spiky_back",
 			"outfit": "armor", "outfit_color": "#d8dce8", "outfit_color2": "#5a5a6a",
-			"acc": ["fox_ears"], "acc_color": "#8a8a9a"},
+			"acc": ["fox_ears", "shoulder_pads"], "acc_color": "#8a8a9a", "acc_colors": {"shoulder_pads": "#c8ccd8"}},
 		"weapon": {"kind": "dagger", "color": "#d8dce8", "count": 2, "orbit": 1.4, "spin": 5.5, "power": 0.4},
 		"actives": [
 			{"name": "Uivo Mortal", "type": "multi", "cd": 5.0, "power": 0.7, "count": [3, 3, 3, 4, 4, 4, 5, 5, 6], "interval": 0.1,
@@ -1052,7 +1052,7 @@ const LIST := [
 		"lore": "Grande, forte, cabeludo e sempre esquecido na hora da foto.",
 		"look": {"skin": "#d8a878", "hair": "#a86a2a", "hair_style": "afro",
 			"outfit": "armor", "outfit_color": "#e8d8b8", "outfit_color2": "#c87a2a",
-			"acc": [], "acc_color": "#c87a2a"},
+			"acc": ["shoulder_pads"], "acc_color": "#c87a2a", "acc_colors": {"shoulder_pads": "#d89a4a"}},
 		"weapon": {"kind": "fist", "color": "#ffa83a", "count": 2, "orbit": 1.4, "spin": 3.0, "power": 0.45},
 		"actives": [
 			{"name": "Bomba do Leãozinho", "type": "aoe", "cd": 7.0, "power": 2.0, "fx": "small_explosion", "fx_scale": 0.6, "radius": 70.0,
@@ -1073,7 +1073,7 @@ const LIST := [
 		"lore": "Já estrangulou ursos de verdade no treino e acha abraço uma arte marcial.",
 		"look": {"skin": "#d8a878", "hair": "#3a2a1a", "hair_style": "buzz",
 			"outfit": "armor", "outfit_color": "#c8b898", "outfit_color2": "#6a4a2a",
-			"acc": ["bandage"], "acc_color": "#f4f0e8"},
+			"acc": ["bandage", "shoulder_pads"], "acc_color": "#f4f0e8", "acc_colors": {"shoulder_pads": "#8a6a3a"}},
 		"weapon": {"kind": "hammer", "color": "#8a6a4a", "count": 1, "orbit": 1.5, "spin": 2.5, "power": 0.55},
 		"actives": [
 			{"name": "Abraço do Urso", "type": "multi", "cd": 7.0, "power": 1.0, "count": 3, "interval": 0.25, "fx": "blunt_hit", "fx_scale": 0.55,
@@ -1095,7 +1095,7 @@ const LIST := [
 		"lore": "Unhas venenosas, risada irritante e uma armadura que cresce de volta.",
 		"look": {"skin": "#e0c0a0", "hair": "#4a3a2a", "hair_style": "slick",
 			"outfit": "armor", "outfit_color": "#d8dce8", "outfit_color2": "#4a8a3a",
-			"acc": ["glasses"], "acc_color": "#4a8a3a"},
+			"acc": ["glasses", "shoulder_pads"], "acc_color": "#4a8a3a", "acc_colors": {"shoulder_pads": "#5a9a4a"}},
 		"weapon": {"kind": "needle", "color": "#6ad84a", "count": 3, "orbit": 1.45, "spin": 4.5, "power": 0.35},
 		"actives": [
 			{"name": "Presas Venenosas", "type": "projectile", "cd": 6.0, "power": 1.0, "fx": "acid_splash", "fx_scale": 0.4, "speed": 460.0,

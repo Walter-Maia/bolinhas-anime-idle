@@ -64,6 +64,12 @@ func _draw() -> void:
 		var p := Vector2((size.x - tw) * 0.5, size.y - 12)
 		draw_string_outline(f, p, txt, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, 7, UI.C_OUTLINE)
 		draw_string(f, p, txt, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Color.WHITE)
+	if not empty and item.has("set"):
+		draw_rect(Rect2(1, 1, size.x - 2, size.y - 2), Color("#ffcf3a"), false, 3.0)
+		var sfs := 12
+		var sw := f.get_string_size("SET", HORIZONTAL_ALIGNMENT_LEFT, -1, sfs).x
+		draw_rect(Rect2(size.x - sw - 12, 4, sw + 8, 16), Color("#a0600a"))
+		draw_string(f, Vector2(size.x - sw - 8, 16), "SET", HORIZONTAL_ALIGNMENT_LEFT, -1, sfs, Color("#ffe27a"))
 	if tag != "":
 		var fs2 := 13
 		var tw2 := f.get_string_size(tag, HORIZONTAL_ALIGNMENT_LEFT, -1, fs2).x

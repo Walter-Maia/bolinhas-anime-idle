@@ -11,7 +11,7 @@ const LIST := [
 		"lore": "Jurou vingança contra uma trupe inteira e carrega cinco correntes, uma por dedo.",
 		"look": {"skin": "#f6d8b8", "hair": "#f2d36b", "hair_style": "bob", "hat": "none",
 			"outfit": "robe", "outfit_color": "#2a4fa8", "outfit_color2": "#f2c84b",
-			"acc": ["chains", "earrings"], "acc_color": "#c8ccd6"},
+			"acc": ["chains", "earrings"], "acc_color": "#c8ccd6", "acc_colors": {"earrings": "#e0263a"}},
 		"look_tf": {"outfit_color2": "#e0263a", "acc_color": "#e0263a"},
 		"actives": [
 			{"name": "Corrente do Juízo", "type": "stretch", "cd": 6.0, "power": 2.4, "count": [1, 1, 1, 2, 2, 2, 3, 3, 3], "range": 330.0,
@@ -89,7 +89,7 @@ const LIST := [
 		"lore": "Lê um livro que guarda poderes roubados. A biblioteca dele é crime organizado.",
 		"look": {"skin": "#f2d6bc", "hair": "#141018", "hair_style": "slick", "hat": "none",
 			"outfit": "coat", "outfit_color": "#1a1a22", "outfit_color2": "#f0ece0",
-			"acc": ["cross", "earrings", "collar"], "acc_color": "#f0ece0"},
+			"acc": ["cross", "earrings", "fur_collar"], "acc_color": "#f0ece0", "acc_colors": {"earrings": "#5a9ae8", "fur_collar": "#f4f0e6"}},
 		"actives": [
 			{"name": "Livro do Ladrão", "type": "mimic", "cd": 8.0, "power": 1.2,
 				"desc": "Abre o livro numa página qualquer e usa o poder de outra bolinha."},
@@ -114,8 +114,8 @@ const LIST := [
 		"lore": "Agradeceu dez mil vezes por dia, até o agradecimento ficar mais rápido que o som.",
 		"look": {"skin": "#f0d0b0", "hair": "#ececf4", "hair_style": "ponytail", "hat": "none",
 			"outfit": "gi", "outfit_color": "#f4f4f4", "outfit_color2": "#2a2a2a",
-			"acc": ["necklace"], "acc_color": "#8a5a2a"},
-		"look_tf": {"acc": ["necklace", "halo"]},
+			"acc": ["necklace", "beard", "mustache"], "acc_color": "#8a5a2a", "acc_colors": {"beard": "#ececf4", "mustache": "#ececf4"}},
+		"look_tf": {"acc": ["necklace", "beard", "mustache", "halo"]},
 		"actives": [
 			{"name": "Mil Mãos Douradas", "type": "rain", "cd": 9.0, "power": 1.4, "fx": "holy_pillar", "fx_scale": 0.5, "radius": 55.0,
 				"count": [6, 6, 6, 6, 6, 6, 7, 8, 10], "shake": 6.0,
@@ -165,7 +165,7 @@ const LIST := [
 		"lore": "Quanto mais apanha, maior fica o sol que ele guarda para você.",
 		"look": {"skin": "#f2dcc4", "hair": "#141018", "hair_style": "short", "hat": "none",
 			"outfit": "coat", "outfit_color": "#1c1c2a", "outfit_color2": "#4a2a6a",
-			"acc": ["mouth_mask", "sword_back"], "acc_color": "#1c1c2a"},
+			"acc": ["high_collar", "sword_back"], "acc_color": "#1c1c2a"},
 		"look_tf": {"outfit": "armor", "outfit_color": "#3a2a2a", "outfit_color2": "#ff7a2a"},
 		"actives": [
 			{"name": "Lâmina do Guarda-Chuva", "type": "multi", "cd": 5.0, "power": 0.7, "count": 5, "interval": 0.08, "fx": "dagger_flurry", "fx_scale": 0.45,
@@ -377,7 +377,7 @@ const LIST := [
 		"id": "bleach_lojista", "name": "Lojista de Chapéu Listrado", "world": "Sociedade das Almas",
 		"rarity": 4, "role": "Suporte", "color": "#e0263a",
 		"lore": "Vende balas, doces e armas proibidas. Sempre com um leque na frente da cara.",
-		"look": {"skin": "#f2d6bc", "hair": "#f2d36b", "hair_style": "messy", "hat": "fedora", "hat_color": "#3c6a3a", "hat_color2": "#f4f4f4",
+		"look": {"skin": "#f2d6bc", "hair": "#f2d36b", "hair_style": "messy", "hat": "bucket", "hat_color": "#3c6a3a", "hat_color2": "#f4f4f4", "hat_stripes": true,
 			"outfit": "coat", "outfit_color": "#2a3a2a", "outfit_color2": "#e8e8e8",
 			"acc": ["sword_back"], "acc_color": "#3a2a1a"},
 		"actives": [
@@ -516,7 +516,7 @@ const LIST := [
 		"look": {"skin": "#f2d0b0", "hair": "#d4322a", "hair_style": "ponytail", "hat": "none",
 			"outfit": "kimono", "outfit_color": "#141418", "outfit_color2": "#f4f4f4",
 			"acc": ["bandana", "goggles"], "acc_color": "#f4f4f4"},
-		"look_tf": {"outfit": "cape", "outfit_color": "#6a4a3a", "outfit_color2": "#f4f4f4", "acc": ["bandana", "goggles", "fox_ears"], "acc_color": "#f4f4f4"},
+		"look_tf": {"outfit": "cape", "outfit_color": "#6a4a3a", "outfit_color2": "#f4f4f4", "acc": ["bandana", "goggles", "fur_collar"], "acc_color": "#f4f4f4", "acc_colors": {"fur_collar": "#a8744a"}},
 		"actives": [
 			{"name": "Uive, Serpente Dentada", "type": "stretch", "cd": 6.0, "power": 2.2, "count": [1, 1, 2, 2, 2, 3, 3, 3, 4], "range": 300.0,
 				"hit_fx": "claw_red", "hit_scale": 0.5, "arm": "#c84848",
@@ -754,7 +754,7 @@ const LIST := [
 		"lore": "Fala pouco, fuma pose e tem um espírito roxo que soca mais rápido que a luz.",
 		"look": {"skin": "#e8c098", "hair": "#141018", "hair_style": "messy", "hat": "cap", "hat_color": "#141418", "hat_color2": "#ffd23c",
 			"outfit": "coat", "outfit_color": "#1a1a2a", "outfit_color2": "#ffd23c",
-			"acc": ["chains"], "acc_color": "#ffd23c"},
+			"acc": ["chains", "high_collar"], "acc_color": "#ffd23c", "acc_colors": {"high_collar": "#1a1a2a"}},
 		"actives": [
 			{"name": "Rajada Ora-Ora", "type": "multi", "cd": 6.0, "power": 0.7, "count": [8, 8, 8, 8, 8, 10, 12, 14, 16], "interval": 0.04,
 				"fx": "cartoon_pow", "fx_scale": 0.45, "shake": 4.0,

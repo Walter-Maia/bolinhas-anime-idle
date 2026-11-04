@@ -11,8 +11,8 @@ const LIST := [
 		"lore": "Já tentou morrer de tudo quanto é jeito. Nenhum deu certo, e agora ele está irritado.",
 		"look": {"skin": "#d8a878", "hair": "#1a1a22", "hair_style": "wild_long", "hat": "none",
 			"outfit": "coat", "outfit_color": "#6a3a8a", "outfit_color2": "#e8e0d0",
-			"acc": ["horns", "chains"], "acc_color": "#e8e0d0"},
-		"look_tf": {"outfit_color": "#22243a", "outfit_color2": "#5a8ae8", "acc": ["horns", "chains", "tail"], "acc_color": "#5a8ae8"},
+			"acc": ["horns", "chains", "beard"], "acc_color": "#e8e0d0"},
+		"look_tf": {"outfit_color": "#22243a", "outfit_color2": "#5a8ae8", "acc": ["horns", "chains", "tail", "beard"], "acc_color": "#5a8ae8", "acc_colors": {"horns": "#e8e0d0"}},
 		"weapon": {"kind": "bat", "color": "#5a4a3a", "count": 1, "orbit": 1.6, "spin": 2.5, "power": 1.0},
 		"actives": [
 			{"name": "Sopro Fervente", "type": "breath", "cd": 7.0, "power": 0.9, "fx": "fire_breath", "range": 260.0, "angle": 0.7, "ticks": 5,
@@ -101,7 +101,7 @@ const LIST := [
 		"lore": "Manipula fios invisíveis e pessoas visíveis. Ri alto enquanto faz as duas coisas.",
 		"look": {"skin": "#f2c89a", "hair": "#f2d36b", "hair_style": "short", "hat": "none",
 			"outfit": "coat", "outfit_color": "#ff6ab8", "outfit_color2": "#f4f4f4",
-			"acc": ["sunglasses"], "acc_color": "#e04a8a"},
+			"acc": ["sunglasses", "fur_collar"], "acc_color": "#e04a8a", "acc_colors": {"fur_collar": "#ff6ab8"}},
 		"weapon": {"kind": "whip", "color": "#f4f4f4", "count": 3, "orbit": 1.5, "spin": 6.0, "power": 0.4},
 		"actives": [
 			{"name": "Fio Parasita", "type": "hook", "cd": 6.0, "power": 1.8, "count": [1, 1, 1, 1, 2, 2, 2, 3, 3],
@@ -128,7 +128,7 @@ const LIST := [
 		"lore": "Charuto na boca, gancho de ouro na mão e um deserto inteiro dentro do casaco.",
 		"look": {"skin": "#d8b088", "hair": "#1a1a22", "hair_style": "slick", "hat": "none",
 			"outfit": "scarf_coat", "outfit_color": "#2e2a2c", "outfit_color2": "#c89a4a",
-			"acc": ["scar_x"], "acc_color": "#6a5a48"},
+			"acc": ["scar_x", "fur_collar"], "acc_color": "#6a5a48", "acc_colors": {"fur_collar": "#5a4a3e"}},
 		"weapon": {"kind": "claw", "color": "#f2c84b", "count": 1, "orbit": 1.45, "spin": 4.5, "power": 0.7},
 		"actives": [
 			{"name": "Gancho do Deserto", "type": "hook", "cd": 6.0, "power": 1.9, "count": [1, 1, 1, 1, 2, 2, 2, 3, 3],
@@ -184,7 +184,7 @@ const LIST := [
 		"lore": "Fala devagaaar, anda na velocidade da luz e diz que está com muito medo.",
 		"look": {"skin": "#e8c098", "hair": "#4a3a2a", "hair_style": "short", "hat": "none",
 			"outfit": "suit", "outfit_color": "#f2d04a", "outfit_color2": "#2a2a2a",
-			"acc": ["sunglasses"], "acc_color": "#3a2a1a"},
+			"acc": ["sunglasses"], "acc_color": "#3a2a1a", "acc_colors": {"tie": "#2a2a2a"}},
 		"weapon": {"kind": "sword", "color": "#fff6a0", "count": 1, "orbit": 1.55, "spin": 7.0, "power": 0.6},
 		"actives": [
 			{"name": "Chuva de Joias Brilhantes", "type": "projectile", "cd": 6.0, "power": 1.1, "fx": "laser_gold",
@@ -327,7 +327,7 @@ const LIST := [
 		"lore": "Antes de partir disse que deixou tudo num só lugar. O mar inteiro ainda está procurando.",
 		"look": {"skin": "#e8b888", "hair": "#1a1a22", "hair_style": "messy", "hat": "none",
 			"outfit": "coat", "outfit_color": "#c8283a", "outfit_color2": "#f2d36b",
-			"acc": ["necklace"], "acc_color": "#f2d36b"},
+			"acc": ["necklace", "mustache"], "acc_color": "#f2d36b"},
 		"weapon": {"kind": "sword", "color": "#d8dde8", "count": 1, "orbit": 1.6, "spin": 4.5, "power": 0.9},
 		"actives": [
 			{"name": "Corte do Rei Divino", "type": "strike", "cd": 12.0, "power": 9.0, "fx": "slash_red", "fx_scale": 0.7,
@@ -353,7 +353,7 @@ const LIST := [
 		"lore": "Aposentado, cobra caro para pintar barcos e ainda dá aula de haki para novato.",
 		"look": {"skin": "#e8c098", "hair": "#f0f0f4", "hair_style": "slick", "hat": "none",
 			"outfit": "cape", "outfit_color": "#f4f0e0", "outfit_color2": "#5a4a3a",
-			"acc": ["glasses"], "acc_color": "#3a3a3a"},
+			"acc": ["glasses", "beard"], "acc_color": "#3a3a3a"},
 		"weapon": {"kind": "sword", "color": "#c8ccd6", "count": 1, "orbit": 1.5, "spin": 5.0, "power": 0.75},
 		"actives": [
 			{"name": "Haki do Velho Mestre", "type": "knockback", "cd": 8.0, "power": 1.6, "radius": 140.0, "force": 240.0,
@@ -378,7 +378,7 @@ const LIST := [
 		"look": {"skin": "#e8b888", "hair": "#c8c8cc", "hair_style": "short", "hat": "military",
 			"hat_color": "#f4f4f4", "hat_color2": "#3a6ab8",
 			"outfit": "coat", "outfit_color": "#f4f4f4", "outfit_color2": "#3a6ab8",
-			"acc": ["scar_x"], "acc_color": "#b8885a"},
+			"acc": ["scar_x", "beard"], "acc_color": "#b8885a"},
 		"weapon": {"kind": "bomb", "color": "#3a3a3a", "count": 2, "orbit": 1.6, "spin": 3.5, "power": 0.7},
 		"actives": [
 			{"name": "Bala de Canhão no Braço", "type": "projectile", "cd": 6.0, "power": 1.4, "fx": "boulder", "fx_scale": 0.5,
@@ -404,7 +404,7 @@ const LIST := [
 		"id": "op2_fenix_azul", "name": "Fênix Azul da Primeira Divisão", "world": "Mar Grandioso",
 		"rarity": 4, "role": "Suporte", "color": "#4ac8ff",
 		"lore": "Médico, comandante e pássaro em chamas azuis que nunca queimam ninguém do lado dele.",
-		"look": {"skin": "#f2c89a", "hair": "#f2d36b", "hair_style": "mohawk", "hat": "none",
+		"look": {"skin": "#f2c89a", "hair": "#f2d36b", "hair_style": "pineapple", "hat": "none",
 			"outfit": "jacket", "outfit_color": "#6a3a9a", "outfit_color2": "#f2d36b",
 			"acc": ["necklace"], "acc_color": "#4ac8ff"},
 		"look_tf": {"outfit_color": "#2a8ad8", "acc": ["necklace", "wings"], "acc_color": "#4ac8ff"},
@@ -457,7 +457,7 @@ const LIST := [
 		"lore": "Dois charutos acesos ao mesmo tempo e uma birra eterna com o garoto de chapéu de palha.",
 		"look": {"skin": "#e8c098", "hair": "#e8e8ec", "hair_style": "slick", "hat": "none",
 			"outfit": "coat", "outfit_color": "#f4f4f4", "outfit_color2": "#5a8ad8",
-			"acc": [], "acc_color": "#5a3a2a"},
+			"acc": ["fur_collar"], "acc_color": "#5a3a2a", "acc_colors": {"fur_collar": "#e8dcc0"}},
 		"weapon": {"kind": "tonfa", "color": "#4a4a5a", "count": 1, "orbit": 1.5, "spin": 4.0, "power": 0.6},
 		"actives": [
 			{"name": "Mão de Fumaça", "type": "stretch", "cd": 6.0, "power": 1.8, "count": [1, 1, 1, 2, 2, 2, 2, 3, 3], "range": 300.0,
@@ -592,7 +592,7 @@ const LIST := [
 		"lore": "Uma maldição que fala de forma serena sobre proteger a natureza... esmagando gente.",
 		"look": {"skin": "#e8e4d8", "hair": "#e8e4d8", "hair_style": "bald", "hat": "none",
 			"outfit": "robe", "outfit_color": "#f4f0e8", "outfit_color2": "#6ac85a",
-			"acc": ["horns", "flower"], "acc_color": "#6a4a2a"},
+			"acc": ["horns", "flower"], "acc_color": "#6a4a2a", "acc_colors": {"flower": "#ff8ab8"}},
 		"weapon": {"kind": "rose", "color": "#6ac85a", "count": 2, "orbit": 1.5, "spin": -3.5, "power": 0.5},
 		"actives": [
 			{"name": "Raízes da Terra", "type": "aoe", "cd": 7.0, "power": 2.0, "fx": "root_snare", "fx_scale": 0.55, "radius": 80.0,
@@ -726,7 +726,7 @@ const LIST := [
 		"lore": "Cansou da justiça dos homens e abriu um tribunal onde ele sempre ganha a causa.",
 		"look": {"skin": "#d8b088", "hair": "#1a1a22", "hair_style": "curly", "hat": "none",
 			"outfit": "suit", "outfit_color": "#2a2a34", "outfit_color2": "#f4f4f4",
-			"acc": ["necklace"], "acc_color": "#e8c84a"},
+			"acc": ["necklace"], "acc_color": "#e8c84a", "acc_colors": {"tie": "#2a2a34"}},
 		"weapon": {"kind": "hammer", "color": "#8a5a2a", "count": 1, "orbit": 1.5, "spin": 4.0, "power": 0.6},
 		"actives": [
 			{"name": "Veredito: Confisco", "type": "debuff", "cd": 14.0, "status": "silence", "status_dur": 3.0, "radius": 0.0, "fx": "hex_sigil",
@@ -776,7 +776,7 @@ const LIST := [
 		"lore": "Luta para sustentar os irmãos e se esforça muito. O problema é que todo mundo é mais forte.",
 		"look": {"skin": "#f2d8c0", "hair": "#5aa8e8", "hair_style": "long", "hat": "none",
 			"outfit": "suit", "outfit_color": "#2a2a34", "outfit_color2": "#f4f4f4",
-			"acc": [], "acc_color": "#5aa8e8"},
+			"acc": [], "acc_color": "#5aa8e8", "acc_colors": {"tie": "#1a1a22"}},
 		"weapon": {"kind": "katana", "color": "#d8dde8", "count": 1, "orbit": 1.45, "spin": 5.0, "power": 0.5},
 		"actives": [
 			{"name": "Corte Rápido de Saque", "type": "dash", "cd": 5.0, "power": 1.5, "count": [1, 1, 1, 2, 2, 2, 3, 3, 3],
@@ -904,8 +904,8 @@ const LIST := [
 		"lore": "Mil anos de comando e uma bengala que esconde a espada de fogo mais quente que existe.",
 		"look": {"skin": "#e8c098", "hair": "#e8e8ec", "hair_style": "bald", "hat": "none",
 			"outfit": "robe", "outfit_color": "#f4f4f4", "outfit_color2": "#1a1a22",
-			"acc": ["scar_x"], "acc_color": "#c89068"},
-		"look_tf": {"outfit_color": "#1a1a22", "outfit_color2": "#ff5a1a", "acc": ["scar_x", "chains"], "acc_color": "#ff5a1a"},
+			"acc": ["scar_x", "beard"], "acc_color": "#c89068", "acc_colors": {"beard": "#ececf0"}},
+		"look_tf": {"outfit_color": "#1a1a22", "outfit_color2": "#ff5a1a", "acc": ["scar_x", "chains", "beard"], "acc_color": "#ff5a1a"},
 		"weapon": {"kind": "katana", "color": "#ff6a2a", "count": 1, "orbit": 1.55, "spin": 4.0, "power": 0.85},
 		"actives": [
 			{"name": "Lâmina do Primeiro Fogo", "type": "projectile", "cd": 6.0, "power": 2.8, "fx": "wave_fire", "fx_scale": 0.7, "speed": 360.0,
@@ -962,11 +962,11 @@ const LIST := [
 		"id": "bleach2_quimono_florido", "name": "Capitão Preguiçoso do Quimono Florido", "world": "Sociedade das Almas",
 		"rarity": 5, "role": "Velocista", "color": "#ff8ab8",
 		"lore": "Bebe saquê, cochila e flerta. Mas as brincadeiras de criança da espada dele são mortais.",
-		"look": {"skin": "#e8b888", "hair": "#3a2a1a", "hair_style": "ponytail", "hat": "straw",
+		"look": {"skin": "#e8b888", "hair": "#3a2a1a", "hair_style": "ponytail", "hat": "kasa",
 			"hat_color": "#c8a058", "hat_color2": "#5a3a2a",
 			"outfit": "kimono", "outfit_color": "#ff8ab8", "outfit_color2": "#1a1a22",
-			"acc": ["flower"], "acc_color": "#ff6aa0"},
-		"look_tf": {"outfit_color": "#1a1a22", "outfit_color2": "#8a3a6a", "acc": ["flower", "eyepatch"], "acc_color": "#8a3a6a"},
+			"acc": ["flower", "goatee"], "acc_color": "#ff6aa0"},
+		"look_tf": {"outfit_color": "#1a1a22", "outfit_color2": "#8a3a6a", "acc": ["flower", "eyepatch", "goatee"], "acc_color": "#8a3a6a"},
 		"weapon": {"kind": "katana", "color": "#d8dde8", "count": 2, "orbit": 1.5, "spin": 5.0, "power": 0.55},
 		"actives": [
 			{"name": "Jogo das Cores", "type": "gamble", "cd": 8.0, "power": 2.5, "fx": "slash_pink", "fx_scale": 0.55,
@@ -1097,7 +1097,7 @@ const LIST := [
 		"lore": "Acha feio tudo que não é bonito. Inclusive perder.",
 		"look": {"skin": "#f6e0d0", "hair": "#1a1a22", "hair_style": "bob", "hat": "none",
 			"outfit": "gi", "outfit_color": "#1a1a22", "outfit_color2": "#ff9a3a",
-			"acc": ["hairclip"], "acc_color": "#ff9a3a"},
+			"acc": ["hairclip", "plume"], "acc_color": "#ff9a3a"},
 		"weapon": {"kind": "sword", "color": "#c8a8ff", "count": 1, "orbit": 1.45, "spin": 5.5, "power": 0.45},
 		"actives": [
 			{"name": "Pavão de Glicínia", "type": "orbit", "cd": 9.0, "power": 0.7, "count": [3, 3, 4, 4, 4, 5, 5, 6, 6], "dur": 5.0,
@@ -1119,7 +1119,7 @@ const LIST := [
 		"lore": "Tão forte que todos ao redor morriam. Dividiu a alma em dois só para ter companhia.",
 		"look": {"skin": "#e8c8a8", "hair": "#5a3a2a", "hair_style": "messy", "hat": "none",
 			"outfit": "coat", "outfit_color": "#f4f4f4", "outfit_color2": "#1a1a22",
-			"acc": ["necklace"], "acc_color": "#f4f4f4"},
+			"acc": ["necklace", "goatee"], "acc_color": "#f4f4f4"},
 		"weapon": {"kind": "gun", "color": "#c8ccd6", "count": 2, "orbit": 1.5, "spin": 4.0, "power": 0.55},
 		"actives": [
 			{"name": "Rajada Metralhadora", "type": "projectile", "cd": 6.0, "power": 0.6, "fx": "plasma_shot", "fx_scale": 0.5,
@@ -1147,8 +1147,8 @@ const LIST := [
 		"look": {"skin": "#d8b898", "hair": "#e8e8ec", "hair_style": "short", "hat": "crown",
 			"hat_color": "#f2c84b", "hat_color2": "#c8283a",
 			"outfit": "coat", "outfit_color": "#f4f4f4", "outfit_color2": "#6a4a8a",
-			"acc": [], "acc_color": "#f2c84b"},
-		"look_tf": {"skin": "#f0e8d8", "outfit": "cape", "outfit_color": "#2a1a3a", "outfit_color2": "#f2c84b"},
+			"acc": ["beard", "fur_collar"], "acc_color": "#f2c84b", "acc_colors": {"beard": "#ececf0", "fur_collar": "#2a2228"}},
+		"look_tf": {"skin": "#f0e8d8", "outfit": "cape", "outfit_color": "#2a1a3a", "outfit_color2": "#f2c84b", "acc": []},
 		"weapon": {"kind": "axe", "color": "#f2c84b", "count": 1, "orbit": 1.6, "spin": 3.0, "power": 0.9},
 		"actives": [
 			{"name": "Hálito da Velhice", "type": "zone", "cd": 13.0, "power": 0.7, "fx": "shadow_flames", "fx_scale": 0.6, "radius": 140.0,
@@ -1176,8 +1176,8 @@ const LIST := [
 		"lore": "Silenciosa, protege as subordinadas e transforma o campo de batalha num mar.",
 		"look": {"skin": "#9a6a4a", "hair": "#f2d36b", "hair_style": "messy", "hat": "none",
 			"outfit": "jacket", "outfit_color": "#f4f4f4", "outfit_color2": "#f2d36b",
-			"acc": ["scarf"], "acc_color": "#f4f4f4"},
-		"look_tf": {"outfit_color": "#f4f4f4", "outfit_color2": "#3ac8e8", "acc": ["scarf", "tail"], "acc_color": "#f4f4f4"},
+			"acc": ["high_collar"], "acc_color": "#f4f4f4"},
+		"look_tf": {"outfit_color": "#f4f4f4", "outfit_color2": "#3ac8e8", "acc": ["high_collar", "tail"], "acc_color": "#f4f4f4"},
 		"weapon": {"kind": "greatsword", "color": "#e8e4dc", "count": 1, "orbit": 1.6, "spin": 4.0, "power": 0.75},
 		"actives": [
 			{"name": "Onda Azul", "type": "projectile", "cd": 6.0, "power": 2.4, "fx": "wave_water", "fx_scale": 0.6, "speed": 400.0,
@@ -1228,8 +1228,8 @@ const LIST := [
 		"lore": "Pai de todos os arqueiros sagrados. Vê todos os futuros e escolhe o pior para você.",
 		"look": {"skin": "#e8c8a8", "hair": "#1a1a22", "hair_style": "wild_long", "hat": "none",
 			"outfit": "cape", "outfit_color": "#1a1a22", "outfit_color2": "#f4f4f4",
-			"acc": ["cross"], "acc_color": "#d8dce8"},
-		"look_tf": {"outfit_color": "#0a0a14", "outfit_color2": "#c81a2a", "acc": ["cross", "devil_wings"], "acc_color": "#2a2a3a"},
+			"acc": ["cross", "beard"], "acc_color": "#d8dce8"},
+		"look_tf": {"outfit_color": "#0a0a14", "outfit_color2": "#c81a2a", "acc": ["cross", "devil_wings", "beard"], "acc_color": "#2a2a3a"},
 		"weapon": {"kind": "sword", "color": "#bfe0ff", "count": 1, "orbit": 1.6, "spin": 4.5, "power": 0.85},
 		"actives": [
 			{"name": "Flechas Sagradas", "type": "projectile", "cd": 5.0, "power": 1.0, "fx": "arrow", "rotate": true,

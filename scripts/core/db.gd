@@ -14,7 +14,9 @@ const BALL_FILES := [
 	"res://scripts/data/balls_f4.gd", "res://scripts/data/balls_f5.gd", "res://scripts/data/balls_f6.gd",
 	"res://scripts/data/balls_f7.gd", "res://scripts/data/balls_f8.gd", "res://scripts/data/balls_f9.gd",
 	"res://scripts/data/balls_f10.gd", "res://scripts/data/balls_f11.gd", "res://scripts/data/balls_f12.gd",
-	"res://scripts/data/balls_f13.gd", "res://scripts/data/balls_f14.gd",
+	"res://scripts/data/balls_f13.gd", "res://scripts/data/balls_f14.gd", "res://scripts/data/balls_f15.gd",
+	"res://scripts/data/balls_f16.gd", "res://scripts/data/balls_f17.gd", "res://scripts/data/balls_f18.gd", "res://scripts/data/balls_f19.gd",
+	"res://scripts/data/balls_f20.gd",
 ]
 
 const RARITY := [
@@ -56,12 +58,14 @@ const EVO_MAT_COUNT := [10, 20, 30, 45, 60, 80, 100, 130]
 const EVO_BOSS := ["serpente", "almirante", "lua_superior", "rei_vazio", "maldicao_especial", "imperador_submundo", "farao_sombrio", "imperador_galactico"]
 
 const STAGES_PER_CHAPTER := 20
-const ENEMIES: Dictionary = WORLD.ENEMIES
-const BOSSES: Dictionary = WORLD.BOSSES
-const CHAPTERS: Array = WORLD.CHAPTERS
-const BOSS_RAID: Array = WORLD.BOSS_RAID
 const DUNGEONS: Array = WORLD.DUNGEONS
-const BANNERS: Array = WORLD.BANNERS
+static var ENEMIES: Dictionary = {}
+static var BOSSES: Dictionary = {}
+static var CHAPTERS: Array = []
+static var BOSS_RAID: Array = []
+static var BANNERS: Array = []
+static var SETS: Array = []
+const WORLD_FILES := ["res://scripts/data/world.gd", "res://scripts/data/world_w2.gd", "res://scripts/data/world_w3.gd"]
 const SUMMON_LOOKS: Dictionary = CORE.SUMMON_LOOKS
 
 ## todas as bolinhas: id -> definicao (preenchido em _static_init)
@@ -71,6 +75,18 @@ static var load_errors: Array = []
 
 
 static func _static_init() -> void:
+	for wp in WORLD_FILES:
+		if not ResourceLoader.exists(wp):
+			continue
+		var wc: Dictionary = (load(wp) as Script).get_script_constant_map()
+		ENEMIES.merge(wc.get("ENEMIES", {}))
+		BOSSES.merge(wc.get("BOSSES", {}))
+		CHAPTERS.append_array(wc.get("CHAPTERS", []))
+		BOSS_RAID.append_array(wc.get("BOSS_RAID", []))
+		BANNERS.append_array(wc.get("BANNERS", []))
+	BANNERS.sort_custom(func(a, b): return int(a.chapter) < int(b.chapter))
+	if ResourceLoader.exists("res://scripts/data/items.gd"):
+		SETS = (load("res://scripts/data/items.gd") as Script).get_script_constant_map().get("SETS", [])
 	for id in CORE.DICT:
 		_add(id, CORE.DICT[id])
 	for path in BALL_FILES:

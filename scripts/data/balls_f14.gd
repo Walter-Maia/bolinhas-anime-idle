@@ -62,7 +62,7 @@ const LIST := [
 		"lore": "Leva tiro de bazuca no peito e reclama que fez cócegas.",
 		"look": {"skin": "#d8a878", "hair": "#6a4a2a", "hair_style": "wild_long", "hat": "none",
 			"outfit": "tank", "outfit_color": "#7a5a3a", "outfit_color2": "#3a2a1a",
-			"acc": ["bandage"], "acc_color": "#e8dcc8"},
+			"acc": ["bandage", "fur_collar"], "acc_color": "#e8dcc8", "acc_colors": {"fur_collar": "#a8805a"}},
 		"weapon": {"kind": "fist", "color": "#d8a878", "count": 2, "orbit": 1.35, "spin": 3.0, "power": 0.75},
 		"actives": [
 			{"name": "Impacto do Grande Estouro", "type": "strike", "cd": 10.0, "power": 6.0, "fx": "big_explosion", "fx_scale": 0.45,
@@ -188,7 +188,7 @@ const LIST := [
 		"lore": "Veste camiseta com o lema um dia, uma morte e cumpre com pontualidade de aposentado.",
 		"look": {"skin": "#f0d0b0", "hair": "#ececf4", "hair_style": "long", "hat": "none",
 			"outfit": "robe", "outfit_color": "#e8e8e0", "outfit_color2": "#3a3a3a",
-			"acc": [], "acc_color": "#6ab0ff"},
+			"acc": ["mustache"], "acc_color": "#6ab0ff"},
 		"weapon": {"kind": "fist", "color": "#6ab0ff", "count": 2, "orbit": 1.4, "spin": 4.0, "power": 0.6},
 		"actives": [
 			{"name": "Dragão Descendente", "type": "rain", "cd": 10.0, "power": 1.5, "fx": "ball_lightning", "fx_scale": 0.5, "radius": 55.0,
@@ -267,8 +267,8 @@ const LIST := [
 		"lore": "Anda com uma cobrinha branca no pescoço e corta em curvas que ninguém consegue prever.",
 		"look": {"skin": "#f2dcc8", "hair": "#1a1a2a", "hair_style": "messy", "hat": "none",
 			"outfit": "uniform", "outfit_color": "#1a1a2a", "outfit_color2": "#f0f0f0",
-			"acc": ["scarf"], "acc_color": "#f4f4f4"},
-		"look_tf": {"acc": ["scarf", "star_mark"], "acc_color": "#f4f4f4"},
+			"acc": ["scarf", "mouth_mask"], "acc_color": "#f4f4f4"},
+		"look_tf": {"acc": ["scarf", "mouth_mask", "star_mark"], "acc_color": "#f4f4f4"},
 		"weapon": {"kind": "katana", "color": "#a88ad8", "count": 1, "orbit": 1.5, "spin": -6.0, "power": 0.6},
 		"actives": [
 			{"name": "Serpente Sinuosa", "type": "dash", "cd": 6.0, "power": 2.0, "count": [2, 2, 2, 3, 3, 3, 4, 4, 4],
@@ -540,7 +540,7 @@ const LIST := [
 		"lore": "Costurado com grampos, queima mais quente que o pai e se queima junto.",
 		"look": {"skin": "#f0d8c8", "hair": "#1a1a2a", "hair_style": "messy", "hat": "none",
 			"outfit": "coat", "outfit_color": "#2a2a3a", "outfit_color2": "#f0f0f0",
-			"acc": ["chains"], "acc_color": "#b8b8c0"},
+			"acc": ["chains", "high_collar"], "acc_color": "#b8b8c0"},
 		"look_tf": {"hair": "#f0f0f0", "skin": "#8a5a6a"},
 		"weapon": {"kind": "orb", "color": "#3a8aff", "count": 3, "orbit": 1.5, "spin": 4.5, "power": 0.45},
 		"actives": [
@@ -848,7 +848,7 @@ const LIST := [
 		"lore": "Nada pelo asfalto como se fosse mar e idolatra o garoto motosserra.",
 		"look": {"skin": "#f0d8c0", "hair": "#2a2a3a", "hair_style": "spiky", "hat": "none",
 			"outfit": "suit", "outfit_color": "#1a1a1a", "outfit_color2": "#f0f0f0",
-			"acc": ["small_horns"], "acc_color": "#5a7a9a"},
+			"acc": ["small_horns"], "acc_color": "#5a7a9a", "acc_colors": {"tie": "#1a1a1a"}},
 		"weapon": {"kind": "claw", "color": "#f0f0f0", "count": 2, "orbit": 1.35, "spin": 7.0, "power": 0.45},
 		"actives": [
 			{"name": "Nado no Asfalto", "type": "dash", "cd": 5.0, "power": 1.6, "count": [2, 2, 2, 3, 3, 3, 3, 4, 4],
@@ -870,7 +870,7 @@ const LIST := [
 		"lore": "Usa uma máscara que filtra o próprio poder. Tirou a máscara, ninguém segura.",
 		"look": {"skin": "#e8c8a8", "hair": "#3a3a3a", "hair_style": "short", "hat": "knight_helmet", "hat_color": "#8a9088", "hat_color2": "#5a605a",
 			"outfit": "suit", "outfit_color": "#1a1a1a", "outfit_color2": "#f0f0f0",
-			"acc": ["mouth_mask"], "acc_color": "#a8a8b0"},
+			"acc": ["mouth_mask"], "acc_color": "#a8a8b0", "acc_colors": {"tie": "#1a1a1a"}},
 		"look_tf": {"skin": "#8a5aa8", "hat": "none", "acc": ["horns"], "acc_color": "#3a1a4a"},
 		"weapon": {"kind": "fist", "color": "#a8a8b0", "count": 2, "orbit": 1.35, "spin": 3.5, "power": 0.6},
 		"actives": [
@@ -972,7 +972,7 @@ const LIST := [
 		"lore": "A primeira caçadora de demônios. Corta um prédio inteiro antes de você piscar.",
 		"look": {"skin": "#f6e0d0", "hair": "#f0f0f0", "hair_style": "bob", "hat": "none",
 			"outfit": "suit", "outfit_color": "#1a1a1a", "outfit_color2": "#f0f0f0",
-			"acc": ["eyepatch"], "acc_color": "#1a1a1a"},
+			"acc": ["eyepatch"], "acc_color": "#1a1a1a", "acc_colors": {"tie": "#1a1a1a"}},
 		"look_tf": {"hair": "#c84a4a", "acc": ["eyepatch", "halo"], "acc_color": "#c84a4a"},
 		"weapon": {"kind": "sword", "color": "#e8e8f0", "count": 1, "orbit": 1.45, "spin": 9.0, "power": 0.6},
 		"actives": [
@@ -1077,7 +1077,7 @@ const LIST := [
 		"lore": "Abre um zíper em qualquer coisa: parede, chão ou o braço do inimigo.",
 		"look": {"skin": "#f2d8c0", "hair": "#1a1a2a", "hair_style": "bob", "hat": "none",
 			"outfit": "suit", "outfit_color": "#f0f0f0", "outfit_color2": "#1a1a1a",
-			"acc": ["hairclip"], "acc_color": "#c8a050"},
+			"acc": ["hairclip"], "acc_color": "#c8a050", "acc_colors": {"tie": "#c8a050"}},
 		"weapon": {"kind": "fist", "color": "#4a8ad8", "count": 2, "orbit": 1.35, "spin": 5.0, "power": 0.55},
 		"actives": [
 			{"name": "Viagem pelo Zíper", "type": "teleport", "cd": 6.0, "power": 2.2, "fx": "portal", "fx_scale": 0.5,
@@ -1125,7 +1125,7 @@ const LIST := [
 		"id": "jojo2_prisioneira_fio", "name": "Prisioneira do Fio Livre", "world": "Linhagem Bizarra",
 		"rarity": 3, "role": "Velocista", "color": "#4ab8ff",
 		"lore": "Presa por engano, desfia o próprio corpo para escapar e socar quem armou para ela.",
-		"look": {"skin": "#f2d8c0", "hair": "#2a3a2a", "hair2": "#e8c050", "hair_style": "bun", "hat": "none",
+		"look": {"skin": "#f2d8c0", "hair": "#2a3a2a", "hair2": "#e8c050", "hair_style": "odango", "hat": "none",
 			"outfit": "tank", "outfit_color": "#3a8a4a", "outfit_color2": "#e8c050",
 			"acc": ["star_mark"], "acc_color": "#e8c050"},
 		"weapon": {"kind": "whip", "color": "#4ab8ff", "count": 2, "orbit": 1.55, "spin": 6.0, "power": 0.5},
@@ -1153,7 +1153,7 @@ const LIST := [
 		"lore": "Só quer uma vida tranquila, dormir oito horas e transformar qualquer coisa em bomba.",
 		"look": {"skin": "#f2dcc8", "hair": "#e8dcc0", "hair_style": "side_part", "hat": "none",
 			"outfit": "suit", "outfit_color": "#7a5a8a", "outfit_color2": "#2a1a3a",
-			"acc": [], "acc_color": "#e88ad8"},
+			"acc": [], "acc_color": "#e88ad8", "acc_colors": {"tie": "#6a2a7a"}},
 		"weapon": {"kind": "bomb", "color": "#c890d8", "count": 2, "orbit": 1.5, "spin": 3.5, "power": 0.55},
 		"actives": [
 			{"name": "Primeira Bomba", "type": "aoe", "cd": 7.0, "power": 3.2, "fx": "big_explosion", "fx_scale": 0.45, "radius": 75.0,

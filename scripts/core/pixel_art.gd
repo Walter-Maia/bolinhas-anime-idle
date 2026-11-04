@@ -95,7 +95,7 @@ class Px:
 # =============================================================================================
 # BOLINHAS
 # =============================================================================================
-static func ball(look: Dictionary, gray: bool = false) -> ImageTexture:
+static func ball(look: Dictionary, gray: bool = false) -> Texture2D:
 	return BallArt.make(look, gray)
 
 

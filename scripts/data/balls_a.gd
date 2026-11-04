@@ -88,7 +88,7 @@ const LIST := [
 		"lore": "Calado, orgulhoso e capaz de deixar o chão dez vezes mais pesado com um olhar.",
 		"look": {"skin": "#e6ccb0", "hair": "#1a1a24", "hair_style": "big_spiky", "hat": "none",
 			"outfit": "cape", "outfit_color": "#1a1a24", "outfit_color2": "#8a4ad8",
-			"acc": ["necklace"], "acc_color": "#8a4ad8"},
+			"acc": ["high_collar", "necklace"], "acc_color": "#8a4ad8", "acc_colors": {"high_collar": "#1a1a24"}},
 		"actives": [
 			{"name": "Campo do Peso Real", "type": "zone", "cd": 9.0, "power": 0.7, "fx": "black_hole", "fx_scale": 0.6,
 				"radius": 110.0, "dur": 3.0, "pull": 120.0, "status": "slow", "status_dur": 2.0, "status_chance": 0.6,
@@ -309,7 +309,7 @@ const LIST := [
 		"look": {"skin": "#f8e0d4", "hair": "#ffd84a", "hair_style": "drills", "hat": "beret",
 			"hat_color": "#6a4a2a", "hat_color2": "#ffd23c",
 			"outfit": "vest", "outfit_color": "#ffe8a8", "outfit_color2": "#7a5a2a",
-			"acc": ["soul_gem", "flower"], "acc_color": "#ffd23c"},
+			"acc": ["plume", "soul_gem", "flower"], "acc_color": "#ffd23c", "acc_colors": {"plume": "#f4e8c8"}},
 		"actives": [
 			{"name": "Saraivada de Mosquetes", "type": "projectile", "cd": 5.0, "power": 0.9, "fx": "bullet", "fx_scale": 0.5,
 				"speed": 600.0, "rotate": true, "count": [3, 3, 4, 4, 5, 5, 6, 6, 8], "arc": 0.9, "hit_fx": "hit_spark", "hit_scale": 0.4,
@@ -525,7 +525,7 @@ const LIST := [
 		"lore": "Odeia aglomeração. Se você está em grupo, vai apanhar até a morte.",
 		"look": {"skin": "#f4dcc8", "hair": "#1d1a22", "hair_style": "messy", "hat": "none",
 			"outfit": "coat", "outfit_color": "#1d1a22", "outfit_color2": "#d42a30",
-			"acc": ["bandage"], "acc_color": "#d42a30"},
+			"acc": ["armband"], "acc_color": "#d42a30", "acc_colors": {"armband": "#d42a30"}},
 		"actives": [
 			{"name": "Mordida das Tonfas", "type": "multi", "cd": 5.0, "power": 0.8, "count": [4, 4, 4, 5, 5, 6, 6, 7, 8],
 				"interval": 0.1, "fx": "blunt_hit", "fx_scale": 0.5,
@@ -545,7 +545,7 @@ const LIST := [
 		"id": "khr_mukuro", "name": "Ilusionista do Tridente", "world": "Família Mafiosa do Céu",
 		"rarity": 4, "role": "Suporte", "color": "#8a3ad8",
 		"lore": "Já passou pelos seis infernos e voltou com um penteado de abacaxi. Kufufu.",
-		"look": {"skin": "#f4e0d4", "hair": "#2a2a5a", "hair_style": "spiky_long", "hair2": "#6a3ad8", "hat": "none",
+		"look": {"skin": "#f4e0d4", "hair": "#2a2a5a", "hair_style": "pineapple", "hair2": "#6a3ad8", "hat": "none",
 			"outfit": "coat", "outfit_color": "#2a2a3a", "outfit_color2": "#6a3ad8",
 			"acc": ["earrings"], "acc_color": "#6a3ad8"},
 		"actives": [
@@ -572,7 +572,7 @@ const LIST := [
 		"lore": "Ficou congelado oito anos. Descongelou ainda com raiva.",
 		"look": {"skin": "#d8a880", "hair": "#1d1a22", "hair_style": "messy", "hair2": "#ff6a2a", "hat": "none",
 			"outfit": "coat", "outfit_color": "#1d1a22", "outfit_color2": "#c82a2a",
-			"acc": ["necklace", "bandage"], "acc_color": "#ff6a2a"},
+			"acc": ["fur_collar", "necklace", "bandage"], "acc_color": "#ff6a2a", "acc_colors": {"fur_collar": "#3a3036"}},
 		"actives": [
 			{"name": "Rajada das Pistolas da Ira", "type": "projectile", "cd": 4.0, "power": 1.5, "fx": "plasma_shot_red", "fx_scale": 0.6,
 				"speed": 560.0, "rotate": true, "count": [2, 2, 2, 3, 3, 3, 4, 4, 5], "arc": 0.4, "hit_fx": "fireball", "hit_scale": 0.4,

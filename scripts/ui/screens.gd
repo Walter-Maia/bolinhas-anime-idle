@@ -190,6 +190,10 @@ func modes_screen() -> Control:
 		modes_tab = id
 		main.open_screen("modes", true)))
 	(f[2] as VBoxContainer).move_child((f[2] as VBoxContainer).get_child(2), 1)
+	(f[2] as VBoxContainer).add_child(segmented([["expedition", "Expedição"], ["horde", "Horda"], ["challenge", "Desafio"]], modes_tab, func(id: String) -> void:
+		modes_tab = id
+		main.open_screen("modes", true)))
+	(f[2] as VBoxContainer).move_child((f[2] as VBoxContainer).get_child(3), 2)
 	match modes_tab:
 		"boss":
 			c.add_child(UI.para("Chefes liberam com o nível da conta. Vencer um chefe é requisito para EVOLUIR a raridade das bolinhas.", 17, UI.C_TEXT_MID))
@@ -221,6 +225,19 @@ func modes_screen() -> Control:
 				c.add_child(row_card(di, dg.name, sub2, "Entrar", UI.C_YELLOW, func() -> void: start_dungeon(dgc), unlocked and Game.dungeon_tries_left(dg.id) > 0))
 		"pvp":
 			_pvp_content(c)
+		"expedition":
+			_expedition_content(c)
+		"horde":
+			var hb := int(Game.d.get("horde_best", 0))
+			c.add_child(UI.para("Ondas infinitas de inimigos, um chefe a cada 10 ondas. Quanto mais longe, mais prêmios. Seu recorde: %d ondas." % hb, 17, UI.C_TEXT_MID))
+			c.add_child(row_card(UI.tex_rect(PixelArt.icon("skull"), Vector2(64, 64)), "Horda Sem Fim", "Tentativas hoje: %d/3 · prêmio: moedas por onda, gemas a cada 5 ondas, bônus por recorde" % Game.horde_tries(), "Começar", UI.C_RED, start_horde, Game.horde_tries() > 0, Color("#fbeae2")))
+		"challenge":
+			var ch := Game.challenge_today()
+			var bd: Dictionary = DB.BOSSES[ch.boss]
+			var ic3 := BallIcon.new().setup_look(BallArt.normalize(bd.look), int(bd.rarity))
+			ic3.custom_minimum_size = Vector2(72, 72)
+			c.add_child(UI.para("Um desafio novo por dia com uma regra especial. Prêmio: 60 gemas, cristais e uma peça de conjunto.", 17, UI.C_TEXT_MID))
+			c.add_child(row_card(ic3, "Regra de hoje: " + str(ch.rule.name), "%s Chefe: %s" % [ch.rule.desc, bd.name], "Feito" if ch.done else "Lutar", UI.C_PURPLE, start_challenge, not ch.done, Color("#f2e8ff")))
 	return f[0]
 
 
@@ -330,6 +347,14 @@ func mode_result(mode: String, data: Dictionary, win: bool) -> void:
 					lines.append(frag)
 				if DB.EVO_BOSS.has(boss):
 					lines.append("Requisito de evolução cumprido: %s!" % DB.BOSSES[boss].name)
+				var sp := Game.make_set_item(maxi(1, int(Game.d.best) + int(data.tier) * 3))
+				if Game.d.pending_drop.is_empty():
+					Game.d.pending_drop = {"type": "item", "item": sp}
+					lines.append("Peça de conjunto: %s (no pedestal)" % str(sp.name))
+				else:
+					var sold := Game.item_sell(sp) * 3.0
+					Game.add_coins(sold)
+					lines.append("Peça de conjunto vendida (pedestal ocupado): +%s moedas" % UI.fmt(sold))
 		"tower":
 			if win:
 				Game.progress("tower")
@@ -363,6 +388,35 @@ func mode_result(mode: String, data: Dictionary, win: bool) -> void:
 						lines.append(_random_frags(5 + L))
 						var m3 := Game.roll_mat(clampi(L / 3, 0, 7), 3 + L)
 						lines.append("+%d %s" % [m3.n, m3.name])
+		"horde":
+			var waves_done := int(main.battle.wave_idx) + (1 if win else 0)
+			var coins_h := Game.stage_reward_coins(float(Game.d.best)) * 0.8 * waves_done
+			Game.add_coins(coins_h)
+			var gems_h := (waves_done / 5) * 10
+			Game.add_gems(gems_h)
+			lines.append("Você aguentou %d ondas!" % waves_done)
+			lines.append("+%s moedas  +%d gemas" % [UI.fmt(coins_h), gems_h])
+			if waves_done > int(Game.d.get("horde_best", 0)):
+				Game.d.horde_best = waves_done
+				Game.add_gems(20)
+				lines.append("NOVO RECORDE! +20 gemas")
+			if waves_done >= 10:
+				var mh := Game.roll_mat(clampi(waves_done / 10, 0, 7), waves_done / 5)
+				lines.append("+%d %s" % [mh.n, mh.name])
+			win = true
+		"challenge":
+			if win:
+				Game.d.challenge_day = Game.today()
+				Game.add_gems(60)
+				var mc := Game.roll_mat(clampi(Game.chapters_cleared() / 2, 0, 7), 4)
+				lines.append("+60 gemas  ·  +%d %s" % [mc.n, mc.name])
+				var spc := Game.make_set_item(maxi(1, int(Game.d.best) + 5))
+				if Game.d.pending_drop.is_empty():
+					Game.d.pending_drop = {"type": "item", "item": spc}
+					lines.append("Peça de conjunto: %s (no pedestal)" % str(spc.name))
+				else:
+					Game.add_coins(Game.item_sell(spc) * 3.0)
+					lines.append("Peça de conjunto vendida (pedestal ocupado)")
 		"pvp":
 			Game.progress("pvp")
 			if win:
@@ -516,6 +570,17 @@ func item_popup(it: Dictionary) -> void:
 	iv.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	var info: Dictionary = DB.SLOT_INFO[it.slot]
 	iv.add_child(UI.para("%s %s" % [info.name, DB.rarity(int(it.rarity)).name], 22, DB.rcolor(int(it.rarity)).darkened(0.25)))
+	if it.has("set"):
+		var st := Game.find_set(str(it.set))
+		if not st.is_empty():
+			var have := int(Game.set_counts(Game.d.equip).get(st.id, 0))
+			iv.add_child(UI.para("%s — Conjunto: %s (%d/%d equipadas)" % [str(it.get("name", "")), str(st.name), have, (st.pieces as Dictionary).size()], 17, Color("#a0600a")))
+			for tier in [2, 4, 6]:
+				if st.has("bonus%d" % tier):
+					var parts := []
+					for k in st["bonus%d" % tier]:
+						parts.append("%s +%s" % [main.collection._stat_name(k), UI.pct(float(st["bonus%d" % tier][k]))])
+					iv.add_child(UI.para("%d peças: %s" % [tier, ", ".join(parts)], 15, Color("#2a8a3a") if have >= tier else UI.C_TEXT_MID))
 	var mv := Game.item_main(it)
 	match info.main:
 		"atk": iv.add_child(UI.para("Ataque +%s" % UI.fmt(mv), 19))
@@ -758,3 +823,99 @@ func settings_popup() -> void:
 			main.start_campaign()], ["Cancelar", UI.C_GRAY, Callable()]], 520))
 	v.add_child(rs)
 	popup("Configurações", v, [["Fechar", UI.C_YELLOW, Callable()]], 640)
+
+
+# =============================================================================================
+# EXPEDICOES / HORDA / DESAFIO
+# =============================================================================================
+func _expedition_content(c: VBoxContainer) -> void:
+	c.add_child(UI.para("Mande bolinhas que NÃO estão em campo para expedições. Quanto maior a raridade e o nível, melhor o prêmio. %d espaços." % Game.EXP_SLOTS, 17, UI.C_TEXT_MID))
+	var now := Time.get_unix_time_from_system()
+	var list := Game.expeditions()
+	for i in list.size():
+		var e: Dictionary = list[i]
+		var left := float(e.end) - now
+		var bi := BallIcon.new().setup(e.ball, int(Game.ball(e.ball).rarity))
+		bi.custom_minimum_size = Vector2(64, 64)
+		var rw := Game.expedition_reward(e)
+		var idx := i
+		c.add_child(row_card(bi, "%s · %dh" % [DB.BALLS[e.ball].name, int(e.hours)], ("Volta em " + UI.time_str(left)) if left > 0 else "Voltou! Prêmio: %s moedas, %d chaves, %d gemas" % [UI.fmt(rw.coins), int(rw["keys"]), int(rw.gems)], "Coletar", UI.C_GREEN, func() -> void:
+			var got := Game.claim_expedition(idx)
+			if not got.is_empty():
+				main.toast("+%s moedas  +%d gemas  +%d %s" % [UI.fmt(got.coins), int(got.gems), int(got.mat.n), got.mat.name], Color("#a8f0b0"))
+			main.open_screen("modes", true), left <= 0))
+	if list.size() < Game.EXP_SLOTS:
+		c.add_child(section("Enviar bolinha"))
+		for k in Game.EXPEDITIONS:
+			var kk: Dictionary = k
+			c.add_child(row_card(UI.tex_rect(PixelArt.icon("scroll"), Vector2(52, 52)), "%s (%dh)" % [k.name, int(k.hours)], "Escolha uma bolinha da coleção para ir.", "Escolher", UI.C_BLUE, func() -> void: _pick_expedition_ball(kk)))
+
+
+func _pick_expedition_ball(kind: Dictionary) -> void:
+	var ids: Array = Game.d.balls.keys()
+	ids.sort_custom(func(a, b): return Game.ball_power(a) > Game.ball_power(b))
+	var g := GridContainer.new()
+	g.columns = 4
+	g.add_theme_constant_override("h_separation", 6)
+	g.add_theme_constant_override("v_separation", 6)
+	var n := 0
+	for id in ids:
+		if id == Game.active_id() or Game.ball_on_expedition(id):
+			continue
+		n += 1
+		if n > 40:
+			break
+		var cell := UI.vbox(2)
+		var bi := BallIcon.new().setup(id, int(Game.ball(id).rarity))
+		bi.custom_minimum_size = Vector2(120, 110)
+		var bid: String = id
+		bi.pressed.connect(func() -> void:
+			if Game.start_expedition(bid, kind):
+				main.toast("%s partiu em expedição!" % DB.BALLS[bid].name, Color("#a8e2ff"))
+			close_popups()
+			main.open_screen("modes", true))
+		cell.add_child(bi)
+		var l := UI.para(DB.BALLS[id].name, 13)
+		l.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		cell.add_child(l)
+		g.add_child(cell)
+	var v := UI.vbox(6)
+	if n == 0:
+		v.add_child(UI.para("Você precisa de outras bolinhas além da que está em campo. Invoque mais!", 18))
+	else:
+		v.add_child(UI.para("Mostrando as 40 mais fortes disponíveis.", 15, UI.C_TEXT_MID))
+		v.add_child(g)
+	popup("Quem vai para %s?" % kind.name, v, [["Cancelar", UI.C_GRAY, Callable()]], 640)
+
+
+func start_horde() -> void:
+	if Game.horde_tries() <= 0:
+		return
+	if not Game.d.has("horde_tries"):
+		Game.d.horde_tries = {}
+	Game.d.horde_tries[Game.today()] = int(Game.d.horde_tries.get(Game.today(), 0)) + 1
+	main.start_mode("horde", {"sub": "Horda Sem Fim", "theme": {"floor": "#f4e4e0", "floor2": "#e0c4bc", "accent": "#c84848", "line": "#d09888"}},
+		main._team_specs(), Game.horde_waves(), "Horda", 0.0)
+
+
+func start_challenge() -> void:
+	var ch := Game.challenge_today()
+	if ch.done:
+		return
+	var rule: Dictionary = ch.rule
+	var specs: Array = main._team_specs()
+	for sp in specs:
+		var pm: Dictionary = rule.get("player", {})
+		sp.stats.atk *= float(pm.get("atk", 1.0))
+		sp.stats.hp *= float(pm.get("hp", 1.0))
+		sp.stats.spd *= float(pm.get("spd", 1.0))
+		sp.stats.cdr = float(sp.stats.get("cdr", 0.0)) + float(pm.get("cdr", 0.0))
+		if pm.has("no_weapon"):
+			sp.weapon = {}
+	var g := float(Game.d.best) + 6.0
+	var boss := Game.enemy_spec(ch.boss, g, true, 1.0)
+	var em: Dictionary = rule.get("enemy", {})
+	boss.stats.hp *= float(em.get("hp", 1.0))
+	boss.stats.spd *= float(em.get("spd", 1.0))
+	main.start_mode("challenge", {"sub": "Desafio: " + str(rule.name), "theme": {"floor": "#f2e8ff", "floor2": "#dccdf0", "accent": "#9a64e0", "line": "#c0a8e0"}},
+		specs, [[boss]], "Desafio Diário", 90.0)

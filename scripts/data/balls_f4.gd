@@ -205,7 +205,7 @@ const LIST := [
 		"look": {"skin": "#f0dcc8", "hair": "#1d1a22", "hair_style": "spiky_back", "hat": "none",
 			"outfit": "coat", "outfit_color": "#1d1a22", "outfit_color2": "#4a3a6a",
 			"acc": ["earrings", "cross"], "acc_color": "#c8ccd6"},
-		"look_tf": {"skin": "#5a5468", "hair": "#0e0c14", "acc": ["horns", "wings", "earrings"], "acc_color": "#1d1a22"},
+		"look_tf": {"skin": "#5a5468", "hair": "#0e0c14", "acc": ["horns", "wings", "earrings"], "acc_color": "#1d1a22", "acc_colors": {"horns": "#1d1a22", "wings": "#2a2632"}},
 		"weapon": {"kind": "feather", "color": "#1d1a22", "count": 3, "orbit": 1.55, "spin": 5.0, "power": 0.45},
 		"actives": [
 			{"name": "Mergulho na Sombra", "type": "teleport", "cd": 6.0, "power": 2.2, "fx": "shadow_tendrils", "fx_scale": 0.5,
@@ -418,7 +418,7 @@ const LIST := [
 		"lore": "O rei do submundo acha que o resto do mundo deveria estar de joelhos. E faz isso acontecer.",
 		"look": {"skin": "#5a4a5a", "hair": "#e8e8f0", "hair_style": "wild_long", "hat": "none",
 			"outfit": "cape", "outfit_color": "#1d1a22", "outfit_color2": "#6a2aa8",
-			"acc": ["horns", "devil_wings"], "acc_color": "#1d1a22"},
+			"acc": ["horns", "devil_wings"], "acc_color": "#1d1a22", "acc_colors": {"horns": "#2a2632"}},
 		"look_tf": {"skin": "#3a2a3a", "hair": "#f8f8ff", "acc": ["horns", "devil_wings", "halo"], "acc_color": "#c81e3a"},
 		"weapon": {"kind": "orb", "color": "#3a1a5a", "count": 4, "orbit": 1.65, "spin": 3.0, "power": 0.55},
 		"actives": [
@@ -724,8 +724,8 @@ const LIST := [
 		"lore": "Estudante de dia, mascarado revolucionário de noite e péssimo em educação física sempre.",
 		"look": {"skin": "#f6e0d0", "hair": "#1d1a22", "hair_style": "messy", "hat": "none",
 			"outfit": "uniform", "outfit_color": "#1d1a22", "outfit_color2": "#d8a83a",
-			"acc": [], "acc_color": "#1d1a22"},
-		"look_tf": {"hat": "knight_helmet", "hat_color": "#1d1a2a", "hat_color2": "#d8a83a", "outfit": "cape", "outfit_color": "#1d1a2a", "outfit_color2": "#6a2aa8", "acc": ["visor"], "acc_color": "#9a5ae8"},
+			"acc": ["high_collar"], "acc_color": "#1d1a22"},
+		"look_tf": {"hat": "knight_helmet", "hat_color": "#1d1a2a", "hat_color2": "#d8a83a", "outfit": "cape", "outfit_color": "#1d1a2a", "outfit_color2": "#6a2aa8", "acc": ["high_collar", "visor"], "acc_color": "#9a5ae8", "acc_colors": {"high_collar": "#1d1a2a"}},
 		"weapon": {"kind": "card", "color": "#f0e8ff", "count": 2, "orbit": 1.5, "spin": 3.5, "power": 0.35},
 		"actives": [
 			{"name": "Ordem Absoluta", "type": "debuff", "cd": 12.0, "power": 1.0, "status": "stun", "status_dur": [1.2, 1.2, 1.2, 1.2, 1.2, 1.4, 1.6, 1.8, 2.0],
@@ -755,7 +755,7 @@ const LIST := [
 		"look": {"skin": "#f2d4b4", "hair": "#6a4a2a", "hair_style": "curly", "hat": "none",
 			"outfit": "armor", "outfit_color": "#f4f4f8", "outfit_color2": "#d8a83a",
 			"acc": [], "acc_color": "#d8a83a"},
-		"look_tf": {"outfit_color2": "#e8304a", "acc": ["wings"], "acc_color": "#c8f0e0"},
+		"look_tf": {"outfit_color2": "#e8304a", "acc": ["wings"], "acc_color": "#c8f0e0", "acc_colors": {"wings": "#8af0c8"}},
 		"weapon": {"kind": "sword", "color": "#e8e8f0", "count": 2, "orbit": 1.5, "spin": 6.5, "power": 0.55},
 		"actives": [
 			{"name": "Arpões de Laje", "type": "hook", "cd": 5.0, "power": 1.8, "count": [1, 1, 1, 2, 2, 2, 3, 3, 3],
@@ -810,7 +810,7 @@ const LIST := [
 		"look": {"skin": "#f6dcc4", "hair": "#e8402a", "hair_style": "spiky", "hat": "none",
 			"outfit": "cyber", "outfit_color": "#e8304a", "outfit_color2": "#1d1a22",
 			"acc": ["bandana"], "acc_color": "#e8304a"},
-		"look_tf": {"outfit_color": "#c81e3a", "outfit_color2": "#ffd23c", "acc": ["bandana", "wings"], "acc_color": "#e8304a"},
+		"look_tf": {"outfit_color": "#c81e3a", "outfit_color2": "#ffd23c", "acc": ["bandana", "wings"], "acc_color": "#e8304a", "acc_colors": {"wings": "#ff4a5a"}},
 		"weapon": {"kind": "claw", "color": "#e8302a", "count": 1, "orbit": 1.45, "spin": 5.0, "power": 0.7},
 		"actives": [
 			{"name": "Braço Radiante", "type": "stretch", "cd": 6.0, "power": 2.6, "count": [1, 1, 1, 1, 2, 2, 2, 3, 3], "range": 320.0,
@@ -939,7 +939,7 @@ const LIST := [
 		"lore": "Humilhado com um apelido de fruta, voltou ciborgue e mais leal que nunca.",
 		"look": {"skin": "#f2d8c0", "hair": "#3ad8c8", "hair_style": "short", "hat": "none",
 			"outfit": "cyber", "outfit_color": "#f4f4f8", "outfit_color2": "#ff8a1a",
-			"acc": ["half_mask", "cyber_lines"], "acc_color": "#8a8aa8"},
+			"acc": ["half_mask", "cyber_lines"], "acc_color": "#8a8aa8", "acc_colors": {"half_mask": "#a8acc0"}},
 		"weapon": {"kind": "sword", "color": "#ff8a1a", "count": 2, "orbit": 1.4, "spin": 5.5, "power": 0.5},
 		"actives": [
 			{"name": "Cancelador do Olho", "type": "debuff", "cd": 11.0, "power": 0.8, "status": "silence", "status_dur": 3.0, "radius": 140.0,

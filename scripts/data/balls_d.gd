@@ -97,7 +97,7 @@ const LIST := [
 		"rarity": 3, "role": "Atacante", "color": "#e0c050",
 		"lore": "Bate o ponto às 18h em ponto. Depois disso, é hora extra.",
 		"look": {"skin": "#f6d8b8", "hair": "#f0d870", "hair_style": "side_part", "hat": "none",
-			"outfit": "suit", "outfit_color": "#d8cca0", "outfit_color2": "#7a5a2a", "acc": ["goggles"], "acc_color": "#3a3a3a"},
+			"outfit": "suit", "outfit_color": "#d8cca0", "outfit_color2": "#7a5a2a", "acc": ["goggles"], "acc_color": "#3a3a3a", "acc_colors": {"tie": "#c8962e"}},
 		"look_tf": {"outfit_color": "#c8b888", "acc": ["goggles", "bandage"]},
 		"actives": [
 			{"name": "Proporção 7:3", "type": "execute", "cd": 6.0, "power": 2.6, "fx": "crit_hit", "fx_scale": 0.6, "threshold": 0.3,
@@ -294,7 +294,7 @@ const LIST := [
 		"rarity": 1, "role": "Suporte", "color": "#c8d8ff",
 		"lore": "Só fala nome de recheio de bolinho de arroz. Quando fala outra coisa, todo mundo obedece.",
 		"look": {"skin": "#f6dcc0", "hair": "#e6e6f0", "hair_style": "messy", "hat": "none",
-			"outfit": "uniform", "outfit_color": "#1c1c2c", "outfit_color2": "#c8a848", "acc": ["mouth_mask"], "acc_color": "#1c1c2c"},
+			"outfit": "uniform", "outfit_color": "#1c1c2c", "outfit_color2": "#c8a848", "acc": ["mouth_mask", "high_collar"], "acc_color": "#1c1c2c", "acc_colors": {"mouth_mask": "#2a2a40", "high_collar": "#2a2a40"}},
 		"actives": [
 			{"name": "Não se Mexa!", "type": "debuff", "cd": 9.0, "power": 0.6, "status": "stun", "status_dur": [1.0, 1.0, 1.2, 1.2, 1.4, 1.5, 1.6, 1.8, 2.0],
 				"radius": 0.0, "fx": "spell_charge", "desc": "Abaixa a gola e dá uma ordem. Ninguém se mexe."},
@@ -318,7 +318,7 @@ const LIST := [
 		"rarity": 2, "role": "Atacante", "color": "#d81e3a",
 		"lore": "Mente sobre tudo, odeia verdura e jura que é a maior de todas.",
 		"look": {"skin": "#f6d4b8", "hair": "#f2c0a2", "hair_style": "long", "hat": "none",
-			"outfit": "shirt_tie", "outfit_color": "#f2f2f2", "outfit_color2": "#1d1a22", "acc": ["small_horns"], "acc_color": "#d81e3a"},
+			"outfit": "shirt_tie", "outfit_color": "#f2f2f2", "outfit_color2": "#f2f2f2", "acc": ["small_horns"], "acc_color": "#d81e3a", "acc_colors": {"tie": "#14101e"}},
 		"look_tf": {"hair": "#e89a8a", "acc": ["small_horns", "devil_wings"], "acc_color": "#a8142a"},
 		"actives": [
 			{"name": "Lança de Sangue", "type": "projectile", "cd": 5.0, "power": 2.4, "fx": "plasma_shot_red", "fx_scale": 0.6,
@@ -343,7 +343,7 @@ const LIST := [
 		"rarity": 6, "role": "Suporte", "color": "#d8604a",
 		"lore": "Sorri, oferece um emprego e de repente você é o cachorrinho dela.",
 		"look": {"skin": "#f6dcc4", "hair": "#c8604a", "hair_style": "braid", "hat": "none",
-			"outfit": "shirt_tie", "outfit_color": "#f2f2f2", "outfit_color2": "#1d1a22", "acc": []},
+			"outfit": "shirt_tie", "outfit_color": "#f2f2f2", "outfit_color2": "#f2f2f2", "acc": [], "acc_colors": {"tie": "#14101e"}},
 		"actives": [
 			{"name": "Coleira de Obediência", "type": "debuff", "cd": 10.0, "power": 0.8, "status": "weaken",
 				"status_dur": [4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 5.0, 6.0, 7.0], "radius": 0.0, "fx": "hex_sigil",
@@ -367,7 +367,7 @@ const LIST := [
 		"rarity": 3, "role": "Atacante", "color": "#e8a24a",
 		"lore": "Organizado, fuma escondido e paga caro por cada contrato.",
 		"look": {"skin": "#f2d8bc", "hair": "#1d1a22", "hair_style": "bun", "hat": "none",
-			"outfit": "suit", "outfit_color": "#1d1a22", "outfit_color2": "#f2f2f2", "acc": ["earrings", "sword_back"], "acc_color": "#e8e8e8"},
+			"outfit": "suit", "outfit_color": "#1d1a22", "outfit_color2": "#f2f2f2", "acc": ["earrings", "sword_back"], "acc_color": "#e8e8e8", "acc_colors": {"tie": "#14101e"}},
 		"actives": [
 			{"name": "Raposa!", "type": "aoe", "cd": 7.0, "power": 2.6, "fx": "orb_fox", "fx_scale": 0.8, "radius": 95.0,
 				"extra_fx": "claw_swipe", "extra_scale": 0.6, "desc": "Junta as mãos e uma raposa gigante dá uma mordida."},
@@ -389,7 +389,7 @@ const LIST := [
 		"rarity": 1, "role": "Suporte", "color": "#c8e0ff",
 		"lore": "Trocou um olho por uma mão invisível. Usa pra acender o cigarro dos outros.",
 		"look": {"skin": "#f6d8c0", "hair": "#2a2a3a", "hair_style": "cover_eye", "hat": "none",
-			"outfit": "suit", "outfit_color": "#1d1a22", "outfit_color2": "#f2f2f2", "acc": ["eyepatch", "earrings"], "acc_color": "#d8d8e8"},
+			"outfit": "suit", "outfit_color": "#1d1a22", "outfit_color2": "#f2f2f2", "acc": ["eyepatch", "earrings"], "acc_color": "#d8d8e8", "acc_colors": {"tie": "#14101e"}},
 		"actives": [
 			{"name": "Mão Fantasma", "type": "stretch", "cd": 6.0, "power": 2.0, "count": [1, 1, 2, 2, 2, 3, 3, 3, 4], "range": 280.0,
 				"arm": "#e6eeff", "hit_fx": "ghost", "hit_scale": 0.5, "status": "stun", "status_dur": 0.8, "status_chance": 0.6,
@@ -410,7 +410,7 @@ const LIST := [
 		"rarity": 4, "role": "Atacante", "color": "#ff7a2a",
 		"lore": "Trabalha num café, ensina a nadar e explode cidades nas horas vagas.",
 		"look": {"skin": "#f6d8c0", "hair": "#4a2a4a", "hair_style": "bob", "hat": "none",
-			"outfit": "shirt_tie", "outfit_color": "#f2f2f2", "outfit_color2": "#1d1a22", "acc": ["collar"], "acc_color": "#1d1a22"},
+			"outfit": "shirt_tie", "outfit_color": "#f2f2f2", "outfit_color2": "#f2f2f2", "acc": ["collar"], "acc_color": "#1d1a22", "acc_colors": {"tie": "#14101e"}},
 		"look_tf": {"hair": "#3a3a3a", "hair_style": "bald", "acc": ["collar", "cyber_lines"], "acc_color": "#ff7a2a"},
 		"actives": [
 			{"name": "Granadinhas", "type": "projectile", "cd": 5.0, "power": 1.4, "count": [2, 2, 2, 2, 3, 3, 4, 4, 5], "arc": 0.6,
@@ -483,7 +483,7 @@ const LIST := [
 		"rarity": 2, "role": "Suporte", "color": "#f8e8b0",
 		"lore": "Tem preguiça até de bater. Só encosta, e você perde uns anos de vida.",
 		"look": {"skin": "#f6dcc8", "hair": "#e8c890", "hair_style": "short", "hat": "none",
-			"outfit": "suit", "outfit_color": "#1d1a22", "outfit_color2": "#f2f2f2", "acc": ["halo", "wings"], "acc_color": "#ffe8a0"},
+			"outfit": "suit", "outfit_color": "#1d1a22", "outfit_color2": "#f2f2f2", "acc": ["halo", "wings"], "acc_color": "#ffe8a0", "acc_colors": {"tie": "#14101e", "wings": "#f4f4fa"}},
 		"actives": [
 			{"name": "Toque que Rouba Anos", "type": "drain", "cd": 6.0, "power": 2.2, "fx": "soul_drain", "fx_scale": 0.6, "heal_pct": 0.5,
 				"desc": "Um encostãozinho e a vida do inimigo vai pra ele."},
@@ -504,7 +504,7 @@ const LIST := [
 		"rarity": 0, "role": "Velocista", "color": "#e8a0a0",
 		"lore": "Entrou no trabalho mais perigoso do mundo pra pagar a faculdade do irmão. Chora o tempo todo.",
 		"look": {"skin": "#f6dcc4", "hair": "#4a2a22", "hair_style": "ponytail", "hat": "none",
-			"outfit": "suit", "outfit_color": "#1d1a22", "outfit_color2": "#f2f2f2", "acc": ["hairclip"], "acc_color": "#e8a0a0"},
+			"outfit": "suit", "outfit_color": "#1d1a22", "outfit_color2": "#f2f2f2", "acc": ["hairclip"], "acc_color": "#e8a0a0", "acc_colors": {"tie": "#14101e"}},
 		"actives": [
 			{"name": "Facada do Desespero", "type": "dash", "cd": 5.0, "power": 1.3, "count": [2, 2, 2, 3, 3, 3, 4, 4, 5],
 				"hit_fx": "dagger_flurry", "hit_scale": 0.45, "trail_fx": "haste",
@@ -529,8 +529,8 @@ const LIST := [
 		"rarity": 3, "role": "Tanque", "color": "#d8b060",
 		"lore": "Não dorme há anos e carrega uma cabaça de areia pra todo lado.",
 		"look": {"skin": "#f2d8c0", "hair": "#c4302a", "hair_style": "messy", "hat": "none",
-			"outfit": "coat", "outfit_color": "#7a3a2a", "outfit_color2": "#d8b060", "acc": ["star_mark"], "acc_color": "#c4302a"},
-		"look_tf": {"skin": "#d8b878", "acc": ["star_mark", "cyber_lines"], "acc_color": "#3a4a8a"},
+			"outfit": "coat", "outfit_color": "#7a3a2a", "outfit_color2": "#d8b060", "acc": ["star_mark", "gourd"], "acc_color": "#c4302a", "acc_colors": {"gourd": "#c8a060"}},
+		"look_tf": {"skin": "#d8b878", "acc": ["star_mark", "cyber_lines", "gourd"], "acc_color": "#3a4a8a"},
 		"actives": [
 			{"name": "Escudo de Areia Absoluto", "type": "shield", "cd": 12.0, "power": 0.3, "dur": 5.0, "invuln": 0.5, "fx": "shield_block",
 				"desc": "A areia se mexe sozinha pra proteger o dono."},
@@ -627,7 +627,7 @@ const LIST := [
 		"id": "shinobi_meteoro", "name": "Lendário do Clã Vermelho", "world": "Mundo Shinobi",
 		"rarity": 6, "role": "Atacante", "color": "#c81e1e",
 		"lore": "Achou que a luta estava fácil demais e jogou um meteoro. Depois outro.",
-		"look": {"skin": "#f2d4b8", "hair": "#141418", "hair_style": "wild_long", "hat": "none",
+		"look": {"skin": "#f2d4b8", "hair": "#141418", "hair_style": "long_bangs", "hat": "none",
 			"outfit": "armor", "outfit_color": "#8a1e1e", "outfit_color2": "#3a3a3a", "acc": []},
 		"look_tf": {"skin": "#f2e6e0", "hair": "#f0f0f0", "acc": ["halo", "third_eye_band"], "acc_color": "#1d1a22"},
 		"actives": [
@@ -706,8 +706,8 @@ const LIST := [
 		"id": "shinobi_preguica", "name": "Estrategista Preguiçoso das Sombras", "world": "Mundo Shinobi",
 		"rarity": 0, "role": "Suporte", "color": "#5a5a3a",
 		"lore": "QI de duzentos e preguiça de duzentos e um. Que saco.",
-		"look": {"skin": "#f2d4b0", "hair": "#1d1a22", "hair_style": "ponytail", "hat": "none",
-			"outfit": "vest", "outfit_color": "#4a6a3a", "outfit_color2": "#2a2a32", "acc": ["earrings", "headband"], "acc_color": "#2c3a5a"},
+		"look": {"skin": "#f2d4b0", "hair": "#1d1a22", "hair_style": "pineapple", "hat": "none",
+			"outfit": "vest", "outfit_color": "#4a6a3a", "outfit_color2": "#2a2a32", "acc": ["earrings", "armband"], "acc_color": "#2c3a5a", "acc_colors": {"earrings": "#c8c8d0", "armband": "#2c3a5a"}},
 		"actives": [
 			{"name": "Imitação das Sombras", "type": "debuff", "cd": 9.0, "power": 0.5, "status": "stun",
 				"status_dur": [1.0, 1.0, 1.2, 1.2, 1.4, 1.4, 1.6, 1.8, 2.0], "radius": 150.0, "fx": "shadow_tendrils",

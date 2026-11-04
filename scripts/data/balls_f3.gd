@@ -104,7 +104,7 @@ const LIST := [
 		"lore": "O assassino mais caro do universo. Cobra em segundos roubados.",
 		"look": {"skin": "#7a6ab8", "hair": "#7a6ab8", "hair_style": "bald", "hat": "none",
 			"outfit": "coat", "outfit_color": "#3a2a5a", "outfit_color2": "#d8d0e8",
-			"acc": ["collar"], "acc_color": "#d8d0e8"},
+			"acc": ["high_collar"], "acc_color": "#d8d0e8", "acc_colors": {"high_collar": "#3a2a5a"}},
 		"weapon": {"kind": "dagger", "color": "#c8b8ff", "count": 2, "orbit": 1.35, "spin": 6.5, "power": 0.55},
 		"actives": [
 			{"name": "Salto Temporal", "type": "teleport", "cd": 6.0, "power": 2.8, "fx": "impact_frame", "fx_scale": 0.55, "target": "strongest",
@@ -376,7 +376,7 @@ const LIST := [
 		"lore": "Destrói cidades com um dedo levantado e se irrita com qualquer coisa.",
 		"look": {"skin": "#e8b888", "hair": "#e8b888", "hair_style": "bald", "hat": "none",
 			"outfit": "armor", "outfit_color": "#2a2a2a", "outfit_color2": "#8a5a2a",
-			"acc": ["visor"], "acc_color": "#e0263a"},
+			"acc": ["mustache", "visor"], "acc_color": "#e0263a", "acc_colors": {"mustache": "#141018"}},
 		"weapon": {"kind": "hammer", "color": "#8a8a9a", "count": 1, "orbit": 1.55, "spin": 2.2, "power": 0.75},
 		"actives": [
 			{"name": "Tempestade de Dois Dedos", "type": "nova", "cd": 9.0, "power": 3.0, "fx": "big_explosion", "fx_scale": 0.45, "radius": 140.0,
@@ -456,7 +456,7 @@ const LIST := [
 		"lore": "Inventou a onda mais famosa do mundo e passa o resto do tempo lendo revistinha.",
 		"look": {"skin": "#f0d0b0", "hair": "#f0d0b0", "hair_style": "bald", "hat": "none",
 			"outfit": "gi", "outfit_color": "#f08a2a", "outfit_color2": "#f4f4f4",
-			"acc": ["sunglasses"], "acc_color": "#2a2a2a"},
+			"acc": ["beard", "sunglasses"], "acc_color": "#2a2a2a", "acc_colors": {"beard": "#f4f4f4"}},
 		"look_tf": {"skin": "#e8b888", "outfit": "tank", "outfit_color": "#f08a2a"},
 		"weapon": {"kind": "staff", "color": "#8a5a2a", "count": 1, "orbit": 1.5, "spin": 2.0, "power": 0.5},
 		"actives": [
@@ -591,7 +591,7 @@ const LIST := [
 		"lore": "O irmão mais velho do imperador. Tem uma forma a mais e faz questão de lembrar.",
 		"look": {"skin": "#f2f2f8", "hair": "#7a3ab8", "hair_style": "dome", "hat": "none",
 			"outfit": "none", "outfit_color": "#7a3ab8", "outfit_color2": "#f2f2f8",
-			"acc": ["tail"], "acc_color": "#f2f2f8"},
+			"acc": ["tail"], "acc_color": "#f2f2f8", "acc_colors": {"mouth_mask": "#7a3ab8"}},
 		"look_tf": {"acc": ["tail", "mouth_mask", "horns"], "acc_color": "#7a3ab8"},
 		"weapon": {"kind": "shuriken", "color": "#b05aff", "count": 2, "orbit": 1.5, "spin": 6.0, "power": 0.55},
 		"actives": [
@@ -950,8 +950,8 @@ const LIST := [
 		"lore": "Suga a energia de planetas inteiros e chama isso de lanche da tarde.",
 		"look": {"skin": "#b8c0c8", "hair": "#f4f4f4", "hair_style": "long", "hat": "none",
 			"outfit": "robe", "outfit_color": "#3a2a5a", "outfit_color2": "#c8a85a",
-			"acc": ["horns"], "acc_color": "#e8e0c8"},
-		"look_tf": {"skin": "#8a94a0", "acc": ["horns", "cyber_lines"], "acc_color": "#c8a8ff"},
+			"acc": ["beard", "horns"], "acc_color": "#e8e0c8", "acc_colors": {"beard": "#f4f4f4"}},
+		"look_tf": {"skin": "#8a94a0", "acc": ["beard", "horns", "cyber_lines"], "acc_color": "#c8a8ff"},
 		"weapon": {"kind": "wand", "color": "#c8a8ff", "count": 1, "orbit": 1.5, "spin": 3.0, "power": 0.5},
 		"actives": [
 			{"name": "Sugar Energia", "type": "drain", "cd": 8.0, "power": 2.6, "fx": "soul_drain", "fx_scale": 0.55, "heal_pct": 0.6,
@@ -1005,8 +1005,8 @@ const LIST := [
 		"lore": "Bigodudo, justo e treinado para virar deus da destruição. Mas primeiro, a justiça.",
 		"look": {"skin": "#d8b8a8", "hair": "#f4f4f4", "hair_style": "slick", "hat": "none",
 			"outfit": "uniform", "outfit_color": "#e0263a", "outfit_color2": "#141418",
-			"acc": [], "acc_color": "#141418"},
-		"look_tf": {"outfit": "none", "acc": ["cyber_lines"], "acc_color": "#7a3ab8"},
+			"acc": ["mustache"], "acc_color": "#141418", "acc_colors": {"mustache": "#f4f4f4"}},
+		"look_tf": {"outfit": "none", "acc": ["mustache", "cyber_lines"], "acc_color": "#7a3ab8"},
 		"weapon": {"kind": "orb", "color": "#7a3ab8", "count": 1, "orbit": 1.55, "spin": 2.5, "power": 0.8},
 		"actives": [
 			{"name": "Clarão da Justiça", "type": "projectile", "cd": 6.0, "power": 1.6, "fx": "fireball", "fx_scale": 0.5, "speed": 520.0,
@@ -1083,7 +1083,7 @@ const LIST := [
 		"lore": "O campeão mundial que ganhou todas as lutas. Pelo menos é o que ele conta.",
 		"look": {"skin": "#d8a878", "hair": "#141018", "hair_style": "afro", "hat": "none",
 			"outfit": "cape", "outfit_color": "#f4f4f4", "outfit_color2": "#ffd23c",
-			"acc": ["necklace"], "acc_color": "#ffd23c"},
+			"acc": ["mustache", "necklace"], "acc_color": "#ffd23c"},
 		"weapon": {"kind": "flag", "color": "#ffd23c", "count": 1, "orbit": 1.5, "spin": 2.5, "power": 0.4},
 		"actives": [
 			{"name": "Soco Dinamite", "type": "strike", "cd": 7.0, "power": 3.0, "fx": "cartoon_pow", "fx_scale": 0.55, "shake": 5.0,

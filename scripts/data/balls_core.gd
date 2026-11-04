@@ -42,9 +42,10 @@ const DICT := {
 	"irma_oni": {
 		"name": "Irmã Oni da Caixa", "world": "Era dos Onis", "rarity": 1, "role": "Velocista",
 		"lore": "Virou oni, mas protege os humanos. Dorme numa caixa de madeira durante o dia.",
-		"look": {"skin": "#f8e0d4", "hair": "#1d1a22", "hair_style": "long", "hair2": "#ff8a2a", "hat": "none",
-			"outfit": "kimono", "outfit_color": "#ff86b0", "outfit_color2": "#6a3a2a", "acc": ["ribbon"], "acc_color": "#ff6aa0"},
-		"look_tf": {"acc": ["ribbon", "small_horns"]},
+		"look": {"skin": "#f8e0d4", "hair": "#1d1a22", "hair_style": "long", "tips": "#ff8a2a", "hat": "none",
+			"outfit": "kimono", "outfit_color": "#ff86b0", "outfit_color2": "#6a3a2a", "acc": ["mouth_mask", "ribbon"], "acc_color": "#ff6aa0",
+			"acc_colors": {"mouth_mask": "#6cb82a"}},
+		"look_tf": {"acc": ["mouth_mask", "ribbon", "small_horns"]},
 		"color": "#ff6aa0",
 		"actives": [
 			{"name": "Arte de Sangue: Chamas Explosivas", "type": "nova", "cd": 7.0, "power": 2.0, "fx": "fire_ring", "fx_scale": 0.5,
@@ -62,7 +63,7 @@ const DICT := {
 		"name": "Cozinheiro da Perna Negra", "world": "Mar Grandioso", "rarity": 1, "role": "Velocista",
 		"lore": "Nunca usa as mãos para lutar: elas são para cozinhar.",
 		"look": {"skin": "#f6d0a8", "hair": "#ffe066", "hair_style": "cover_eye", "hat": "none",
-			"outfit": "suit", "outfit_color": "#1d1a22", "acc": []},
+			"outfit": "suit", "outfit_color": "#1d1a22", "acc": ["goatee"], "acc_colors": {"tie": "#14101e", "goatee": "#e8c84a"}},
 		"color": "#ffb020",
 		"actives": [
 			{"name": "Perna do Diabo", "type": "dash", "cd": 5.0, "power": 1.9, "count": [1, 1, 2, 2, 3, 4], "hit_fx": "slash_fire",
@@ -95,7 +96,8 @@ const DICT := {
 		"name": "Guerreiro de Pele Verde", "world": "Galáxia Z", "rarity": 2, "role": "Suporte",
 		"lore": "Um alienígena sério que treinou o filho do maior guerreiro do planeta.",
 		"look": {"skin": "#6cc04a", "hair": "#6cc04a", "hair_style": "none", "hat": "turban", "hat_color": "#f4f4fa", "hat_color2": "#6b2cc0",
-			"outfit": "gi", "outfit_color": "#6b2cc0", "outfit_color2": "#5a24a8", "acc": ["antennae"]},
+			"outfit": "gi", "outfit_color": "#6b2cc0", "outfit_color2": "#5a24a8", "acc": ["shoulder_pads", "antennae"],
+			"acc_colors": {"shoulder_pads": "#f4f4fa"}},
 		"color": "#6cc04a",
 		"actives": [
 			{"name": "Canhão de Raio Especial", "type": "beam", "cd": 9.0, "power": 3.6, "fx": "beam_purple", "width": 18.0, "ticks": 3,
@@ -186,7 +188,7 @@ const DICT := {
 		"name": "Garoto Motosserra", "world": "Cidade dos Demônios", "rarity": 3, "role": "Velocista",
 		"lore": "Puxa a cordinha do peito e motosserras saem da cabeça e dos braços.",
 		"look": {"skin": "#f6d0a8", "hair": "#e8c060", "hair_style": "messy", "hat": "none",
-			"outfit": "shirt_tie", "outfit_color": "#1d1a22", "outfit_color2": "#f4f4fa", "acc": ["chainsaw"]},
+			"outfit": "shirt_tie", "outfit_color": "#1d1a22", "outfit_color2": "#f4f4fa", "acc": ["chainsaw"], "acc_colors": {"tie": "#14101e"}},
 		"color": "#ff4a4a",
 		"actives": [
 			{"name": "Motosserra Giratória", "type": "multi", "cd": 5.0, "power": 0.8, "count": [5, 5, 5, 6, 7, 9], "interval": 0.09,
@@ -220,7 +222,8 @@ const DICT := {
 		"name": "Irmão do Clã Rubro", "world": "Mundo Shinobi", "rarity": 4, "role": "Suporte",
 		"lore": "Um gênio que carregou o peso do clã inteiro sozinho.",
 		"look": {"skin": "#f2dcc8", "hair": "#14101e", "hair_style": "ponytail", "hat": "none",
-			"outfit": "cloak_clouds", "outfit_color": "#16121e", "acc": ["headband_slash"], "acc_color": "#2c3a5a"},
+			"outfit": "cloak_clouds", "outfit_color": "#16121e", "acc": ["high_collar", "headband_slash"], "acc_color": "#2c3a5a",
+			"acc_colors": {"high_collar": "#16121e"}},
 		"color": "#e01a24",
 		"actives": [
 			{"name": "Chamas Negras", "type": "aoe", "cd": 9.0, "power": 1.5, "fx": "shadow_flames", "fx_scale": 0.8, "radius": 55.0,
@@ -307,7 +310,7 @@ const DICT := {
 	"cadete": {
 		"name": "Cadete das Muralhas", "world": "Ilha das Muralhas", "rarity": 0, "role": "Velocista",
 		"lore": "Jurou exterminar os gigantes que devoraram sua cidade.",
-		"look": {"skin": "#f2c79a", "hair": "#4a2c18", "hair_style": "short", "hat": "none",
+		"look": {"skin": "#f2c79a", "hair": "#4a2c18", "hair_style": "mid", "hat": "none",
 			"outfit": "cape", "outfit_color": "#2e6b3a", "outfit_color2": "#f4f4fa", "acc": []},
 		"color": "#7cc048",
 		"actives": [
@@ -356,7 +359,7 @@ const DICT := {
 	"guardia_lunar": {
 		"name": "Guardiã da Lua", "world": "Reino da Lua", "rarity": 1, "role": "Suporte",
 		"lore": "Uma estudante desastrada que se transforma numa guerreira do amor e da justiça.",
-		"look": {"skin": "#f6d0a8", "hair": "#ffe066", "hair_style": "twintail", "hat": "none",
+		"look": {"skin": "#f6d0a8", "hair": "#ffe066", "hair_style": "odango", "hat": "none",
 			"outfit": "sailor", "outfit_color": "#2a4fa8", "outfit_color2": "#e83a3a", "acc": ["tiara"], "acc_color": "#e83a3a"},
 		"color": "#ffe066",
 		"actives": [
@@ -395,7 +398,8 @@ const DICT := {
 		"name": "Espadachim das Três Lâminas", "world": "Mar Grandioso", "rarity": 2, "role": "Atacante",
 		"lore": "Luta com uma espada em cada mão e uma na boca. Vive se perdendo.",
 		"look": {"skin": "#e8b888", "hair": "#4f9a3a", "hair_style": "short", "hat": "none",
-			"outfit": "robe", "outfit_color": "#2e5a3a", "outfit_color2": "#c41a24", "acc": ["earrings", "sword_back"], "acc_color": "#ffd23c"},
+			"outfit": "robe", "outfit_color": "#2e5a3a", "outfit_color2": "#c41a24", "acc": ["bandana", "earrings", "sword_back"], "acc_color": "#ffd23c",
+			"acc_colors": {"bandana": "#26222e", "earrings": "#ffd23c"}},
 		"color": "#4f9a3a",
 		"actives": [
 			{"name": "Tornado das Três Espadas", "type": "nova", "cd": 7.0, "power": 2.6, "fx": "spin_slash_green", "fx_scale": 0.9,
@@ -543,8 +547,8 @@ const DICT := {
 		"name": "Feiticeiro Vendado", "world": "Escola Jujutsu", "rarity": 4, "role": "Atacante",
 		"lore": "O feiticeiro mais forte da atualidade. Tira a venda quando a coisa fica séria.",
 		"look": {"skin": "#f6e0d0", "hair": "#f4f4fa", "hair_style": "big_spiky", "hat": "none",
-			"outfit": "uniform", "outfit_color": "#14101e", "acc": ["blindfold"]},
-		"look_tf": {"hair_style": "messy", "acc": []},
+			"outfit": "uniform", "outfit_color": "#14101e", "acc": ["high_collar", "blindfold"], "acc_colors": {"high_collar": "#14101e"}},
+		"look_tf": {"hair_style": "messy", "acc": ["high_collar"]},
 		"color": "#b45cf5",
 		"actives": [
 			{"name": "Vazio Roxo", "type": "projectile", "cd": 12.0, "power": 6.0, "fx": "orb_purple", "fx_scale": 1.0, "speed": 220.0,

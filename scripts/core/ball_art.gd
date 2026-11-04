@@ -92,6 +92,7 @@ class Art:
 	var oc: Color
 	var oc2: Color
 	var ac: Color
+	var hat_stripes := false
 	var _hair_mask := {}
 
 	func _init(i: Image, l: Dictionary) -> void:
@@ -107,8 +108,16 @@ class Art:
 		oc = Color(l.get("outfit_color", "#444444"))
 		oc2 = Color(l.get("outfit_color2", oc.lightened(0.35).to_html()))
 		ac = Color(l.get("acc_color", "#d42a30"))
+		hat_stripes = bool(l.get("hat_stripes", false))
 
 	# ------------------------------------------------------------ primitivas
+	## cor de um acessorio especifico: acc_colors[nome] > acc_color > padrao
+	func acol(name: String, fallback: String) -> Color:
+		var d: Dictionary = look.get("acc_colors", {})
+		if d.has(name):
+			return Color(d[name])
+		return Color(fallback)
+
 	func setp(x: int, y: int, c: Color) -> void:
 		if x < 0 or y < 0 or x >= SIZE or y >= SIZE:
 			return
@@ -241,6 +250,11 @@ class Art:
 			"mohawk": return CY - 12.0
 			"pompadour": return CY - 7.0
 			"dome": return CY - 7.0
+			"split": return CY - 5.0 + 0.8 * absf(sin(x * 1.2))
+			"odango", "twin_braids": return CY - 4.5 + 1.0 * absf(sin(x * 0.9))
+			"pineapple": return CY - 4.0 + 2.6 * absf(fposmod(x + 40.0, 3.6) - 1.8) / 1.8
+			"mid": return CY - 7.0 + clampf(absf(dx) * 0.55, 0.0, 5.0)
+			"long_bangs": return CY + 3.5 if dx > -1.0 else CY - 4.5
 		return CY - 5.0
 
 	func in_hair(p: Vector2) -> bool:
@@ -256,12 +270,12 @@ class Art:
 		# costeletas/laterais para estilos que descem pelos lados
 		var side := 0.0
 		match style:
-			"long", "hime", "bob", "wild_long", "twintail", "pigtails", "braid", "drills", "spiky_long":
+			"long", "hime", "bob", "wild_long", "twintail", "pigtails", "braid", "drills", "spiky_long", "odango", "twin_braids", "long_bangs", "mid":
 				side = 10.2
-			"messy", "spiky", "big_spiky", "curly", "short", "spiky_back", "ponytail", "bun", "side_part", "cover_eye":
+			"messy", "spiky", "big_spiky", "curly", "short", "spiky_back", "ponytail", "bun", "side_part", "cover_eye", "split", "pineapple":
 				side = 12.0
-		var limit := CY + (6.0 if style == "bob" else 2.0)
-		if style in ["long", "hime", "wild_long", "drills", "spiky_long"]:
+		var limit := CY + (6.0 if style in ["bob", "mid"] else 2.0)
+		if style in ["long", "hime", "wild_long", "drills", "spiky_long", "long_bangs", "twin_braids", "odango"]:
 			limit = CY + 9.0
 		if side > 0.0 and absf(p.x - CX) > side and p.y < limit:
 			return true
@@ -270,8 +284,14 @@ class Art:
 	func hair_col(p: Vector2) -> Color:
 		var c := lit(hair, p, 0.75)
 		var hc2v: Variant = look.get("hair2")
-		if hc2v != null and absf(p.x - (CX - 4.0)) < 1.3:
+		if hc2v != null and style == "split":
+			if p.x > CX:
+				c = lit(Color(hc2v), p, 0.75)
+		elif hc2v != null and absf(p.x - (CX - 4.0)) < 1.3:
 			c = lit(Color(hc2v), p, 0.75)
+		var tipv: Variant = look.get("tips")
+		if tipv != null and not style in ["spiky", "big_spiky", "spiky_long", "flame", "spiky_back", "pineapple"] and p.y > CY - 1.0:
+			c = lit(Color(tipv), p, 0.75)
 		var rr := Vector2(p.x - CX, p.y - CY).length()
 		if rr > R * 0.66 and rr < R * 0.8 and p.y < CY - 6.5 and p.x < CX + 7.0:
 			c = c.lerp(hair.lightened(0.45), 0.55)
@@ -280,7 +300,7 @@ class Art:
 	func _back_hair() -> void:
 		var dk := hair.darkened(0.22)
 		match style:
-			"long", "hime", "wild_long", "spiky_long":
+			"long", "hime", "wild_long", "spiky_long", "long_bangs", "mid":
 				var wild := style == "wild_long" or style == "spiky_long"
 				fill(CX - R - 4, CY - R - 1, CX + R + 4, CY + 17, func(p: Vector2) -> Variant:
 					var dx := p.x - CX
@@ -289,17 +309,19 @@ class Art:
 					var q := Vector2(dx / (R + 2.6), (dy - 1.0) / (R + 2.2))
 					if q.length_squared() > 1.0:
 						return null
-					var bottom := CY + 12.0 + (2.6 if wild else 1.2) * absf(fposmod(p.x + 40.0, 3.0 if wild else 4.0) - (1.5 if wild else 2.0))
+					var bottom := CY + (6.5 if style == "mid" else 12.0) + (2.6 if wild else 1.2) * absf(fposmod(p.x + 40.0, 3.0 if wild else 4.0) - (1.5 if wild else 2.0))
 					if p.y > bottom:
 						return null
 					var c := lit(dk, p, 0.55)
+					if look.has("tips") and p.y > CY + 6.0:
+						c = lit(Color(look.tips).darkened(0.1), p, 0.55)
 					if fposmod(p.x * 0.9, 3.0) < 0.35:
 						c = c.darkened(0.15)
 					return c)
 			"ponytail":
 				poly(PackedVector2Array([Vector2(CX + 9, CY - 10), Vector2(CX + 13, CY - 12), Vector2(CX + 19, CY + 2), Vector2(CX + 17.5, CY + 9), Vector2(CX + 14, CY + 1)]), hair, true, dk)
 				circle(CX + 11.5, CY - 10.5, 1.6, ac)
-			"twintail":
+			"twintail", "odango":
 				for s: float in [-1.0, 1.0]:
 					poly(PackedVector2Array([Vector2(CX + s * 12, CY - 12), Vector2(CX + s * 17, CY - 10), Vector2(CX + s * 19.5, CY + 6), Vector2(CX + s * 15.5, CY + 13), Vector2(CX + s * 14, CY + 2)]), hair, true, dk)
 			"pigtails":
@@ -392,6 +414,21 @@ class Art:
 				for s: float in [-1.0, 1.0]:
 					poly(PackedVector2Array([Vector2(CX + s * 9.0, CY - 3), Vector2(CX + s * 12.6, CY - 3), Vector2(CX + s * 12.0, CY + 8), Vector2(CX + s * 9.6, CY + 8)]), hair, true)
 		# ahoge (fio rebelde)
+		match style:
+			"odango":
+				for s: float in [-1.0, 1.0]:
+					circle(CX + s * 9.5, CY - 14.0, 4.2, hair, true)
+					circle(CX + s * 8.5, CY - 15.2, 1.2, hl)
+			"twin_braids":
+				for s: float in [-1.0, 1.0]:
+					for i in 6:
+						circle(CX + s * (10.5 - i * 0.2), CY + 1.0 + i * 2.2, 1.7, hair if i % 2 == 0 else dk, true)
+					circle(CX + s * 9.4, CY + 14.2, 0.9, ac)
+			"pineapple":
+				for i in 5:
+					var a := -PI * 0.85 + i * 0.32
+					var bp := Vector2(CX + 2.0, CY - R + 4.0)
+					poly(PackedVector2Array([bp + Vector2(-2.5, 1), bp + Vector2(2.5, 1), bp + Vector2(cos(a), sin(a)) * 11.0]), hair, true, dk)
 		if acc.has("ahoge"):
 			poly(PackedVector2Array([Vector2(CX - 0.8, top + 1.5), Vector2(CX + 0.8, top + 1.5), Vector2(CX + 3.5, top - 4.5), Vector2(CX + 1.0, top - 1.5)]), hair, true)
 
@@ -476,7 +513,7 @@ class Art:
 					if shirt and kind == "suit":
 						col = Color("#f4f4fa")
 					if absf(dx) < 0.9 and dy < 6.0:
-						col = Color(look.get("tie", "#d42a30"))
+						col = acol("tie", look.get("tie", "#d42a30"))
 					if kind == "suit" and absf(absf(dx) - 2.8) < 0.5:
 						col = oc.darkened(0.25)
 				"armor", "armor_gold":
@@ -621,6 +658,18 @@ class Art:
 					poly(PackedVector2Array([Vector2(CX - 1.5, CY - 13), Vector2(CX + 1.5, CY - 13), Vector2(CX, CY - 20)]), hc2)
 				else:
 					rect(CX - 1, CY - R - 2, 2, 6, hc2)
+			"bucket":
+				fill(CX - 13, CY - 19, CX + 13, CY - 7, func(p: Vector2) -> Variant:
+					if p.y > CY - 17.0 and p.y < CY - 8.5 and absf(p.x - CX) < 10.0 + (p.y - (CY - 17.0)) * 0.35:
+						var c := lit(hc, p + Vector2(0, 6), 0.6)
+						if hat_stripes and int((p.x + 40.0) / 2.0) % 2 == 0:
+							c = hc2
+						return c
+					return null)
+				ellipse(CX, CY - 8.5, 15.0, 2.0, hc.darkened(0.15), true)
+			"kasa":
+				poly(PackedVector2Array([Vector2(CX - 19, CY - 7), Vector2(CX + 19, CY - 7), Vector2(CX, CY - 19)]), hc, true, hc.darkened(0.2))
+				line(Vector2(CX - 19, CY - 7), Vector2(CX + 19, CY - 7), 0.8, hc.darkened(0.4))
 			"bandana_top":
 				fill(CX - R, CY - R - 1, CX + R, CY - 5, func(p: Vector2) -> Variant:
 					return lit(hc, p, 0.6) if inside(p, R + 0.6) and p.y < CY - 6.0 else null)
@@ -634,11 +683,18 @@ class Art:
 
 	# ------------------------------------------------------------ acessorios
 	func _back_acc() -> void:
+		var base_ac := ac
 		for a in acc:
+			ac = acol(str(a), base_ac.to_html())
 			match str(a):
+				"gourd":
+					var gc := acol("gourd", "#c89a5a")
+					circle(CX + 13.0, CY + 4.0, 5.2, gc, true)
+					circle(CX + 11.5, CY - 4.0, 3.6, gc, true)
+					line(Vector2(CX - 12, CY + 8), Vector2(CX + 12, CY - 6), 1.2, Color("#6a3a20"))
 				"wings":
 					for s: float in [-1.0, 1.0]:
-						poly(PackedVector2Array([Vector2(CX + s * 8, CY - 2), Vector2(CX + s * 20, CY - 12), Vector2(CX + s * 19, CY - 4), Vector2(CX + s * 20, CY + 2), Vector2(CX + s * 10, CY + 6)]), Color("#f8f8ff"), true, Color("#c8d8f0"))
+						poly(PackedVector2Array([Vector2(CX + s * 8, CY - 2), Vector2(CX + s * 20, CY - 12), Vector2(CX + s * 19, CY - 4), Vector2(CX + s * 20, CY + 2), Vector2(CX + s * 10, CY + 6)]), acol("wings", "#f8f8ff"), true, acol("wings", "#c8d8f0").darkened(0.15))
 				"devil_wings":
 					for s: float in [-1.0, 1.0]:
 						poly(PackedVector2Array([Vector2(CX + s * 8, CY - 3), Vector2(CX + s * 20, CY - 13), Vector2(CX + s * 17, CY - 6), Vector2(CX + s * 20, CY - 1), Vector2(CX + s * 15, CY + 1), Vector2(CX + s * 17, CY + 5), Vector2(CX + s * 9, CY + 5)]), ac.darkened(0.35), true)
@@ -658,7 +714,9 @@ class Art:
 
 	func _front_acc() -> void:
 		var dark := Color("#1d1424")
+		var base_ac2 := ac
 		for a in acc:
+			ac = acol(str(a), base_ac2.to_html())
 			match str(a):
 				"headband", "headband_slash", "third_eye_band":
 					var band := ac if look.has("acc_color") else Color(look.get("band", "#2a4fa8"))
@@ -717,18 +775,18 @@ class Art:
 					for s: float in [-1.0, 1.0]:
 						ellipse(CX + s * 14.0, CY + 0.5, 2.4, 3.6, ac, true)
 				"mouth_mask":
-					var mcol := Color(look.get("mask_color", "#2c2c38"))
+					var mcol := acol("mouth_mask", look.get("mask_color", "#2c2c38"))
 					fill(CX - R, CY + 1.5, CX + R, CY + R, func(p: Vector2) -> Variant:
 						return lit(mcol, p, 0.7) if inside(p, R + 0.3) and p.y > CY + 1.8 - absf(p.x - CX) * 0.1 and p.y < CY + 8.0 else null)
 				"half_mask":
 					fill(CX - R, CY - 8, CX + 1, CY + 10, func(p: Vector2) -> Variant:
-						return lit(Color("#f0ece0"), p) if inside(p, R + 0.2) and p.x < CX + 0.5 and p.y > CY - 7.5 else null)
+						return lit(acol("half_mask", "#f0ece0"), p) if inside(p, R + 0.2) and p.x < CX + 0.5 and p.y > CY - 7.5 else null)
 					line(Vector2(CX - 10.5, CY - 4.0), Vector2(CX - 10.0, CY + 6.0), 0.9, Color("#d42a30"))
 					line(Vector2(CX - 3.5, CY + 2.0), Vector2(CX - 3.8, CY + 8.0), 0.9, Color("#d42a30"))
 					ellipse(CX - 5.2, CY + 0.6, 2.4, 2.0, dark)
 				"full_mask":
 					fill(CX - R, CY - 10, CX + R, CY + 11, func(p: Vector2) -> Variant:
-						return lit(Color("#f0ece0"), p) if inside(p, R + 0.2) and absf(p.x - CX) < 12.0 and p.y > CY - 9.5 else null)
+						return lit(acol("full_mask", "#f0ece0"), p) if inside(p, R + 0.2) and absf(p.x - CX) < 12.0 and p.y > CY - 9.5 else null)
 					ellipse(CX - 5.5, CY, 2.6, 2.2, dark)
 					ellipse(CX + 5.5, CY, 2.6, 2.2, dark)
 					rect(CX - 7.0, CY + 5.2, 14.0, 0.7, dark)
@@ -744,7 +802,7 @@ class Art:
 					rect(CX - 9.6, CY - 1.5, 19.2, 3.0, ac if look.has("acc_color") else Color("#ff3a3a"))
 					rect(CX - 8.0, CY - 1.2, 5.0, 0.8, Color(1, 1, 1, 0.7))
 				"horns", "small_horns":
-					var hcol := ac if look.has("acc_color") and str(a) == "small_horns" else Color("#f0e8d0")
+					var hcol := acol(str(a), ac.to_html() if look.has("acc_color") and str(a) == "small_horns" else "#f0e8d0")
 					var big := 1.0 if str(a) == "horns" else 0.55
 					for s: float in [-1.0, 1.0]:
 						poly(PackedVector2Array([Vector2(CX + s * 11.5, CY - 8.5), Vector2(CX + s * 6, CY - 11.5), Vector2(CX + s * (8 + 4 * big), CY - 11 - 9 * big)]), hcol, true)
@@ -826,6 +884,39 @@ class Art:
 					poly(PackedVector2Array([Vector2(CX - 3.5, CY - 7), Vector2(CX + 3.5, CY - 7), Vector2(CX + 2.5, CY - 13), Vector2(CX + 0.5, CY - 11), Vector2(CX - 0.5, CY - 16), Vector2(CX - 2.5, CY - 11)]), Color("#ff8a2a"), false, Color("#ffe066"))
 				"star_mark":
 					_star(Vector2(CX + 7, CY + 9), 1.8, ac if look.has("acc_color") else Color("#ffd23c"))
+				"beard", "goatee", "mustache":
+					var bc := acol(str(a), hair.to_html())
+					if str(a) == "beard":
+						fill(CX - R, CY + 1, CX + R, CY + R + 2, func(p: Vector2) -> Variant:
+							var dx2 := p.x - CX
+							if inside(p, R + 1.2) and p.y > CY + 2.5 + absf(dx2) * 0.05 and p.y < CY + 12.5 - absf(dx2) * 0.35:
+								return lit(bc, p, 0.6)
+							return null)
+					elif str(a) == "goatee":
+						poly(PackedVector2Array([Vector2(CX - 2.5, CY + 6), Vector2(CX + 2.5, CY + 6), Vector2(CX + 1, CY + 11), Vector2(CX - 1, CY + 11)]), bc, true)
+					fill(CX - 7, CY + 2, CX + 7, CY + 6, func(p: Vector2) -> Variant:
+						var dx3 := absf(p.x - CX)
+						var yy := CY + 3.6 + dx3 * 0.18
+						return bc.darkened(0.1) if absf(p.y - yy) < 1.0 - dx3 * 0.08 and dx3 < 6.5 else null)
+				"high_collar", "fur_collar":
+					var cc := acol(str(a), oc.to_html() if str(a) == "high_collar" else "#f4f0e8")
+					fill(CX - R - 1, CY + 2, CX + R + 1, CY + 10, func(p: Vector2) -> Variant:
+						var d2 := Vector2(p.x - CX, p.y - CY).length()
+						if d2 > R - 4.0 and d2 < R + 1.2 and p.y > CY + 3.0:
+							var c2 := lit(cc, p, 0.6)
+							if str(a) == "fur_collar" and int(p.x * 1.7 + p.y) % 3 == 0:
+								c2 = c2.darkened(0.08)
+							return c2
+						return null)
+				"armband":
+					line(Vector2(CX - 13.5, CY + 6), Vector2(CX - 10, CY + 10.5), 2.2, acol("armband", "#e83a3a"))
+				"shoulder_pads":
+					for s: float in [-1.0, 1.0]:
+						ellipse(CX + s * 12.5, CY + 6.5, 4.2, 2.8, acol("shoulder_pads", "#e8e8f0"), true)
+				"plume":
+					poly(PackedVector2Array([Vector2(CX + 6, CY - 14), Vector2(CX + 8, CY - 14), Vector2(CX + 16, CY - 22), Vector2(CX + 13, CY - 19)]), acol("plume", "#e83a3a"), true)
+				"clown_nose":
+					circle(CX, CY + 1.5, 2.2, acol("clown_nose", "#e83a3a"), true)
 				"eyepatch":
 					line(Vector2(CX - R, CY - 4.5), Vector2(CX + R, CY - 2.0), 0.7, dark)
 					ellipse(CX + 5.0, CY + 0.6, 3.2, 2.6, dark)

@@ -329,6 +329,102 @@ func forge(slot: String) -> bool:
 	return true
 
 
+# =============================================================================================
+# expedicoes (bolinhas fora de campo trabalham sozinhas)
+# =============================================================================================
+const EXPEDITIONS := [
+	{"id": "curta", "name": "Patrulha", "hours": 1, "mult": 1.0},
+	{"id": "media", "name": "Caça ao Tesouro", "hours": 4, "mult": 4.6},
+	{"id": "longa", "name": "Grande Jornada", "hours": 8, "mult": 10.0},
+]
+const EXP_SLOTS := 3
+
+
+func expeditions() -> Array:
+	if not d.has("expd"):
+		d.expd = []
+	return d.expd
+
+
+func ball_on_expedition(id: String) -> bool:
+	for e in expeditions():
+		if e.ball == id:
+			return true
+	return false
+
+
+func start_expedition(id: String, kind: Dictionary) -> bool:
+	if expeditions().size() >= EXP_SLOTS or ball_on_expedition(id) or id == active_id() or not has_ball(id):
+		return false
+	d.expd.append({"ball": id, "kind": kind.id, "end": Time.get_unix_time_from_system() + 3600.0 * float(kind.hours), "hours": kind.hours, "mult": kind.mult})
+	return true
+
+
+func expedition_reward(e: Dictionary) -> Dictionary:
+	var b := ball(e.ball)
+	var r := int(b.get("rarity", 0))
+	var g := float(d.best)
+	var m := float(e.mult) * (1.0 + 0.25 * r) * (1.0 + int(b.get("level", 1)) * 0.01)
+	return {"coins": stage_reward_coins(g) * 6.0 * m, "keys": int(4 * m), "gems": int(3 * m) + r * 2, "mat_tier": clampi(r - 1, 0, 6), "mats": maxi(1, int(m * 0.5))}
+
+
+func claim_expedition(i: int) -> Dictionary:
+	var e: Dictionary = expeditions()[i]
+	if Time.get_unix_time_from_system() < float(e.end):
+		return {}
+	var rw := expedition_reward(e)
+	add_coins(rw.coins)
+	add_keys(rw["keys"])
+	add_gems(rw.gems)
+	rw.mat = roll_mat(rw.mat_tier, rw.mats)
+	d.expd.remove_at(i)
+	return rw
+
+
+# =============================================================================================
+# horda e desafio diario
+# =============================================================================================
+func horde_waves(n: int = 80) -> Array:
+	var out := []
+	var kinds := DB.ENEMIES.keys()
+	var bosses := DB.BOSSES.keys()
+	var base := maxf(3.0, float(d.best) * 0.6)
+	for w in n:
+		var g := base + w * 1.2
+		var list := []
+		if (w + 1) % 10 == 0:
+			list.append(enemy_spec(bosses[(w / 10) % bosses.size()], g, true, 0.5))
+		else:
+			for i in 2 + mini(w / 6, 3):
+				list.append(enemy_spec(kinds[randi() % kinds.size()], g))
+		out.append(list)
+	return out
+
+
+func horde_tries() -> int:
+	return 3 - int(d.get("horde_tries", {}).get(today(), 0))
+
+
+const CHALLENGE_RULES := [
+	{"id": "veloz", "name": "Inimigos Velozes", "desc": "O chefe é 60% mais rápido.", "enemy": {"spd": 1.6}},
+	{"id": "gigante", "name": "Chefe Gigante", "desc": "O chefe tem o dobro de vida, mas você bate 50% mais forte.", "enemy": {"hp": 2.0}, "player": {"atk": 1.5}},
+	{"id": "vidro", "name": "Canhão de Vidro", "desc": "Você causa o triplo de dano, mas tem 40% da vida.", "player": {"atk": 3.0, "hp": 0.4}},
+	{"id": "sem_arma", "name": "Mãos Vazias", "desc": "Sua arma não gira; só corpo e skills!", "player": {"no_weapon": 1.0, "atk": 1.6}},
+	{"id": "turbo", "name": "Turbo", "desc": "Todo mundo 2x mais rápido.", "enemy": {"spd": 2.0}, "player": {"spd": 2.0}},
+	{"id": "tanque", "name": "Fortaleza", "desc": "Você tem 3x vida, mas metade do ataque.", "player": {"hp": 3.0, "atk": 0.5}},
+	{"id": "relampago", "name": "Recarga Relâmpago", "desc": "Suas skills recarregam 2x mais rápido.", "player": {"cdr": 0.5}},
+]
+
+
+func challenge_today() -> Dictionary:
+	var seed_v := hash(today())
+	var rule: Dictionary = CHALLENGE_RULES[absi(seed_v) % CHALLENGE_RULES.size()]
+	var bosses := DB.BOSSES.keys()
+	bosses.sort()
+	var boss: String = bosses[absi(seed_v / 7) % bosses.size()]
+	return {"rule": rule, "boss": boss, "done": d.get("challenge_day", "") == today()}
+
+
 ## recompensa por completar a colecao de um anime inteiro
 func world_progress(w: String) -> Vector2i:
 	var ids := DB.balls_of_world(w)
@@ -627,6 +723,14 @@ func ball_stats(id: String, b: Dictionary = {}) -> Dictionary:
 				s[k] = float(s.get(k, 0.0)) + float(it.subs[k])
 		if slot == "weapon" and int(it.get("wtype", 0)) == 0:
 			s.contact_mult = 1.5
+	var sc := set_counts(eq)
+	for sid in sc:
+		var bon := set_bonus_of(find_set(sid), int(sc[sid]))
+		for k in bon:
+			if pct.has(k):
+				pct[k] += float(bon[k])
+			else:
+				s[k] = float(s.get(k, 0.0)) + float(bon[k])
 	for p in def.get("passives", []):
 		if int(p.get("unlock", 0)) > r:
 			continue
@@ -809,6 +913,46 @@ func make_item(slot: String, r: int, lvl: int) -> Dictionary:
 	return it
 
 
+func find_set(id: String) -> Dictionary:
+	for s in DB.SETS:
+		if s.id == id:
+			return s
+	return {}
+
+
+## peca de conjunto lendario (aleatoria se set_id vazio)
+func make_set_item(lvl: int, set_id: String = "") -> Dictionary:
+	if DB.SETS.is_empty():
+		return make_item("ring", 3, lvl)
+	var st: Dictionary = find_set(set_id) if set_id != "" else DB.SETS[randi() % DB.SETS.size()]
+	var slots: Array = st.pieces.keys()
+	var slot: String = slots[randi() % slots.size()]
+	var r := clampi(int(st.get("rarity_min", 3)) + (1 if randf() < 0.25 else 0), 0, 8)
+	var it := make_item(slot, r, lvl)
+	it.set = st.id
+	it.name = st.pieces[slot]
+	return it
+
+
+## {set_id: pecas equipadas}
+func set_counts(eq: Dictionary) -> Dictionary:
+	var out := {}
+	for slot in eq:
+		var it: Dictionary = eq[slot]
+		if it.has("set"):
+			out[it.set] = int(out.get(it.set, 0)) + 1
+	return out
+
+
+func set_bonus_of(st: Dictionary, n: int) -> Dictionary:
+	var out := {}
+	for tier in [2, 4, 6]:
+		if n >= tier and st.has("bonus%d" % tier):
+			for k in st["bonus%d" % tier]:
+				out[k] = float(out.get(k, 0.0)) + float(st["bonus%d" % tier][k])
+	return out
+
+
 func item_main(it: Dictionary) -> float:
 	var info: Dictionary = DB.SLOT_INFO[it.slot]
 	return float(info.base) * pow(1.055, int(it.level)) * float(DB.EQ_RARITY_MULT[clampi(int(it.rarity), 0, DB.EQ_RARITY_MULT.size() - 1)])
@@ -825,7 +969,7 @@ func item_score(it: Dictionary) -> float:
 	var sub := 0.0
 	for k in it.get("subs", {}):
 		sub += float(it.subs[k])
-	return main * (1.0 + sub * 2.0)
+	return main * (1.0 + sub * 2.0) * (1.3 if it.has("set") else 1.0)
 
 
 func item_sell(it: Dictionary) -> float:
@@ -892,7 +1036,10 @@ func open_chest() -> Dictionary:
 				slots.append(s)
 		var slot: String = slots[randi() % slots.size()]
 		var lvl := maxi(1, int(d.best) + L * 2 + randi_range(-3, 3))
-		res = {"type": "item", "item": make_item(slot, _weighted(w), lvl)}
+		if int(d.best) > DB.STAGES_PER_CHAPTER and randf() < minf(0.08, 0.02 + 0.003 * L):
+			res = {"type": "item", "item": make_set_item(lvl)}
+		else:
+			res = {"type": "item", "item": make_item(slot, _weighted(w), lvl)}
 	if res.type == "ball":
 		res.rarity = int(DB.BALLS[res.id].rarity)
 	d.pending_drop = res

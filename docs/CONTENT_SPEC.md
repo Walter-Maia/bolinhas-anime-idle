@@ -53,7 +53,14 @@ Só pele/corpo, cabelo, roupa e acessórios. Caracterize bem pelo cabelo, chapé
 
 Acessórios (`acc`): `headband` (bandana ninja com placa), `headband_slash` (placa riscada), `bandana`, `tiara`, `scarf`, `earrings`, `glasses`, `sunglasses`, `goggles`, `headphones`, `mouth_mask`, `half_mask` (máscara de osso meia face), `full_mask`, `blindfold`, `visor`, `horns`, `small_horns`, `cat_ears`, `bunny_ears`, `fox_ears`, `halo`, `antennae`, `elf_ears`, `ribbon` (laço grande), `hairclip`, `flower`, `pacifier` (chupeta no peito), `puzzle_pendant` (pingente piramidal dourado), `soul_gem` (gema no peito/cabeça), `cross`, `chains`, `chainsaw` (motosserra saindo da testa), `cyber_lines` (linhas neon no corpo), `collar`, `necklace`, `wings`, `devil_wings`, `tail`, `flame_forehead` (chama na testa), `third_eye_band` (bandana com olho na testa), `star_mark`, `bandage`, `bell`, `card` (carta na mão/flutuando), `sword_back` (espada nas costas), `hammer`, `eyepatch`, `ahoge` (fio de cabelo rebelde), `scar_x` (cicatriz em X).
 
-Estilos extras de cabelo: `spiky_back` (espetos para trás), `pompadour` (topete), `drills` (cachos em parafuso).
+Estilos extras de cabelo: `spiky_back` (espetos para trás), `pompadour` (topete), `drills` (cachos em parafuso), `split` (metade `hair`, metade `hair2` — ex.: gelo/fogo), `odango` (dois coques + rabos), `pineapple` (tufo espetado no alto), `mid` (médio repartido ao meio, até o queixo), `twin_braids` (duas tranças na frente), `long_bangs` (longo com franja cobrindo um olho).
+`tips` agora funciona em qualquer cabelo (pontas/ponta inferior coloridas).
+
+Chapéus extras: `bucket` (pescador; `"hat_stripes": true` para listras com `hat_color2`), `kasa` (chapéu cônico de palha).
+
+Acessórios extras: `beard`, `mustache`, `goatee`, `high_collar` (gola alta), `fur_collar` (gola de pelo), `gourd` (cabaça nas costas), `armband` (braçadeira), `shoulder_pads` (ombreiras), `plume` (pluma no chapéu), `clown_nose`.
+
+**Cor por acessório:** `"acc_colors": {"bandana": "#26222e", "earrings": "#ffd23c", "wings": "#ff6a4a", "horns": "#3a2a60", "full_mask": "#ff8a2a", "mouth_mask": "#6cb82a", "tie": "#14101e", "beard": "#f4f4fa"}` — qualquer acessório pode ter cor própria; sem entrada usa `acc_color`.
 
 `look_tf` (opcional): campos que mudam quando transforma (ex.: `{"hair": "#ffd23c", "acc": ["half_mask"]}`). Se trocar `acc`, liste a lista completa nova.
 

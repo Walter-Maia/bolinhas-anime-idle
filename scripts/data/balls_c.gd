@@ -91,7 +91,7 @@ const LIST := [
 		"id": "cdz_andromeda", "name": "Cavaleiro das Correntes", "world": "Santuário dos Cavaleiros",
 		"rarity": 1, "role": "Suporte", "color": "#ff7ab8",
 		"lore": "O mais gentil do grupo. As correntes, por outro lado, não são nada gentis.",
-		"look": {"skin": "#f8dcc0", "hair": "#6a8a3a", "hair_style": "short",
+		"look": {"skin": "#f8dcc0", "hair": "#6a8a3a", "hair_style": "mid",
 			"outfit": "armor", "outfit_color": "#ff9ac8", "outfit_color2": "#e8eef8",
 			"acc": ["tiara", "chains"], "acc_color": "#c0c8d8"},
 		"actives": [
@@ -415,7 +415,7 @@ const LIST := [
 		"id": "mono_gata", "name": "Representante que Vira Gata", "world": "Cidade das Aberrações",
 		"rarity": 3, "role": "Velocista", "color": "#e8e8f0",
 		"lore": "Não sabe tudo, só o que sabe. E quando o estresse aperta, mia.",
-		"look": {"skin": "#f8e0cc", "hair": "#1a1a22", "hair_style": "pigtails",
+		"look": {"skin": "#f8e0cc", "hair": "#1a1a22", "hair_style": "twin_braids",
 			"outfit": "uniform", "outfit_color": "#2a2a3a", "outfit_color2": "#e8e8f0",
 			"acc": ["glasses"], "acc_color": "#2a2a3a"},
 		"look_tf": {"hair": "#f4f4fa", "hair_style": "short", "acc": ["cat_ears", "tail"], "acc_color": "#f4f4fa"},
@@ -557,7 +557,8 @@ const LIST := [
 		"rarity": 5, "role": "Atacante", "color": "#5a3a8a",
 		"lore": "Eu não sei nada. É você que sabe. (Ela sabe tudo.)",
 		"look": {"skin": "#f8ece4", "hair": "#14101e", "hair_style": "bob",
-			"outfit": "uniform", "outfit_color": "#14101e", "outfit_color2": "#3a3a4a"},
+			"outfit": "uniform", "outfit_color": "#14101e", "outfit_color2": "#3a3a4a",
+			"acc": ["high_collar"], "acc_color": "#14101e"},
 		"actives": [
 			{"name": "A Escuridão", "type": "zone", "cd": 12.0, "power": 0.7,
 				"fx": "black_hole", "fx_scale": 0.55, "radius": 130.0, "dur": 4.0, "pull": 260.0,
@@ -620,8 +621,8 @@ const LIST := [
 		"lore": "Bilionário aos 16 anos, e mesmo assim ainda perde para o cabelo tricolor.",
 		"look": {"skin": "#f8e0cc", "hair": "#6a4a2a", "hair_style": "side_part",
 			"outfit": "coat", "outfit_color": "#f8f8ff", "outfit_color2": "#2a2a3a",
-			"acc": ["card"], "acc_color": "#7ad0ff"},
-		"look_tf": {"outfit": "coat", "outfit_color": "#1a1a2a", "outfit_color2": "#7ad0ff", "acc": ["card", "visor"], "acc_color": "#7ad0ff"},
+			"acc": ["card", "high_collar"], "acc_color": "#7ad0ff", "acc_colors": {"high_collar": "#f8f8ff"}},
+		"look_tf": {"outfit": "coat", "outfit_color": "#1a1a2a", "outfit_color2": "#7ad0ff", "acc": ["card", "visor", "high_collar"], "acc_color": "#7ad0ff", "acc_colors": {"high_collar": "#1a1a2a"}},
 		"actives": [
 			{"name": "Rajada da Luz Destruidora", "type": "beam", "cd": 8.0, "power": 4.0,
 				"fx": "beam_ki", "width": 38.0, "ticks": 3, "charge": 0.6, "shake": 7.0,
@@ -735,7 +736,7 @@ const LIST := [
 		"id": "ygo_criador", "name": "Criador das Cartas de Desenho", "world": "Reino das Cartas",
 		"rarity": 4, "role": "Suporte", "color": "#ff7ab8",
 		"lore": "Inventou o jogo, adora desenho animado e lê a sua mente enquanto toma vinho.",
-		"look": {"skin": "#f8e0cc", "hair": "#f4f4fa", "hair_style": "cover_eye",
+		"look": {"skin": "#f8e0cc", "hair": "#f4f4fa", "hair_style": "long_bangs",
 			"outfit": "suit", "outfit_color": "#c83a3a", "outfit_color2": "#f8f8ff",
 			"acc": ["card"], "acc_color": "#ff7ab8"},
 		"actives": [
@@ -818,7 +819,7 @@ const LIST := [
 		"id": "cyber_fio", "name": "Netrunner do Fio Monomolecular", "world": "Cidade Neon",
 		"rarity": 4, "role": "Atacante", "color": "#ff7ad8",
 		"lore": "Hackeia sua cabeça e corta você ao meio com um fiozinho. Sonha com a lua.",
-		"look": {"skin": "#f8e8e0", "hair": "#e8e8f8", "hair_style": "bob", "hair2": "#7ad0ff",
+		"look": {"skin": "#f8e8e0", "hair": "#e8e8f8", "hair_style": "bob", "tips": "#7ad0ff",
 			"outfit": "cyber", "outfit_color": "#1a1a2a", "outfit_color2": "#ff7ad8",
 			"acc": ["cyber_lines", "headphones"], "acc_color": "#ff7ad8"},
 		"actives": [

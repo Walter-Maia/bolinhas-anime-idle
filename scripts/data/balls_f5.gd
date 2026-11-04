@@ -188,7 +188,7 @@ const LIST := [
 			"outfit": "armor", "outfit_color": "#4a3a2a", "outfit_color2": "#8a6a3a",
 			"acc": ["scar_x"], "acc_color": "#7a3a2a"},
 		"look_tf": {"skin": "#6a4a3a", "hair": "#2a2420",
-			"acc": ["horns", "devil_wings", "tail"], "acc_color": "#e8dcc0"},
+			"acc": ["horns", "devil_wings", "tail"], "acc_color": "#e8dcc0", "acc_colors": {"devil_wings": "#3a2a24", "tail": "#4a3a2e"}},
 		"weapon": {"kind": "greatsword", "color": "#8a8a90", "count": 1, "orbit": 1.65, "spin": 2.8, "power": 0.9},
 		"actives": [
 			{"name": "Investida do Imortal", "type": "dash", "cd": 7.0, "power": 2.6, "count": [1, 1, 1, 1, 1, 2, 2, 3, 3],
@@ -219,7 +219,7 @@ const LIST := [
 		"look": {"skin": "#e8e0cc", "hair": "#1a1a1e", "hair_style": "none", "hat": "knight_helmet",
 			"hat_color": "#e8e0cc", "hat_color2": "#1a1a1e",
 			"outfit": "cape", "outfit_color": "#1e1e24", "outfit_color2": "#a8202a",
-			"acc": [], "acc_color": "#a8202a"},
+			"acc": ["shoulder_pads"], "acc_color": "#a8202a", "acc_colors": {"shoulder_pads": "#e8e0cc"}},
 		"weapon": {"kind": "shield", "color": "#2a2a30", "count": 1, "orbit": 1.45, "spin": 2.5, "power": 0.7},
 		"actives": [
 			{"name": "Espada que Rasga Dimensões", "type": "beam", "cd": 11.0, "power": 4.2, "fx": "beam_purple", "width": 34.0,
@@ -490,9 +490,9 @@ const LIST := [
 		"look": {"skin": "#c8a888", "hair": "#e8e8e8", "hair_style": "long", "hat": "turban",
 			"hat_color": "#e8d8a8", "hat_color2": "#c83a2a",
 			"outfit": "robe", "outfit_color": "#6a2a4a", "outfit_color2": "#d8a83a",
-			"acc": ["necklace", "earrings"], "acc_color": "#d8a83a"},
+			"acc": ["necklace", "earrings", "beard"], "acc_color": "#d8a83a", "acc_colors": {"beard": "#ececf0"}},
 		"look_tf": {"skin": "#8a7aa8", "hat": "crown", "hat_color": "#d8a83a", "hat_color2": "#6a2a4a",
-			"acc": ["necklace", "horns"], "acc_color": "#d8a83a"},
+			"acc": ["necklace", "horns", "beard"], "acc_color": "#d8a83a"},
 		"weapon": {"kind": "sword", "color": "#d8c8a0", "count": 2, "orbit": 1.5, "spin": 4.0, "power": 0.5},
 		"actives": [
 			{"name": "Feras de Barro", "type": "summon", "cd": 14.0, "count": [2, 2, 2, 2, 2, 3, 3, 3, 4], "dur": 9.0, "power": 0.35, "fx": "summon_rise",
@@ -652,10 +652,10 @@ const LIST := [
 		"look": {"skin": "#f4e4dc", "hair": "#141018", "hair_style": "long", "hat": "fedora",
 			"hat_color": "#a8141c", "hat_color2": "#1a1a1a",
 			"outfit": "coat", "outfit_color": "#a8141c", "outfit_color2": "#1a1a1a",
-			"acc": ["sunglasses"], "acc_color": "#e8a020"},
+			"acc": ["sunglasses", "high_collar"], "acc_color": "#e8a020"},
 		"look_tf": {"hat": "none", "hair": "#0a0a0e", "hair_style": "wild_long",
 			"outfit_color": "#141014", "outfit_color2": "#a8141c",
-			"acc": ["sunglasses", "chains", "devil_wings"], "acc_color": "#a8141c"},
+			"acc": ["sunglasses", "high_collar", "chains", "devil_wings"], "acc_color": "#a8141c"},
 		"weapon": {"kind": "gun", "color": "#e8e8ee", "count": 2, "orbit": 1.45, "spin": 4.0, "power": 0.6},
 		"actives": [
 			{"name": "Pistolas Prata e Ônix", "type": "projectile", "cd": 4.5, "power": 1.8, "fx": "bullet", "fx_scale": 0.5,
@@ -712,7 +712,7 @@ const LIST := [
 		"lore": "Herdou a organização aos treze anos e dá ordens a um vampiro milenar sem tremer.",
 		"look": {"skin": "#8a5a3c", "hair": "#f0f0f4", "hair_style": "long", "hat": "none",
 			"outfit": "suit", "outfit_color": "#2a3a5a", "outfit_color2": "#e8e8e8",
-			"acc": ["glasses", "cross"], "acc_color": "#c8a848"},
+			"acc": ["glasses", "cross"], "acc_color": "#c8a848", "acc_colors": {"tie": "#b81c24"}},
 		"weapon": {"kind": "sword", "color": "#d0d4dc", "count": 1, "orbit": 1.45, "spin": 4.5, "power": 0.5},
 		"actives": [
 			{"name": "Ordem de Busca e Destruição", "type": "buff", "cd": 11.0, "power": 1.0, "dur": 6.0, "fx": "charge_gold",
@@ -852,7 +852,7 @@ const LIST := [
 		"lore": "O amigo frio e brilhante que planejou o fim do mundo e esqueceu que era o próprio diabo.",
 		"look": {"skin": "#f8ecdc", "hair": "#f2e8c8", "hair_style": "side_part", "hat": "none",
 			"outfit": "coat", "outfit_color": "#f0ecdc", "outfit_color2": "#2a2a2a",
-			"acc": [], "acc_color": "#f0ecdc"},
+			"acc": ["fur_collar"], "acc_color": "#f0ecdc", "acc_colors": {"fur_collar": "#ffffff"}},
 		"look_tf": {"hair": "#ffffff", "hair_style": "long", "outfit": "robe", "outfit_color": "#ffffff", "outfit_color2": "#f2d27a",
 			"acc": ["wings", "halo"], "acc_color": "#ffffff"},
 		"weapon": {"kind": "gun", "color": "#2a2a2e", "count": 1, "orbit": 1.45, "spin": 4.0, "power": 0.55},
@@ -955,7 +955,7 @@ const LIST := [
 			"outfit": "jacket", "outfit_color": "#1a1a22", "outfit_color2": "#3a3a44",
 			"acc": ["eyepatch", "mouth_mask"], "acc_color": "#1a1a1e"},
 		"look_tf": {"hair": "#f0f0f4", "outfit_color": "#141418", "outfit_color2": "#c81e2a",
-			"acc": ["eyepatch", "mouth_mask", "tail"], "acc_color": "#c81e2a"},
+			"acc": ["eyepatch", "mouth_mask", "tail"], "acc_color": "#c81e2a", "acc_colors": {"eyepatch": "#1a1a1e", "mouth_mask": "#1a1a1e"}},
 		"weapon": {"kind": "whip", "color": "#c81e2a", "count": 4, "orbit": 1.6, "spin": 4.5, "power": 0.45},
 		"actives": [
 			{"name": "Tentáculos Escarlates", "type": "hook", "cd": 5.5, "power": 2.2, "count": [1, 1, 1, 2, 2, 2, 3, 3, 3],
@@ -984,7 +984,7 @@ const LIST := [
 		"look": {"skin": "#f2dcd0", "hair": "#3a2a6a", "hair_style": "cover_eye", "hat": "hood",
 			"hat_color": "#1a1a24", "hat_color2": "#3a3a4a",
 			"outfit": "hoodie", "outfit_color": "#1a1a24", "outfit_color2": "#5a3a8a",
-			"acc": ["bunny_ears"], "acc_color": "#1a1a1e"},
+			"acc": ["bunny_ears", "wings"], "acc_color": "#1a1a1e", "acc_colors": {"wings": "#b04ab8"}},
 		"weapon": {"kind": "feather", "color": "#8a5acc", "count": 3, "orbit": 1.45, "spin": -6.0, "power": 0.4},
 		"actives": [
 			{"name": "Rajada das Asas", "type": "projectile", "cd": 5.0, "power": 1.1, "fx": "ice_lance_pink", "fx_scale": 0.4,

@@ -204,7 +204,7 @@ const LIST := [
 		"look": {"skin": "#d8a878", "hair": "#f5f5f5", "hair_style": "bald", "hat": "bandana_top",
 			"hat_color": "#1a1a1a", "hat_color2": "#1a1a1a",
 			"outfit": "coat", "outfit_color": "#ffffff", "outfit_color2": "#ffd23c",
-			"acc": ["bandage"], "acc_color": "#ffffff"},
+			"acc": ["mustache", "bandage"], "acc_color": "#ffffff", "acc_colors": {"mustache": "#f5f5f5"}},
 		"actives": [
 			{"name": "Tremor do Mundo", "type": "knockback", "cd": 8.0, "power": 2.5, "radius": 160.0, "force": 420.0,
 				"fx": "quake", "fx_scale": 0.6, "shake": 10.0,
@@ -232,7 +232,7 @@ const LIST := [
 		"look": {"skin": "#e0b088", "hair": "#1a1a1a", "hair_style": "short", "hat": "beanie",
 			"hat_color": "#f5f5f5", "hat_color2": "#8a5a2a",
 			"outfit": "hoodie", "outfit_color": "#f2d23c", "outfit_color2": "#1a1a1a",
-			"acc": ["sword_back", "earrings"], "acc_color": "#ffd23c"},
+			"acc": ["goatee", "sword_back", "earrings"], "acc_color": "#ffd23c", "acc_colors": {"goatee": "#1a1a1a"}},
 		"actives": [
 			{"name": "Sala", "type": "zone", "cd": 12.0, "power": 0.5, "fx": "magic_circle", "fx_scale": 0.9,
 				"radius": 150.0, "dur": 5.0, "on_self": true, "status": "slow", "status_dur": 1.0,
@@ -316,7 +316,7 @@ const LIST := [
 		"look": {"skin": "#f6e0d0", "hair": "#3a6ad5", "hair_style": "ponytail", "hat": "fedora",
 			"hat_color": "#f5f5f5", "hat_color2": "#d62828",
 			"outfit": "cape", "outfit_color": "#d62828", "outfit_color2": "#ffd23c",
-			"acc": ["star_mark"], "acc_color": "#d62828"},
+			"acc": ["clown_nose", "star_mark"], "acc_color": "#d62828", "acc_colors": {"clown_nose": "#e82a2a"}},
 		"actives": [
 			{"name": "Festival dos Pedaços", "type": "multi", "cd": 6.0, "power": 0.7, "count": [4, 4, 5, 5, 6, 6, 7, 7, 8],
 				"interval": 0.1, "fx": "dagger_flurry", "fx_scale": 0.55, "spread": true,
@@ -341,7 +341,8 @@ const LIST := [
 		"look": {"skin": "#e0b088", "hair": "#1a1a1a", "hair_style": "short", "hat": "fedora",
 			"hat_color": "#1a1a1a", "hat_color2": "#ff6ab8",
 			"outfit": "coat", "outfit_color": "#2a2a2a", "outfit_color2": "#c8a040",
-			"acc": ["cross", "sword_back"], "acc_color": "#c8a040"},
+			"acc": ["plume", "goatee", "cross", "sword_back"], "acc_color": "#c8a040",
+			"acc_colors": {"plume": "#ff6ab8", "goatee": "#1a1a1a"}},
 		"actives": [
 			{"name": "Corte Voador Negro", "type": "projectile", "cd": 5.0, "power": 3.2, "fx": "slash_purple", "fx_scale": 0.8,
 				"speed": 520.0, "hit_r": 24.0, "rotate": true, "pierce": true, "hit_fx": "double_slash", "hit_scale": 0.5,
@@ -645,7 +646,7 @@ const LIST := [
 		"id": "ds_pilar_inseto", "name": "Pilar dos Insetos Venenoso", "world": "Era dos Onis",
 		"rarity": 3, "role": "Velocista", "color": "#c25aff",
 		"lore": "Sorri o tempo todo. Por dentro está furiosa. E venenosa.",
-		"look": {"skin": "#f6e0d0", "hair": "#1a1a2a", "hair_style": "bob", "hair2": "#9b59d0", "hat": "none",
+		"look": {"skin": "#f6e0d0", "hair": "#1a1a2a", "hair_style": "bob", "tips": "#9b59d0", "hat": "none",
 			"outfit": "uniform", "outfit_color": "#1a1a2a", "outfit_color2": "#c8f0ff",
 			"acc": ["hairclip"], "acc_color": "#c25aff"},
 		"actives": [
@@ -698,7 +699,7 @@ const LIST := [
 		"id": "ds_pilar_amor", "name": "Pilar do Amor Chicote-Espada", "world": "Era dos Onis",
 		"rarity": 3, "role": "Velocista", "color": "#ff7ab8",
 		"lore": "Come o equivalente a 170 tigelas de arroz e se apaixona por todo mundo.",
-		"look": {"skin": "#f6e0d0", "hair": "#ff8fc8", "hair_style": "braid", "hair2": "#9ee06a", "hat": "none",
+		"look": {"skin": "#f6e0d0", "hair": "#ff8fc8", "hair_style": "twin_braids", "tips": "#9ee06a", "hat": "none",
 			"outfit": "uniform", "outfit_color": "#1a1a2a", "outfit_color2": "#ffffff",
 			"acc": ["flower"], "acc_color": "#9ee06a"},
 		"actives": [
@@ -920,8 +921,9 @@ const LIST := [
 		"lore": "Um macaco gigante com braço de arremessador profissional. Não erra uma.",
 		"look": {"skin": "#f2d0b0", "hair": "#e8c070", "hair_style": "short", "hat": "none",
 			"outfit": "coat", "outfit_color": "#6a6a5a", "outfit_color2": "#3a3a2a",
-			"acc": ["glasses"], "acc_color": "#3a3a3a"},
-		"look_tf": {"skin": "#b89a6a", "hair": "#c8a060", "hair_style": "wild_long", "outfit": "none", "acc": ["glasses"], "acc_color": "#3a3a3a"},
+			"acc": ["beard", "glasses"], "acc_color": "#3a3a3a", "acc_colors": {"beard": "#d8b060"}},
+		"look_tf": {"skin": "#b89a6a", "hair": "#c8a060", "hair_style": "wild_long", "outfit": "none", "acc": ["beard", "glasses"], "acc_color": "#3a3a3a",
+			"acc_colors": {"beard": "#a8844a"}},
 		"actives": [
 			{"name": "Chuva de Pedregulhos", "type": "rain", "cd": 8.0, "power": 1.6, "fx": "boulder", "fx_scale": 0.55,
 				"radius": 55.0, "count": [4, 4, 4, 5, 5, 6, 7, 7, 8], "shake": 6.0,
@@ -977,7 +979,7 @@ const LIST := [
 		"id": "mha_gelo_fogo", "name": "Metade Gelo, Metade Fogo", "world": "Academia de Heróis",
 		"rarity": 3, "role": "Atacante", "color": "#7ae0ff",
 		"lore": "Lado direito congela, lado esquerdo queima, e a cara continua séria.",
-		"look": {"skin": "#f6e0d0", "hair": "#f5f5f5", "hair_style": "side_part", "hair2": "#d62828", "hat": "none",
+		"look": {"skin": "#f6e0d0", "hair": "#f5f5f5", "hair_style": "split", "hair2": "#d62828", "hat": "none",
 			"outfit": "uniform", "outfit_color": "#2a3a6a", "outfit_color2": "#f5f5f5",
 			"acc": [], "acc_color": "#7ae0ff"},
 		"actives": [
@@ -1055,7 +1057,7 @@ const LIST := [
 		"lore": "Barba de fogo, temperamento de fogo e uma eterna crise de pai.",
 		"look": {"skin": "#e8b888", "hair": "#ff6a1a", "hair_style": "flame", "hat": "none",
 			"outfit": "uniform", "outfit_color": "#1a2a4a", "outfit_color2": "#ff6a1a",
-			"acc": ["flame_forehead"], "acc_color": "#ff6a1a"},
+			"acc": ["beard", "flame_forehead"], "acc_color": "#ff6a1a", "acc_colors": {"beard": "#ff6a1a"}},
 		"actives": [
 			{"name": "Socos Flamejantes", "type": "multi", "cd": 6.0, "power": 1.0, "count": [4, 4, 4, 5, 5, 6, 6, 7, 8],
 				"interval": 0.1, "fx": "slash_fire", "fx_scale": 0.55,
@@ -1107,7 +1109,8 @@ const LIST := [
 		"lore": "Rápido demais para os heróis. Rápido demais para o próprio bem.",
 		"look": {"skin": "#f2d0b0", "hair": "#e8c050", "hair_style": "messy", "hat": "none",
 			"outfit": "jacket", "outfit_color": "#5a3a2a", "outfit_color2": "#e8d8b8",
-			"acc": ["devil_wings", "sunglasses"], "acc_color": "#ff3030"},
+			"acc": ["wings", "fur_collar", "sunglasses"], "acc_color": "#ff3030",
+			"acc_colors": {"wings": "#e82a2a", "fur_collar": "#c8a878"}},
 		"actives": [
 			{"name": "Penas Afiadas", "type": "projectile", "cd": 4.0, "power": 1.2, "fx": "feather_burst", "fx_scale": 0.5,
 				"speed": 560.0, "hit_r": 12.0, "rotate": true, "homing": true, "count": [3, 3, 3, 4, 4, 5, 5, 6, 7], "arc": 0.9,
@@ -1193,7 +1196,7 @@ const LIST := [
 		"rarity": 2, "role": "Tanque", "color": "#ffe87a",
 		"lore": "Tira a camisa a cada cinco minutos e brilha. Técnica passada de geração em geração!",
 		"look": {"skin": "#f2c8a0", "hair": "#ffd23c", "hair_style": "bald", "hair2": "#ffd23c", "hat": "none",
-			"outfit": "none", "acc": ["star_mark"], "acc_color": "#ffe87a"},
+			"outfit": "none", "acc": ["mustache", "star_mark"], "acc_color": "#ffe87a", "acc_colors": {"mustache": "#ffd23c"}},
 		"actives": [
 			{"name": "Punhos Cintilantes da Família", "type": "multi", "cd": 6.0, "power": 1.0, "count": [3, 3, 4, 4, 5, 5, 6, 6, 7],
 				"interval": 0.12, "fx": "cartoon_pow", "fx_scale": 0.55,
@@ -1311,8 +1314,8 @@ const LIST := [
 		"lore": "Neto do mestre, fone de ouvido e casaco de pele. Engole raios no café.",
 		"look": {"skin": "#f2d0b0", "hair": "#ffd23c", "hair_style": "spiky", "hat": "none",
 			"outfit": "coat", "outfit_color": "#1a1a1a", "outfit_color2": "#e8c050",
-			"acc": ["headphones"], "acc_color": "#3a3a3a"},
-		"look_tf": {"hair": "#ffd23c", "acc": ["headphones", "small_horns"], "acc_color": "#d62828"},
+			"acc": ["fur_collar", "headphones"], "acc_color": "#3a3a3a", "acc_colors": {"fur_collar": "#d8ccb0"}},
+		"look_tf": {"hair": "#ffd23c", "acc": ["fur_collar", "headphones", "small_horns"], "acc_color": "#d62828"},
 		"actives": [
 			{"name": "Rugido do Dragão Trovão", "type": "beam", "cd": 9.0, "power": 4.0, "fx": "beam_gold", "width": 38.0, "ticks": 5, "charge": 0.6,
 				"desc": "Abre a boca e solta um rugido de eletricidade.",
