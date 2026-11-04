@@ -424,7 +424,7 @@ const LIST := [
 		"id": "butler_coveiro_risonho", "name": "Coveiro Risonho da Foice", "world": "Londres das Sombras",
 		"rarity": 4, "role": "Atacante", "color": "#7ad8a0",
 		"lore": "Cobra informação em risadas e guarda segredos em caixões feitos sob medida.",
-		"look": {"skin": "#f4ece4", "hair": "#d8d8e0", "hair_style": "long", "hat": "top_hat",
+		"look": {"skin": "#f4ece4", "hair": "#d8d8e0", "hair_style": "long_bangs", "hat": "top_hat",
 			"hat_color": "#141014", "hat_color2": "#3a3a3a",
 			"outfit": "robe", "outfit_color": "#141014", "outfit_color2": "#3a3a3a", "acc": []},
 		"weapon": {"kind": "scythe", "color": "#c8ccd6", "count": 1, "orbit": 1.6, "spin": 4.0, "power": 0.8},
@@ -932,7 +932,7 @@ const LIST := [
 		"id": "bluelock_monstro_drible", "name": "Driblador do Monstro Interior", "world": "Prisão do Ego",
 		"rarity": 1, "role": "Velocista", "color": "#ffd23c",
 		"lore": "Joga com um monstro dentro da cabeça que só quer brincar com a bola.",
-		"look": {"skin": "#f6d8b8", "hair": "#1a1a1a", "hair2": "#ffd23c", "tips": "#ffd23c", "hair_style": "bob", "hat": "none",
+		"look": {"skin": "#f6d8b8", "hair": "#1a1a1a", "tips": "#ffd23c", "hair_style": "bob", "hat": "none",
 			"outfit": "uniform", "outfit_color": "#1a2a5a", "outfit_color2": "#2a8ad8", "acc": []},
 		"weapon": {"kind": "orb", "color": "#f4f4f4", "count": 1, "orbit": 1.45, "spin": -7.0, "power": 0.45},
 		"actives": [
@@ -1131,7 +1131,7 @@ const LIST := [
 		"id": "ippo_soco_sapo", "name": "Malandro do Soco Sapo", "world": "Ringue dos Punhos",
 		"rarity": 0, "role": "Atacante", "color": "#4ac85a",
 		"lore": "Topete gigante, golpes sujos e uma técnica chamada olha pra lá que funciona de verdade.",
-		"look": {"skin": "#f6d0a8", "hair": "#2a1a10", "hair_style": "spiky", "hat": "none",
+		"look": {"skin": "#f6d0a8", "hair": "#2a1a10", "hair_style": "pompadour", "hat": "none",
 			"outfit": "tank", "outfit_color": "#2a8a3a", "outfit_color2": "#f4f4f4", "acc": []},
 		"weapon": {"kind": "fist", "color": "#4ac85a", "count": 2, "orbit": 1.4, "spin": 4.5, "power": 0.45},
 		"actives": [
@@ -1261,7 +1261,7 @@ const LIST := [
 		"lore": "Nunca treinou técnica nenhuma: acha que treino é coisa de fraco. Só soca e aguenta.",
 		"look": {"skin": "#e8c8a0", "hair": "#141418", "hair_style": "slick", "hat": "none",
 			"outfit": "suit", "outfit_color": "#f4f4f4", "outfit_color2": "#141418",
-			"acc": ["glasses"], "acc_color": "#c8ccd6"},
+			"acc": ["glasses", "scar_x"], "acc_color": "#c8ccd6"},
 		"weapon": {"kind": "fist", "color": "#e8c8a0", "count": 1, "orbit": 1.5, "spin": 3.0, "power": 0.7},
 		"actives": [
 			{"name": "Soco Sem Técnica", "type": "strike", "cd": 9.0, "power": 4.0, "fx": "ground_slam", "fx_scale": 0.55, "shake": 5.0,

@@ -81,7 +81,7 @@ const LIST := [
 		"id": "stone_mentalista", "name": "Mentalista de Duas Cores", "world": "Mundo de Pedra",
 		"rarity": 0, "role": "Suporte", "color": "#b07aff",
 		"lore": "Mente tão bem que às vezes engana a si mesmo e fica do lado certo.",
-		"look": {"skin": "#f6e0cc", "hair": "#1a1a22", "hair2": "#f4f4f4", "hair_style": "side_part", "hat": "none",
+		"look": {"skin": "#f6e0cc", "hair": "#1a1a22", "hair2": "#f4f4f4", "hair_style": "split", "hat": "none",
 			"outfit": "kimono", "outfit_color": "#4a3a6a", "outfit_color2": "#f4f4f4",
 			"acc": ["card"], "acc_color": "#b07aff"},
 		"weapon": {"kind": "card", "color": "#f4f0e8", "count": 3, "orbit": 1.45, "spin": 5.0, "power": 0.35},
@@ -164,7 +164,7 @@ const LIST := [
 		"lore": "Sorri, mente, trai e no fim era o mais honesto do barco.",
 		"look": {"skin": "#f2d6bc", "hair": "#e8c86a", "hair_style": "short", "hat": "none",
 			"outfit": "cape", "outfit_color": "#c83a2a", "outfit_color2": "#6a6a72",
-			"acc": ["sword_back"], "acc_color": "#c8ccd6"},
+			"acc": ["sword_back", "beard"], "acc_color": "#c8ccd6", "acc_colors": {"beard": "#d8b45a"}},
 		"weapon": {"kind": "sword", "color": "#d8dde8", "count": 1, "orbit": 1.5, "spin": 4.5, "power": 0.6},
 		"actives": [
 			{"name": "Golpe Traiçoeiro", "type": "teleport", "cd": 7.0, "power": 3.0, "fx": "slash_red", "fx_scale": 0.6, "target": "weakest",
@@ -191,7 +191,7 @@ const LIST := [
 		"lore": "Entra na guerra pelo mesmo motivo que criança entra no parquinho.",
 		"look": {"skin": "#e8b888", "hair": "#8a4a22", "hair_style": "wild_long", "hat": "none",
 			"outfit": "armor", "outfit_color": "#7a7a82", "outfit_color2": "#6a4a2a",
-			"acc": ["bandage"], "acc_color": "#f0e8d8"},
+			"acc": ["bandage", "beard"], "acc_color": "#f0e8d8"},
 		"weapon": {"kind": "axe", "color": "#b8bcc6", "count": 2, "orbit": 1.6, "spin": 3.5, "power": 0.75},
 		"actives": [
 			{"name": "Arremesso de Tronco", "type": "projectile", "cd": 7.0, "power": 2.8, "fx": "boulder", "fx_scale": 0.6, "speed": 420.0,
@@ -243,7 +243,7 @@ const LIST := [
 		"lore": "O guerreiro mais temido do norte resolveu que não precisava de espada. E continuou o mais temido.",
 		"look": {"skin": "#f2d0b0", "hair": "#4a2a1a", "hair_style": "long", "hat": "none",
 			"outfit": "coat", "outfit_color": "#6a5a4a", "outfit_color2": "#d8c8b0",
-			"acc": ["scarf"], "acc_color": "#d8c8b0"},
+			"acc": ["scarf", "beard"], "acc_color": "#d8c8b0"},
 		"weapon": {"kind": "fist", "color": "#f2d0b0", "count": 2, "orbit": 1.35, "spin": 4.0, "power": 0.7},
 		"actives": [
 			{"name": "Soco do Troll", "type": "knockback", "cd": 7.0, "power": 2.4, "radius": 120.0, "force": 280.0, "fx": "impact_frame", "fx_scale": 0.55,
@@ -370,7 +370,7 @@ const LIST := [
 		"lore": "Ri de um jeito que ninguém entende e luta de um jeito que ninguém sobrevive.",
 		"look": {"skin": "#d8a878", "hair": "#2a1a14", "hair_style": "slick", "hat": "none",
 			"outfit": "armor_gold", "outfit_color": "#6a5a3a", "outfit_color2": "#c83a2a",
-			"acc": [], "acc_color": "#c83a2a"},
+			"acc": ["beard", "shoulder_pads"], "acc_color": "#c83a2a", "acc_colors": {"shoulder_pads": "#c8a84a"}},
 		"weapon": {"kind": "spear", "color": "#e0c890", "count": 1, "orbit": 1.8, "spin": 3.0, "power": 0.9},
 		"actives": [
 			{"name": "Varrida da Glaive", "type": "nova", "cd": 8.0, "power": 3.4, "fx": "spear_sweep", "fx_scale": 0.65, "radius": 150.0,
@@ -798,7 +798,7 @@ const LIST := [
 		"lore": "Os soldados dariam a vida por ele. Ele conta com isso, sorrindo.",
 		"look": {"skin": "#f2d6bc", "hair": "#141018", "hair_style": "slick", "hat": "military", "hat_color": "#2a3a2a", "hat_color2": "#ffd23c",
 			"outfit": "uniform", "outfit_color": "#2a3a2a", "outfit_color2": "#ffd23c",
-			"acc": ["headband"], "acc_color": "#e8e8ec"},
+			"acc": ["headband", "mustache"], "acc_color": "#e8e8ec", "acc_colors": {"mustache": "#141018"}},
 		"weapon": {"kind": "gun", "color": "#4a4a52", "count": 2, "orbit": 1.45, "spin": 3.5, "power": 0.45},
 		"actives": [
 			{"name": "Sétima Divisão", "type": "summon", "cd": 14.0, "count": [2, 2, 2, 2, 2, 3, 3, 3, 4], "dur": 10.0, "power": 0.35, "fx": "summon_rise",
@@ -962,8 +962,8 @@ const LIST := [
 		"lore": "Irmão mais velho, mais elegante e muito mais assustador. Acha humanos irrelevantes. Exceto uma.",
 		"look": {"skin": "#f8ecdc", "hair": "#f0f0f8", "hair_style": "long", "hat": "none",
 			"outfit": "kimono", "outfit_color": "#f4f4f4", "outfit_color2": "#c84a6a",
-			"acc": ["scarf", "star_mark", "elf_ears"], "acc_color": "#f4f4f4"},
-		"look_tf": {"skin": "#f4f4f8", "acc": ["scarf", "star_mark", "elf_ears", "cat_ears", "tail"], "acc_color": "#f4f4f8"},
+			"acc": ["fur_collar", "star_mark", "elf_ears", "shoulder_pads"], "acc_color": "#f4f4f4", "acc_colors": {"fur_collar": "#f8f8fc", "star_mark": "#6a5ac8", "shoulder_pads": "#c8ccd6"}},
+		"look_tf": {"skin": "#f4f4f8", "acc": ["fur_collar", "shoulder_pads", "star_mark", "elf_ears", "cat_ears", "tail"], "acc_color": "#f4f4f8"},
 		"weapon": {"kind": "sword", "color": "#a8f0c8", "count": 1, "orbit": 1.6, "spin": 5.0, "power": 0.8},
 		"actives": [
 			{"name": "Chicote de Luz Venenosa", "type": "stretch", "cd": 5.0, "power": 2.2, "count": [1, 1, 1, 1, 2, 2, 2, 3, 3], "range": 340.0,
@@ -1227,7 +1227,7 @@ const LIST := [
 		"id": "ranma_amazona_bonbori", "name": "Amazona das Maças Redondas", "world": "Dojo da Água Fria",
 		"rarity": 1, "role": "Atacante", "color": "#c87aff",
 		"lore": "Guerreira de uma vila de amazonas que entrega lámen de bicicleta e beijo da morte.",
-		"look": {"skin": "#f8e4d4", "hair": "#a87ad8", "hair_style": "long", "hat": "none",
+		"look": {"skin": "#f8e4d4", "hair": "#a87ad8", "hair_style": "odango", "hat": "none",
 			"outfit": "dress", "outfit_color": "#e84a8a", "outfit_color2": "#ffd23c",
 			"acc": ["bell", "hairclip"], "acc_color": "#ffd23c"},
 		"look_tf": {"skin": "#f4f0f4", "acc": ["bell", "cat_ears", "tail"], "acc_color": "#ffd23c"},

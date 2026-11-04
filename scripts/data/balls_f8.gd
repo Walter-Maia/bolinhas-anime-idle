@@ -92,7 +92,7 @@ const LIST := [
 		"rarity": 3, "role": "Velocista", "color": "#ffd23c",
 		"lore": "Achava que era o protagonista do mundo, perdeu o cabelo numa luta e virou um cara legal.",
 		"look": {"skin": "#f6d8b8", "hair": "#ffd86a", "hair_style": "pompadour", "hat": "none",
-			"outfit": "jacket", "outfit_color": "#1a1a2a", "outfit_color2": "#d84a4a", "acc": [], "acc_color": "#ffd23c"},
+			"outfit": "uniform", "outfit_color": "#1a1a2a", "outfit_color2": "#d8b84a", "acc": [], "acc_color": "#ffd23c"},
 		"look_tf": {"hair_style": "bald"},
 		"weapon": {"kind": "sword", "color": "#ffe27a", "count": 1, "orbit": 1.5, "spin": 5.5, "power": 0.6},
 		"actives": [
@@ -145,7 +145,7 @@ const LIST := [
 		"id": "mob_chefe_garra", "name": "Chefe Supremo da Garra", "world": "Cidade Tempero",
 		"rarity": 5, "role": "Atacante", "color": "#4ae0ff",
 		"lore": "Quer dominar o mundo com uma organização de espers e um ego do tamanho de um prédio.",
-		"look": {"skin": "#f0d0b0", "hair": "#2a2a2a", "hair_style": "slick", "hat": "none",
+		"look": {"skin": "#f0d0b0", "hair": "#2a2a2a", "hair_style": "spiky_back", "hat": "none",
 			"outfit": "suit", "outfit_color": "#d8d8d0", "outfit_color2": "#3a3a4a", "acc": [], "acc_color": "#3a3a4a"},
 		"weapon": {"kind": "orb", "color": "#4ae0ff", "count": 4, "orbit": 1.6, "spin": 2.5, "power": 0.5},
 		"actives": [
@@ -255,7 +255,7 @@ const LIST := [
 		"id": "ff_capitao_sem_chama", "name": "Capitão Musculoso Sem Chamas", "world": "Brigada Especial das Chamas",
 		"rarity": 1, "role": "Tanque", "color": "#ffb84a",
 		"lore": "Não tem poder nenhum. Só músculos, um machado e um coração enorme.",
-		"look": {"skin": "#d8a878", "hair": "#2a1a10", "hair_style": "buzz", "hat": "none",
+		"look": {"skin": "#a8784a", "hair": "#2a1a10", "hair_style": "buzz", "hat": "none",
 			"outfit": "tank", "outfit_color": "#2a2a30", "outfit_color2": "#ffd23c", "acc": [], "acc_color": "#ffd23c"},
 		"weapon": {"kind": "axe", "color": "#d84a2a", "count": 1, "orbit": 1.5, "spin": 3.5, "power": 0.6},
 		"actives": [
@@ -582,7 +582,7 @@ const LIST := [
 		"rarity": 4, "role": "Atacante", "color": "#3a8aff",
 		"lore": "Filho do rei dos demônios, cozinha muito bem e quer virar exorcista só pra socar o próprio pai.",
 		"look": {"skin": "#f0d0b0", "hair": "#1a1a2e", "hair_style": "messy", "hat": "none",
-			"outfit": "uniform", "outfit_color": "#2a2a3a", "outfit_color2": "#d83a3a", "acc": ["tail", "sword_back"], "acc_color": "#d83a3a"},
+			"outfit": "uniform", "outfit_color": "#2a2a3a", "outfit_color2": "#d83a3a", "acc": ["tail", "sword_back"], "acc_color": "#d83a3a", "acc_colors": {"tail": "#1a1a2e"}},
 		"look_tf": {"outfit_color2": "#3a8aff", "acc": ["tail", "sword_back", "flame_forehead", "elf_ears"], "acc_color": "#3a8aff"},
 		"weapon": {"kind": "katana", "color": "#4ab0ff", "count": 1, "orbit": 1.55, "spin": 5.5, "power": 0.65},
 		"actives": [
@@ -715,7 +715,7 @@ const LIST := [
 		"lore": "Diretor da academia, fã de anime, vira cachorrinho rosa e esconde que é um dos reis demônios.",
 		"look": {"skin": "#e8d8e8", "hair": "#5a3a8a", "hair_style": "short", "hat": "top_hat",
 			"hat_color": "#f4f4f4", "hat_color2": "#ff8ad8",
-			"outfit": "cape", "outfit_color": "#f4f4f4", "outfit_color2": "#ff8ad8", "acc": ["elf_ears"], "acc_color": "#5a3a8a"},
+			"outfit": "cape", "outfit_color": "#f4f4f4", "outfit_color2": "#ff8ad8", "acc": ["elf_ears", "goatee"], "acc_color": "#5a3a8a", "acc_colors": {"goatee": "#5a3a8a"}},
 		"weapon": {"kind": "umbrella", "color": "#ff8ad8", "count": 1, "orbit": 1.55, "spin": 3.5, "power": 0.6},
 		"actives": [
 			{"name": "Um, Dois, Puf!", "type": "summon", "cd": 13.0, "count": [2, 2, 2, 2, 2, 2, 2, 3, 3], "dur": 8.0, "power": 0.35, "fx": "poof",
@@ -773,7 +773,7 @@ const LIST := [
 		"rarity": 2, "role": "Atacante", "color": "#ff6a2a",
 		"lore": "Aprendiz de historiador, troca de nome toda hora e acha toda moça bonita um tiro no coração.",
 		"look": {"skin": "#f6d8b8", "hair": "#e8582a", "hair_style": "spiky", "hat": "none",
-			"outfit": "coat", "outfit_color": "#1a1a22", "outfit_color2": "#c8ccd6", "acc": ["eyepatch", "bandana"], "acc_color": "#5aa85a"},
+			"outfit": "coat", "outfit_color": "#1a1a22", "outfit_color2": "#c8ccd6", "acc": ["eyepatch", "bandana", "hammer"], "acc_color": "#5aa85a", "acc_colors": {"eyepatch": "#1a1a22"}},
 		"weapon": {"kind": "hammer", "color": "#8a6a4a", "count": 1, "orbit": 1.6, "spin": 4.0, "power": 0.7},
 		"actives": [
 			{"name": "Martelo que Cresce", "type": "stretch", "cd": 6.0, "power": 2.4, "count": [1, 1, 1, 1, 2, 2, 2, 2, 3], "range": 320.0,
@@ -885,7 +885,7 @@ const LIST := [
 		"lore": "Sorri sempre, tricota cachecóis e planeja acabar com o mundo há mil anos. Com um guarda-chuva que fala.",
 		"look": {"skin": "#e8e0e0", "hair": "#2a2a2a", "hair_style": "none", "hat": "top_hat",
 			"hat_color": "#2a2a3a", "hat_color2": "#ff8ad8",
-			"outfit": "coat", "outfit_color": "#5a3a6a", "outfit_color2": "#f4f4f4", "acc": ["glasses", "earrings"], "acc_color": "#ffd23c"},
+			"outfit": "coat", "outfit_color": "#5a3a6a", "outfit_color2": "#f4f4f4", "acc": ["glasses", "earrings", "elf_ears"], "acc_color": "#ffd23c"},
 		"weapon": {"kind": "umbrella", "color": "#ff8ad8", "count": 1, "orbit": 1.6, "spin": 3.0, "power": 0.65},
 		"actives": [
 			{"name": "Fábrica de Akumas", "type": "summon", "cd": 12.0, "count": [1, 1, 2, 2, 2, 3, 3, 3, 4], "dur": 10.0, "power": 0.3, "fx": "spawn_portal",
@@ -1128,7 +1128,7 @@ const LIST := [
 		"rarity": 3, "role": "Atacante", "color": "#3a3a3a",
 		"lore": "Tosse o tempo todo, vive atrás do reconhecimento do antigo mestre e tem um casaco que devora gente.",
 		"look": {"skin": "#f0e4dc", "hair": "#1a1a1a", "hair_style": "bob", "tips": "#f4f4f4", "hair2": "#f4f4f4", "hat": "none",
-			"outfit": "coat", "outfit_color": "#1a1a1a", "outfit_color2": "#3a3a3a", "acc": ["collar"], "acc_color": "#f4f4f4"},
+			"outfit": "coat", "outfit_color": "#1a1a1a", "outfit_color2": "#3a3a3a", "acc": ["high_collar", "collar"], "acc_color": "#f4f4f4", "acc_colors": {"high_collar": "#1a1a1a"}},
 		"weapon": {"kind": "whip", "color": "#1a1a1a", "count": 3, "orbit": 1.5, "spin": -6.5, "power": 0.45},
 		"actives": [
 			{"name": "Bocarra do Casaco", "type": "hook", "cd": 5.0, "power": 2.2, "count": [1, 1, 1, 2, 2, 2, 3, 3, 3],

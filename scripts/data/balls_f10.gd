@@ -40,7 +40,7 @@ const LIST := [
 		"lore": "A noiva mais assustadora do Japão. O tapa dela tem nome próprio.",
 		"look": {"skin": "#fbe4d0", "hair": "#f2d36b", "hair_style": "bob", "hat": "none",
 			"outfit": "dress", "outfit_color": "#1a1a22", "outfit_color2": "#c83a3a",
-			"acc": ["bandana", "necklace"], "acc_color": "#c83a3a"},
+			"acc": ["bandana", "necklace"], "acc_color": "#c83a3a", "acc_colors": {"necklace": "#3a6ad8"}},
 		"weapon": {"kind": "orb", "color": "#6a3a2a", "count": 3, "orbit": 1.4, "spin": 3.0, "power": 0.45},
 		"actives": [
 			{"name": "Tapa Lendário da Esquerda", "type": "strike", "cd": 9.0, "power": 5.0, "fx": "cartoon_pow", "fx_scale": 0.6,
@@ -68,8 +68,8 @@ const LIST := [
 		"lore": "Cresceu numa família que ensinava ódio. Aprendeu leite e amizade por conta própria.",
 		"look": {"skin": "#f6d8b8", "hair": "#2a2238", "hair_style": "spiky_back", "hat": "none",
 			"outfit": "gi", "outfit_color": "#2a2a3a", "outfit_color2": "#ffd23c",
-			"acc": ["collar"], "acc_color": "#ffd23c"},
-		"look_tf": {"outfit": "armor", "outfit_color": "#3a3a4a", "outfit_color2": "#ffd23c", "acc": ["collar", "horns"], "acc_color": "#ffd23c"},
+			"acc": ["high_collar"], "acc_color": "#ffd23c"},
+		"look_tf": {"outfit": "armor", "outfit_color": "#3a3a4a", "outfit_color2": "#ffd23c", "acc": ["high_collar", "horns"], "acc_color": "#ffd23c"},
 		"weapon": {"kind": "spear", "color": "#c8a040", "count": 1, "orbit": 1.6, "spin": 5.0, "power": 0.65},
 		"actives": [
 			{"name": "Mil Estocadas do General", "type": "multi", "cd": 7.0, "power": 0.8, "count": [4, 4, 5, 5, 6, 6, 7, 7, 8],
@@ -642,7 +642,7 @@ const LIST := [
 		"id": "ygo2_heroi_elemental", "name": "Herói Elemental da Jaqueta Vermelha", "world": "Reino das Cartas",
 		"rarity": 3, "role": "Atacante", "color": "#e0263a",
 		"lore": "O pior aluno da academia e o melhor duelista dela. Ao mesmo tempo.",
-		"look": {"skin": "#f0d0a8", "hair": "#6a3a1a", "hair2": "#c87a3a", "hair_style": "spiky", "hat": "none",
+		"look": {"skin": "#f0d0a8", "hair": "#6a3a1a", "tips": "#c87a3a", "hair_style": "spiky", "hat": "none",
 			"outfit": "jacket", "outfit_color": "#e0263a", "outfit_color2": "#1a1a2a",
 			"acc": ["card"], "acc_color": "#e0263a"},
 		"look_tf": {"outfit": "armor", "outfit_color": "#2a2a3a", "outfit_color2": "#ffd23c", "acc": ["card", "visor"], "acc_color": "#ffd23c"},
@@ -748,7 +748,7 @@ const LIST := [
 		"lore": "Repete que é o rei o tempo todo. E toma café caríssimo enquanto repete.",
 		"look": {"skin": "#f6e0cc", "hair": "#f2d36b", "hair_style": "spiky", "hat": "none",
 			"outfit": "coat", "outfit_color": "#f4f4f4", "outfit_color2": "#6a2a8a",
-			"acc": ["earrings"], "acc_color": "#c8c8c8"},
+			"acc": ["earrings", "high_collar"], "acc_color": "#c8c8c8"},
 		"weapon": {"kind": "card", "color": "#e0263a", "count": 2, "orbit": 1.55, "spin": -5.0, "power": 0.55},
 		"actives": [
 			{"name": "Inferno Escaldante Absoluto", "type": "strike", "cd": 12.0, "power": 6.5, "fx": "flame_pillar", "fx_scale": 0.6,
@@ -1112,7 +1112,7 @@ const LIST := [
 		"id": "ccs_prima_marcial", "name": "Prima das Tranças Marciais", "world": "Cidade das Cartas Encantadas",
 		"rarity": 0, "role": "Velocista", "color": "#e0263a",
 		"lore": "Noiva autoproclamada do primo, faixa preta de ciúmes e de kung fu.",
-		"look": {"skin": "#f6d8b8", "hair": "#1a1a22", "hair_style": "twintail", "hat": "none",
+		"look": {"skin": "#f6d8b8", "hair": "#1a1a22", "hair_style": "odango", "hat": "none",
 			"outfit": "gi", "outfit_color": "#e0263a", "outfit_color2": "#ffd23c", "acc": []},
 		"weapon": {"kind": "fist", "color": "#e0263a", "count": 2, "orbit": 1.35, "spin": 6.5, "power": 0.5},
 		"actives": [

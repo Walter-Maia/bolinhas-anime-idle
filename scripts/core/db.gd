@@ -66,7 +66,7 @@ static var CHAPTERS: Array = []
 static var BOSS_RAID: Array = []
 static var BANNERS: Array = []
 static var SETS: Array = []
-const WORLD_FILES := ["res://scripts/data/world.gd", "res://scripts/data/world_w2.gd", "res://scripts/data/world_w3.gd", "res://scripts/data/world_w4.gd", "res://scripts/data/world_w5.gd"]
+const WORLD_FILES := ["res://scripts/data/world.gd", "res://scripts/data/world_w2.gd", "res://scripts/data/world_w3.gd", "res://scripts/data/world_w4.gd", "res://scripts/data/world_w5.gd", "res://scripts/data/world_w6.gd", "res://scripts/data/world_w7.gd"]
 const SUMMON_LOOKS: Dictionary = CORE.SUMMON_LOOKS
 
 ## todas as bolinhas: id -> definicao (preenchido em _static_init)
@@ -91,7 +91,11 @@ static func _static_init() -> void:
 		BANNERS.append_array(wc.get("BANNERS", []))
 	BANNERS.sort_custom(func(a, b): return int(a.chapter) < int(b.chapter))
 	if ResourceLoader.exists("res://scripts/data/items.gd"):
-		SETS = (load("res://scripts/data/items.gd") as Script).get_script_constant_map().get("SETS", [])
+		SETS = (load("res://scripts/data/items.gd") as Script).get_script_constant_map().get("SETS", []).duplicate()
+	if ResourceLoader.exists("res://scripts/data/items2.gd"):
+		var i2: Variant = load("res://scripts/data/items2.gd")
+		if i2 != null:
+			SETS.append_array((i2 as Script).get_script_constant_map().get("SETS", []))
 	for id in CORE.DICT:
 		_add(id, CORE.DICT[id])
 	for path in BALL_FILES:
