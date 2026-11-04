@@ -143,6 +143,8 @@ static func make(n: String, opts: Dictionary = {}) -> CuteFx:
 		f.dur = float(opts.dur)
 	f.z_index = int(opts.get("z", 0))
 	f.rng.seed = randi()
+	if f.kind == "burst" and f.size >= 80.0:
+		Snd.play("explosion", -7.0, 0.12, 0.15)
 	f._init_parts()
 	return f
 

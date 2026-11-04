@@ -232,6 +232,7 @@ func _build_top() -> Control:
 	var spv := UI.vbox(2)
 	lbl_stage = UI.label("Normal 1-1", 26)
 	lbl_stage.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	lbl_stage.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	spv.add_child(lbl_stage)
 	var wb := UI.hbox(5)
 	wb.alignment = BoxContainer.ALIGNMENT_CENTER
@@ -244,6 +245,7 @@ func _build_top() -> Control:
 	spv.add_child(wb)
 	lbl_left = UI.label("", 15, Color("#e8ffe0"), 4)
 	lbl_left.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	lbl_left.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	spv.add_child(lbl_left)
 	sp.add_child(spv)
 	sv.add_child(sp)
@@ -879,6 +881,11 @@ func _debug_shots() -> void:
 		Game.d.stage = int(args.stage.split("-")[1])
 		Game.d.best = maxi(int(Game.d.best), Game.stage_index())
 	screens.close_popups()
+	if args.has("nodialog"):
+		for c in popup_layer.get_children():
+			if c.has_meta("dialogue"):
+				c.queue_free()
+		_flow_busy = false
 	start_campaign()
 	if args.has("intro"):
 		story.play_intro(int(Game.d.chapter), Callable())

@@ -31,6 +31,7 @@ func _ready() -> void:
 		new_game()
 	daily_reset()
 	get_tree().set_auto_accept_quit(false)
+	_inject_event()
 
 
 func _process(delta: float) -> void:
@@ -537,7 +538,7 @@ func chest_level() -> int:
 
 
 func gold_mult() -> float:
-	return (1.0 + 0.1 * upg("gold")) * (1.2 if is_vip() else 1.0)
+	return (1.0 + 0.1 * upg("gold")) * (1.2 if is_vip() else 1.0) * 1.5
 
 
 func is_vip() -> bool:
@@ -1013,6 +1014,7 @@ func open_chest() -> Dictionary:
 		return {}
 	d.keys = int(d.keys) - 1
 	progress("chests")
+	Snd.play("chest", -4.0, 0.05, 0.1)
 	var L := chest_level()
 	var res := {}
 	if randf() < 0.07:
@@ -1218,3 +1220,35 @@ func iap_available(p: Dictionary) -> bool:
 	if p.has("speed") and int(d.speed_max) >= int(p.speed):
 		return false
 	return not (p.get("once", false) and int(d.purchases.get(p.id, 0)) > 0)
+
+
+# =============================================================================================
+# evento semanal: um anime em destaque (banner proprio) e +50% de moedas
+# =============================================================================================
+func event_world() -> String:
+	var ws := []
+	for w in DB.WORLDS:
+		if DB.balls_of_world(w).size() >= 5:
+			ws.append(w)
+	if ws.is_empty():
+		return ""
+	ws.sort()
+	var week := int(Time.get_unix_time_from_system() / (7.0 * 86400.0))
+	return ws[week % ws.size()]
+
+
+func event_days_left() -> int:
+	var t := Time.get_unix_time_from_system()
+	var week_end: float = (floor(t / (7.0 * 86400.0)) + 1.0) * 7.0 * 86400.0
+	return int(ceil((week_end - t) / 86400.0))
+
+
+func _inject_event() -> void:
+	var w := event_world()
+	if w == "":
+		return
+	for b in DB.BANNERS:
+		if b.get("event", false):
+			return
+	DB.BANNERS.insert(1, {"id": "evento", "name": "EVENTO: " + w, "desc": "Evento da semana (%d dias): chance aumentada e +50%% de moedas na história!" % event_days_left(),
+		"worlds": [w], "chapter": 0, "color": "#ff6a3a", "event": true})

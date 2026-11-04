@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 
 Billing="*res://scripts/core/billing.gd"
 Game="*res://scripts/core/game.gd"
+Audio="*res://scripts/core/audio.gd"
 
 [display]
 

@@ -16,7 +16,8 @@ const BALL_FILES := [
 	"res://scripts/data/balls_f10.gd", "res://scripts/data/balls_f11.gd", "res://scripts/data/balls_f12.gd",
 	"res://scripts/data/balls_f13.gd", "res://scripts/data/balls_f14.gd", "res://scripts/data/balls_f15.gd",
 	"res://scripts/data/balls_f16.gd", "res://scripts/data/balls_f17.gd", "res://scripts/data/balls_f18.gd", "res://scripts/data/balls_f19.gd",
-	"res://scripts/data/balls_f20.gd",
+	"res://scripts/data/balls_f20.gd", "res://scripts/data/balls_f21.gd", "res://scripts/data/balls_f22.gd", "res://scripts/data/balls_f23.gd",
+	"res://scripts/data/balls_f24.gd", "res://scripts/data/balls_f25.gd", "res://scripts/data/balls_f26.gd",
 ]
 
 const RARITY := [
@@ -65,7 +66,7 @@ static var CHAPTERS: Array = []
 static var BOSS_RAID: Array = []
 static var BANNERS: Array = []
 static var SETS: Array = []
-const WORLD_FILES := ["res://scripts/data/world.gd", "res://scripts/data/world_w2.gd", "res://scripts/data/world_w3.gd"]
+const WORLD_FILES := ["res://scripts/data/world.gd", "res://scripts/data/world_w2.gd", "res://scripts/data/world_w3.gd", "res://scripts/data/world_w4.gd", "res://scripts/data/world_w5.gd"]
 const SUMMON_LOOKS: Dictionary = CORE.SUMMON_LOOKS
 
 ## todas as bolinhas: id -> definicao (preenchido em _static_init)
@@ -78,7 +79,11 @@ static func _static_init() -> void:
 	for wp in WORLD_FILES:
 		if not ResourceLoader.exists(wp):
 			continue
-		var wc: Dictionary = (load(wp) as Script).get_script_constant_map()
+		var ws: Variant = load(wp)
+		if ws == null:
+			load_errors.append("falha ao carregar " + wp)
+			continue
+		var wc: Dictionary = (ws as Script).get_script_constant_map()
 		ENEMIES.merge(wc.get("ENEMIES", {}))
 		BOSSES.merge(wc.get("BOSSES", {}))
 		CHAPTERS.append_array(wc.get("CHAPTERS", []))

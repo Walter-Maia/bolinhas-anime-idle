@@ -259,7 +259,9 @@ func ball_popup(id: String) -> void:
 	hh.add_child(big)
 	var iv := UI.vbox(4)
 	iv.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	iv.add_child(UI.badge(DB.rarity(r).name.to_upper(), DB.rcolor(r).darkened(0.2), 16))
+	var rb := UI.badge(DB.rarity(r).name.to_upper(), DB.rcolor(r).darkened(0.2), 16)
+	rb.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
+	iv.add_child(rb)
 	iv.add_child(UI.para(DB.ball_name(id, r) if owned else def.name, 23, UI.C_TEXT_DARK))
 	iv.add_child(UI.para("%s · %s" % [def.get("world", "?"), def.get("role", "?")], 16, UI.C_TEXT_MID))
 	iv.add_child(UI.para(str(def.get("lore", "")), 15, UI.C_TEXT_MID))

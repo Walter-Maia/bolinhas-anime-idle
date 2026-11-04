@@ -80,10 +80,14 @@ func screen() -> Control:
 		icons.append(bi)
 	var title := UI.label(str(bn.name), 28, Color("#ffe27a"), 8)
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	title.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	title.clip_text = true
 	art.add_child(title)
 	var desc := UI.label(str(bn.desc), 17, Color.WHITE, 5)
 	desc.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	desc.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	desc.max_lines_visible = 2
+	desc.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	art.add_child(desc)
 	art.resized.connect(func() -> void:
 		var w := art.size.x
@@ -91,9 +95,9 @@ func screen() -> Control:
 			var bi2: BallIcon = icons[i]
 			var n := icons.size()
 			bi2.position = Vector2(w * (i + 0.5) / n - 65, 52 + (12 if i % 2 == 0 else 0))
-		title.size = Vector2(w, 40)
-		title.position = Vector2(0, 8)
-		desc.size = Vector2(w - 24, 40)
+		title.size = Vector2(w - 16, 40)
+		title.position = Vector2(8, 8)
+		desc.size = Vector2(w - 24, 48)
 		desc.position = Vector2(12, 222))
 	if not unlocked:
 		var lk := UI.label("Libere concluindo o capítulo %d da história" % int(bn.chapter), 20, Color.WHITE, 6)
@@ -204,6 +208,7 @@ class GachaAnim:
 	func _ready() -> void:
 		set_anchors_preset(Control.PRESET_FULL_RECT)
 		mouse_filter = Control.MOUSE_FILTER_STOP
+		Snd.play("shake", -3.0, 0.0, 0.0)
 
 	func _process(delta: float) -> void:
 		t += delta
@@ -234,6 +239,7 @@ class GachaAnim:
 			return
 		phase = 1
 		crack_t = 0.0
+		Snd.play("open", -2.0, 0.0, 0.0)
 
 	func _draw() -> void:
 		var w := size.x
@@ -294,7 +300,9 @@ class GachaAnim:
 		if phase == 0:
 			var txt := "toque para abrir"
 			var tw := f.get_string_size(txt, HORIZONTAL_ALIGNMENT_LEFT, -1, 22).x
-			draw_string(f, Vector2((w - tw) * 0.5, h * 0.8), txt, HORIZONTAL_ALIGNMENT_LEFT, -1, 22, Color(1, 1, 1, 0.5 + 0.5 * sin(t * 5.0)))
+			var ta := 0.7 + 0.3 * sin(t * 5.0)
+			draw_string_outline(f, Vector2((w - tw) * 0.5, h * 0.8), txt, HORIZONTAL_ALIGNMENT_LEFT, -1, 22, 6, Color(UI.C_OUTLINE, ta))
+			draw_string(f, Vector2((w - tw) * 0.5, h * 0.8), txt, HORIZONTAL_ALIGNMENT_LEFT, -1, 22, Color(1, 1, 1, ta))
 
 	func _half(c: Vector2, r: float, col: Color, top: bool) -> void:
 		var pts := PackedVector2Array()
@@ -314,6 +322,7 @@ class GachaAnim:
 		draw_colored_polygon(pts, col)
 
 	func _reveal() -> void:
+		Snd.play("fanfare" if best >= 4 else "coin", -2.0, 0.0, 0.0)
 		var n := results.size()
 		var w := size.x
 		var grid := GridContainer.new()
@@ -365,21 +374,26 @@ class GachaAnim:
 				card.add_child(beam)
 		var bi := BallIcon.new().setup(r.id, rar)
 		bi.frame = false
-		var s := sz.x * (0.82 if big else 0.92)
+		var s := sz.x * (0.82 if big else 0.84)
 		bi.size = Vector2(s, s)
 		bi.position = Vector2((sz.x - s) * 0.5, sz.y * 0.06)
 		card.add_child(bi)
-		var nm := UI.label(DB.ball_name(r.id, rar) if big else DB.BALLS[r.id].name, 22 if big else 12, Color.WHITE, 5 if big else 4)
+		var nm := UI.label(DB.ball_name(r.id, rar) if big else DB.BALLS[r.id].name, 22 if big else 13, Color.WHITE, 5 if big else 4)
 		nm.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		nm.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 		nm.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-		nm.size = Vector2(sz.x - 8, 50)
-		nm.position = Vector2(4, sz.y * (0.72 if big else 0.68))
+		# no maximo 2 linhas, com reticencias: nunca invade o selo de raridade embaixo
+		nm.max_lines_visible = 2
+		nm.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+		nm.clip_text = true
+		nm.size = Vector2(sz.x - 8, 56 if big else 40)
+		nm.position = Vector2(4, sz.y * 0.72 if big else sz.y - 70)
 		card.add_child(nm)
 		var tag := "EVOLUIU!" if r.get("evolved", false) else ("NOVO!" if r.get("new", false) else "+%d frag." % int(r.get("frags", DB.DUPE_FRAGS)))
-		var tl := UI.badge(tag, Color("#ffb020") if (r.get("new", false) or r.get("evolved", false)) else Color("#6a6a7a"), 16 if big else 11)
+		var tl := UI.badge(tag, Color("#ffb020") if (r.get("new", false) or r.get("evolved", false)) else Color("#6a6a7a"), 16 if big else 13)
 		tl.position = Vector2(6, 6)
 		card.add_child(tl)
-		var rl := UI.badge(DB.rarity(rar).name, col.darkened(0.2), 16 if big else 11)
+		var rl := UI.badge(DB.rarity(rar).name, col.darkened(0.2), 16 if big else 13)
 		card.add_child(rl)
 		rl.resized.connect(func() -> void: rl.position = Vector2(sz.x - rl.size.x - 6, 6) if big else Vector2((sz.x - rl.size.x) * 0.5, sz.y - rl.size.y - 6))
 		return card

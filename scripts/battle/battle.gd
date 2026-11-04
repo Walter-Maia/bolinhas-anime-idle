@@ -140,6 +140,12 @@ func clear() -> void:
 
 
 func start(players: Array, wave_list: Array, limit: float = 0.0) -> void:
+	var has_boss := false
+	for wl in wave_list:
+		for sp in wl:
+			if sp.get("boss", false):
+				has_boss = true
+	Snd.music("music_battle" if has_boss or limit > 0.0 else "music_home")
 	clear()
 	waves = wave_list
 	wave_idx = 0
@@ -460,6 +466,7 @@ func _check_end(dt: float) -> void:
 
 
 func _finish(win: bool) -> void:
+	Snd.play("win" if win else "lose", -3.0)
 	ended = true
 	running = false
 	if win:
@@ -518,6 +525,12 @@ func deal(src: Unit, dst: Unit, mult: float, o: Dictionary = {}) -> float:
 		col = Color("#ffd23c")
 		size = 30
 	if dmg > 0.5:
+		if crit:
+			Snd.play("crit", -2.0)
+		elif kind == "weapon":
+			Snd.play("hit_weapon", -8.0, 0.15, 0.07)
+		elif kind == "contact" or kind == "skill":
+			Snd.play("hit", -6.0, 0.15, 0.07)
 		Drawer.text(layer_text, dst.position + Vector2(randf_range(-12, 12), -dst.radius() - 6), UI.fmt(dmg) + ("!" if crit else ""), col, size, 0.75 if not crit else 0.95)
 	if valid_src and not src.dead and kind != "dot":
 		var ls := src.stat("lifesteal")
@@ -600,6 +613,7 @@ func dot(src: Variant, dst: Unit, amount: float, kind: String) -> void:
 
 
 func heal(u: Unit, amount: float) -> void:
+	Snd.play("heal", -6.0, 0.1, 0.15)
 	if u.dead:
 		return
 	u.hp = minf(u.max_hp, u.hp + amount)
@@ -666,6 +680,7 @@ func _trigger_low_hp(u: Unit, d: Dictionary) -> void:
 
 ## explosao visual de transformacao: anel, estrelas e flash na cor da aura
 func transform_burst(u: Unit) -> void:
+	Snd.play("transform")
 	var c := u.color
 	if is_instance_valid(u.aura_fx) and u.aura_fx is CuteFx:
 		c = (u.aura_fx as CuteFx).col
@@ -695,6 +710,7 @@ func kill(u: Unit, killer: Unit, silent: bool = false) -> void:
 	if silent:
 		return
 	if u.team == 1:
+		Snd.play("coin", -8.0, 0.1, 0.1)
 		enemy_killed.emit(u)
 	if killer and is_instance_valid(killer) and not killer.dead:
 		for p in killer.passives:

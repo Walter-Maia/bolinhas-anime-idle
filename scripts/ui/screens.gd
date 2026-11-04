@@ -284,7 +284,7 @@ func start_dungeon(dg: Dictionary) -> void:
 func _pvp_content(c: VBoxContainer) -> void:
 	var pv: Dictionary = Game.d.pvp
 	var k := UI.card(Color("#efe4f8"))
-	k[1].add_child(UI.label("Pontos de Arena: %d" % int(pv.rating), 26, Color("#e8d8ff")))
+	k[1].add_child(UI.para("Pontos de Arena: %d" % int(pv.rating), 26, Color("#5a3a8a")))
 	k[1].add_child(UI.para("Vitórias %d · Derrotas %d · Bilhetes hoje: %d/5" % [int(pv.wins), int(pv.losses), int(pv.tickets)], 18))
 	k[1].add_child(UI.para("Lute contra bolinhas de outros treinadores (geradas no aparelho; PvP online exige servidor).", 15, UI.C_TEXT_MID))
 	c.add_child(k[0])
@@ -755,6 +755,26 @@ func settings_popup() -> void:
 		main.toast("Nome salvo", Color.WHITE))
 	nh.add_child(sv)
 	v.add_child(nh)
+	v.add_child(section("Som"))
+	var sh := UI.hbox(8)
+	var bs1 := UI.button("Efeitos: " + ("LIGADOS" if Game.d.get("sound", true) else "DESLIGADOS"), UI.C_GREEN if Game.d.get("sound", true) else UI.C_GRAY, 17, Vector2(0, 52))
+	bs1.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	bs1.pressed.connect(func() -> void:
+		Game.d.sound = not Game.d.get("sound", true)
+		close_popups()
+		settings_popup.call_deferred())
+	sh.add_child(bs1)
+	var bs2 := UI.button("Música: " + ("LIGADA" if Game.d.get("music", true) else "DESLIGADA"), UI.C_GREEN if Game.d.get("music", true) else UI.C_GRAY, 17, Vector2(0, 52))
+	bs2.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	bs2.pressed.connect(func() -> void:
+		Game.d.music = not Game.d.get("music", true)
+		var au := main.get_node_or_null("/root/Audio")
+		if au:
+			au.refresh()
+		close_popups()
+		settings_popup.call_deferred())
+	sh.add_child(bs2)
+	v.add_child(sh)
 	v.add_child(section("Salvar jogo"))
 	v.add_child(UI.para("O jogo salva sozinho a cada 15s e ao sair. Use os espaços abaixo para guardar cópias do seu progresso.", 15, UI.C_TEXT_MID))
 	var now := UI.button("Salvar agora", UI.C_GREEN, 19, Vector2(0, 54))

@@ -711,6 +711,7 @@ class Art:
 						poly(PackedVector2Array([Vector2(CX + 2.0, CY - 11 - i * 2), Vector2(CX + 3.6, CY - 11.6 - i * 2), Vector2(CX + 2.0, CY - 12.6 - i * 2)]), Color("#8a8e98"))
 						poly(PackedVector2Array([Vector2(CX - 2.0, CY - 11 - i * 2), Vector2(CX - 3.6, CY - 11.6 - i * 2), Vector2(CX - 2.0, CY - 12.6 - i * 2)]), Color("#8a8e98"))
 					rect(CX - 3.5, CY - 10, 7, 2.5, Color("#ff8a2a"))
+		ac = base_ac
 
 	func _front_acc() -> void:
 		var dark := Color("#1d1424")
@@ -932,6 +933,7 @@ class Art:
 				"hammer":
 					line(Vector2(CX + 10, CY + 12), Vector2(CX + 16, CY - 2), 1.2, Color("#8e5c2c"))
 					poly(PackedVector2Array([Vector2(CX + 12, CY - 6), Vector2(CX + 19, CY - 3), Vector2(CX + 17.5, CY + 1), Vector2(CX + 10.5, CY - 2)]), Color("#9aa6ba"), true)
+		ac = base_ac2
 
 	func _star(c: Vector2, r: float, col: Color) -> void:
 		var pts := PackedVector2Array()

@@ -10,13 +10,19 @@ var ratio := 1.0          # 1 = skill pronta
 var show_cd := false
 var selected := false
 var dim := false
-var frame := true
+## com moldura, a arte (coroas, orelhas) e cortada no quadro para nao vazar do cartao
+var frame := true:
+	set(v):
+		frame = v
+		clip_contents = v
+		queue_redraw()
 var stars := -1
 var silhouette := false
 
 
 func _init() -> void:
 	texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+	clip_contents = true
 	set_process(false)
 
 

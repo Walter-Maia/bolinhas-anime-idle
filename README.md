@@ -1,58 +1,47 @@
-# Bolinhas Anime Idle (Godot 4.7, mobile retrato)
+# Bolinhas Anime Idle
 
-Idle de bolinhas com poderes inspirados em animes. Uma bolinha ativa por vez luta sozinha numa arena,
-quicando e usando skills; o baú dá equipamentos (que não aparecem na bolinha) e às vezes bolinhas novas.
+Idle mobile (Godot 4.7, retrato) em que personagens de anime viram **bolinhas sem rosto** que quicam sozinhas pela
+arena com uma **arma girando em volta**, causando dano ao encostar e soltando skills inspiradas nos animes.
 
-## Rodar
-Abra a pasta no Godot 4.7 e aperte F5. A janela de teste é 450x800 (o jogo é 720x1280 em retrato).
+**Jogar no navegador (celular ou PC):** https://walter-maia.github.io/bolinhas-anime-idle/
+**Baixar (APK Android / Windows):** aba [Releases](https://github.com/Walter-Maia/bolinhas-anime-idle/releases)
 
-## O que tem
-- **32 bolinhas** em 6 raridades (Comum → Mítico), cada uma com skills ativas e passivas próprias,
-  transformações com pouca vida (ex.: Manto da Raposa deixa a Esfera Espiral vermelha, mais forte e mais rápida)
-  e **formas evoluídas** com nome próprio (ex.: "Modo Sábio").
-- **Skills que melhoram com a raridade**: mais dano, mais projéteis/golpes, menos recarga, e skills/passivas
-  extras que só **desbloqueiam** em raridades altas.
-- **Evolução** (aba Bolinhas → detalhes):
-  - nível (moedas) e estrelas (fragmentos = cópias da mesma bolinha);
-  - **subir de raridade** exige: 5 estrelas + fragmentos + **cristais de evolução** (baú, masmorras, chefes, torre)
-    + **derrotar um chefe específico** no Modo Chefes + moedas.
-- **Equipamentos** em 9 espaços (arma corpo a corpo/à distância, armadura, elmo, amuleto, asas, luvas, botas, cinto, anel),
-  raridade, nível e atributos extras. Baú com nível, Auto (equipa o melhor e vende o pior).
-- **Modos**: História (capítulos com chefes), Chefes (desbloqueiam por nível da conta), Torre Infinita,
-  Masmorras diárias (ouro, chaves, fragmentos/cristais), PvP assíncrono, ganhos idle/offline (ampulheta).
-- **Gacha** com chances visíveis e garantia (pity), **Loja** com pacotes de gemas, VIP e presente diário.
+## Conteúdo
+- **Mais de 860 bolinhas de ~90 animes** (e crescendo), 9 raridades: Comum → Incomum → Raro → Épico → Lendário →
+  Mítico → Divino → Celestial → Transcendente, com formas evoluídas nomeadas.
+- **Combate**: bolinhas quicam pelas paredes (sem perseguir), armas orbitando (37 tipos), 28 tipos de skill
+  (projétil, feixe, sopro, domínio, órbita, gancho, teleporte, cópia, aposta...), 15 tipos de passiva,
+  13 status, transformações com aura e versões "alt" das skills. Efeitos no estilo fofo desenhados em código.
+- **Modo História**: 32 capítulos (um por anime) com mapa de 20 fases, diálogos, tela VS e chefe por capítulo;
+  depois do último capítulo recomeça em Difícil / Pesadelo / Inferno.
+- **Modos**: Chefes (32), Torre Infinita, Masmorras diárias, PvP, Expedições (bolinhas fora de campo trazem
+  prêmios), Horda Sem Fim e Desafio Diário com regras especiais.
+- **Evolução**: nível (moedas), estrelas (cópias), subir raridade exige cópias + cristais + derrotar um chefe.
+- **Equipamentos do jogador** (9 espaços, valem para qualquer bolinha em campo), **30 conjuntos lendários** com
+  bônus de 2/4/6 peças, forja.
+- **Gacha** com banners liberados pela história, banner de evento semanal, pity e animação de abertura.
+- **Metas**: missões diárias, conquistas, login de 7 dias, recompensa por completar a coleção de um anime.
+- Save automático, 3 espaços de save e backup por código. Som e música gerados em código.
+- Compras em **modo teste** (nada é cobrado); a integração real exige o plugin Google Play Billing.
 
 ## Estrutura
 ```
-scripts/core/db.gd         dados: raridades, bolinhas, skills, chefes, capítulos, loja  <- adicione bolinhas aqui
-scripts/core/game.gd       estado, save, evolução, baú, gacha, modos (autoload "Game")
-scripts/core/ball_art.gd   arte HD das bolinhas gerada em código (cabelo, olhos, acessórios)
-scripts/core/pixel_art.gd  ícones pixel da UI
-scripts/core/billing.gd    compras (autoload "Billing")
-scripts/battle/            arena, unidade, skills, projéteis, efeitos
-scripts/ui/                tela principal e menus
-assets/fx/                 sprite sheets dos efeitos (geradas do pixelfx)
-third_party/pixelfx/       repositório base dos efeitos (ignorado pelo Godot)
-tools/export_fx.mjs        exporta/recolore efeitos do pixelfx para assets/fx
+scripts/core/       db (dados/carregador), game (estado/regras), ball_art (arte das bolinhas), ui, audio, billing
+scripts/data/       balls_*.gd (bolinhas), world*.gd (capítulos/chefes/banners), items.gd (conjuntos)
+scripts/battle/     batalha, unidade, skills, armas, efeitos fofos (cute_fx), projéteis, órbitas, zonas
+scripts/ui/         tela principal, história, coleção, gacha, telas e popups
+docs/CONTENT_SPEC.md   especificação para criar bolinhas novas (visual, armas, skills, efeitos)
+tools/              qa.gd, balance.gd, sheet.gd, bake_balls.gd, artcheck.gd, gen_audio.mjs, export_fx.mjs, publish.sh
+third_party/pixelfx/   base de efeitos (MIT) usada nas recompensas e no pipeline de sprites
 ```
 
-### Nova bolinha
-Copie um bloco em `DB.BALLS`. O visual sai do campo `look` (base, hair, hair_style, eyes, eye_color, extras,
-lower...). Skills usam os tipos documentados no topo do `db.gd`.
+## Ferramentas
+```
+godot --headless --path . --script res://tools/qa.gd                 # valida e simula todas as bolinhas
+godot --headless --path . --script res://tools/balance.gd            # ritmo de progressão
+godot --headless --path . --script res://tools/sheet.gd -- out.png file:balls_b 8 0 40   # folha de visuais
+godot --headless --path . --script res://tools/bake_balls.gd         # pré-gera as texturas
+bash tools/publish.sh v0.x.y "notas"                                 # QA + exports + Pages + release
+```
 
-### Novo efeito visual
-Adicione uma linha em `FX` no `tools/export_fx.mjs` (id do pixelfx + paleta opcional) e rode
-`node tools/export_fx.mjs <nome>`. Depois use o nome no campo `fx` de uma skill.
-
-### Capturas de teste (dev)
-`Godot_console.exe --path . -- --shot=C:/tmp/a.png --wait=6 --give --use=monarca --stage=2-10 --screen=balls`
-
-## Para publicar (Android)
-1. Editor → Projeto → Exportar → instale os *export templates* e configure o Android SDK/JDK.
-2. **Compras reais**: instale o plugin oficial GodotGooglePlayBilling, crie no Play Console produtos com os mesmos
-   ids de `DB.IAP` e **valide os recibos num servidor** antes de entregar as gemas. Sem o plugin a loja roda em MODO TESTE.
-3. **PvP online** e anti-trapaça precisam de backend (o save hoje é local em `user://save.json`).
-4. Os nomes são paródias ("Shinobi da Raposa", "Esfera Espiral"...). Evite nomes, personagens e logos oficiais
-   de animes, senão a loja pode remover o app por direitos autorais.
-
-Efeitos: pixelfx (MIT) — ver `third_party/pixelfx/LICENSE` e `NOTICE.md`. Fonte: Pixelify Sans (OFL).
+Nomes de personagens e golpes são paródias. Efeitos: pixelfx (MIT). Fonte: Pixelify Sans (OFL).

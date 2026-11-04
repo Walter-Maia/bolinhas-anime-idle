@@ -62,6 +62,7 @@ static func cast(b: Battle, u: Unit, sk: Dictionary, free: bool = false) -> bool
 		_:
 			if es.is_empty():
 				return false
+	Snd.play("skill", -5.0, 0.12, 0.12)
 	if not free:
 		b.banner(u, d.get("name", ""), u.color.lightened(0.35))
 	match t:

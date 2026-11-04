@@ -61,7 +61,7 @@ func map_screen() -> Control:
 	box.add_child(pk[0])
 	# trilha
 	var path := Control.new()
-	path.custom_minimum_size = Vector2(0, 560)
+	path.custom_minimum_size = Vector2(0, 590)
 	path.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	path.mouse_filter = Control.MOUSE_FILTER_STOP
 	var boss_tex := BallArt.make(BallArt.normalize(DB.BOSSES[ch.boss].look))
@@ -73,7 +73,7 @@ func map_screen() -> Control:
 		if row % 2 == 1:
 			col = 3 - col
 		var w := path.size.x
-		return Vector2(w * (0.14 + col * 0.24), 520.0 - row * 112.0)
+		return Vector2(w * (0.14 + col * 0.24), 550.0 - row * 112.0)
 	path.draw.connect(func() -> void:
 		var fcol := Color(theme.get("floor", "#f1ead2"))
 		path.draw_rect(Rect2(Vector2.ZERO, path.size), fcol.darkened(0.03))
@@ -285,6 +285,8 @@ func dialogue(lines: Array, cb: Callable) -> void:
 	box.offset_right = -14
 	box.offset_top = -330
 	box.offset_bottom = -130
+	# textos longos fazem a caixa crescer para cima (nunca por cima da barra de navegacao)
+	box.grow_vertical = Control.GROW_DIRECTION_BEGIN
 	box.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	layer.add_child(box)
 	var bv := UI.vbox(6)
@@ -298,8 +300,12 @@ func dialogue(lines: Array, cb: Callable) -> void:
 	hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	bv.add_child(hint)
 	var skip := UI.button("Pular", UI.C_GRAY, 17, Vector2(96, 48))
-	skip.position = Vector2(main.size.x - 112, 16)
 	layer.add_child(skip)
+	skip.set_anchors_preset(Control.PRESET_TOP_RIGHT)
+	skip.offset_left = -112
+	skip.offset_right = -16
+	skip.offset_top = 16
+	skip.offset_bottom = 64
 	var state := {"i": -1, "tw": null}
 	var finish := func() -> void:
 		if not is_instance_valid(layer):
