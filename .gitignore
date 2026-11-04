@@ -1,0 +1,6 @@
+# Godot
+.godot/
+/android/
+build/
+*.tmp
+third_party/pixelfx/gallery/fonts/
