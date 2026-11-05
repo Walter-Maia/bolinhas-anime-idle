@@ -22,6 +22,9 @@ var silhouette := false
 
 func _init() -> void:
 	texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+	# ampliado: pixels nitidos; reduzido (miniaturas): linear para nao "comer" o contorno
+	resized.connect(func() -> void:
+		texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST if minf(size.x, size.y) >= 96.0 else CanvasItem.TEXTURE_FILTER_LINEAR)
 	clip_contents = true
 	set_process(false)
 

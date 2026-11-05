@@ -2,6 +2,7 @@ extends Control
 ## Tela principal: HUD + arena + equipamentos/bau + navegacao. Controla os modos de batalha e o fluxo da historia.
 
 const NAV := [["story", "scroll", "História"], ["modes", "dungeon", "Modos"], ["balls", "", "Bolinhas"], ["upgrades", "book", "Melhorias"], ["gacha", "gacha", "Invocar"], ["shop", "shop", "Loja"]]
+const PIX := 2  # tamanho do pixel da arena
 
 var battle: Battle
 var arena_box: Control
@@ -144,8 +145,23 @@ func _build() -> void:
 	arena_box.clip_contents = true
 	arena_box.custom_minimum_size = Vector2(0, 320)
 	arena_panel.add_child(arena_box)
+	# a arena e renderizada em resolucao menor e ampliada sem suavizar: bolinhas, roupas, armas e poderes
+	# ficam com pixels de verdade, uniformes em qualquer tela
+	var pix := SubViewportContainer.new()
+	pix.stretch = true
+	pix.stretch_shrink = PIX
+	pix.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	pix.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	pix.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	arena_box.add_child(pix)
+	var svp := SubViewport.new()
+	svp.transparent_bg = true
+	svp.snap_2d_transforms_to_pixel = true
+	svp.canvas_item_default_texture_filter = Viewport.DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_LINEAR
+	pix.add_child(svp)
 	battle = Battle.new()
-	arena_box.add_child(battle)
+	battle.scale = Vector2.ONE / float(PIX)
+	svp.add_child(battle)
 	arena_box.resized.connect(func() -> void: battle.set_arena(arena_box.size))
 	battle.finished.connect(_on_battle_finished)
 	battle.wave_started.connect(_on_wave)
